@@ -18,6 +18,7 @@
 html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
   font-family:'Segoe UI',system-ui,sans-serif;}
 
+/* ── LAYOUT ── */
 #app{display:flex;flex-direction:column;height:100vh;}
 
 /* TOP BAR */
@@ -60,21 +61,22 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
   opacity:0;transition:.15s;margin-top:1px;}
 .tab.active .tab-dot{opacity:1;}
 
-/* SCROLLBAR */
+/* ── SCROLLBAR ── */
 .screen::-webkit-scrollbar{width:4px;}
 .screen::-webkit-scrollbar-track{background:transparent;}
 .screen::-webkit-scrollbar-thumb{background:var(--green3);border-radius:2px;}
 
-/* SHARED COMPONENTS */
+/* ── COMPONENTS ── */
 .eyebrow{font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
   color:var(--green);margin-bottom:.3rem;display:flex;align-items:center;gap:.35rem;}
 .eyebrow::before{content:'';width:14px;height:2px;background:var(--green);border-radius:1px;}
 .stitle{font-size:1.55rem;font-weight:800;margin-bottom:.2rem;}
 .ssub{color:var(--muted);font-size:.92rem;margin-bottom:1.2rem;}
+
 .card{background:var(--card);border:1px solid var(--border2);border-radius:14px;padding:1.1rem;}
 .card+.card{margin-top:.75rem;}
 
-/* HOME */
+/* ── HOME SCREEN ── */
 .hero-banner{border-radius:16px;overflow:hidden;margin-bottom:1rem;position:relative;
   background:linear-gradient(145deg,#0d3d26,#071d10);padding:1.6rem 1.2rem 0;}
 .hero-banner::before{content:'';position:absolute;inset:0;
@@ -94,6 +96,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
   color:#0b2a1a;font-weight:800;font-size:.82rem;padding:.65rem 1.6rem;
   border-radius:30px;text-decoration:none;margin-bottom:1.4rem;
   box-shadow:0 3px 16px rgba(62,201,92,.35);}
+/* skyline SVG */
 .hb-skyline{display:block;width:100%;margin-bottom:-1px;}
 
 .info-pills{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1rem;}
@@ -106,25 +109,27 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 .quick-btns{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1rem;}
 .qbtn{background:var(--card2);border:1px solid var(--border);border-radius:12px;
   padding:.9rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;
-  cursor:pointer;transition:.15s;color:var(--text);width:100%;}
+  cursor:pointer;transition:.15s;border:none;color:var(--text);width:100%;}
 .qbtn:hover{background:var(--bg3);border-color:rgba(62,201,92,.3);}
 .qbtn .qi{font-size:1.4rem;}
-.qbtn .ql{font-size:.78rem;font-weight:600;color:var(--muted);}
+.qbtn .ql{font-size:.72rem;font-weight:600;color:var(--muted);}
 
 .apoio-strip{border-radius:12px;background:var(--card);border:1px solid var(--border2);
   padding:.8rem 1rem;display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;}
-.apoio-strip span{font-size:.7rem;color:var(--muted);}
+.apoio-strip span{font-size:.65rem;color:var(--muted);}
 .apoio-tag{background:rgba(62,201,92,.08);border:1px solid var(--border);
-  border-radius:5px;padding:.18rem .5rem;font-size:.7rem;color:var(--green2);font-weight:600;}
+  border-radius:5px;padding:.18rem .5rem;font-size:.65rem;color:var(--green2);font-weight:600;}
 
-/* PROGRAMAÇÃO */
+/* ── PROGRAMAÇÃO SCREEN ── */
 .day-tabs{display:flex;gap:.45rem;margin-bottom:1rem;}
 .dtab{background:var(--card);border:1px solid var(--border2);color:var(--muted);
-  font-size:.84rem;font-weight:600;padding:.5rem 1.1rem;border-radius:8px;cursor:pointer;transition:.15s;}
+  font-size:.78rem;font-weight:600;padding:.5rem 1.1rem;border-radius:8px;
+  cursor:pointer;transition:.15s;border:1px solid var(--border2);}
 .dtab.active{background:var(--green3);color:#fff;border-color:transparent;
   box-shadow:0 2px 10px rgba(62,201,92,.28);}
 .pday{display:none;}
 .pday.active{display:block;}
+
 .pitem{display:flex;gap:.75rem;padding:.9rem;border-radius:11px;
   margin-bottom:.5rem;background:var(--card);border:1px solid var(--border2);transition:.15s;}
 .pitem:hover{border-color:var(--border);}
@@ -140,7 +145,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 .pb-pr{background:rgba(42,191,160,.1);color:var(--teal);}
 .pb-b{background:rgba(90,144,112,.1);color:var(--muted);}
 
-/* PALESTRANTES */
+/* ── PALESTRANTES SCREEN ── */
 .spk-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
 .spk-card{background:var(--card);border:1px solid var(--border2);border-radius:13px;
   padding:1rem .85rem;text-align:center;transition:.2s;cursor:pointer;}
@@ -171,32 +176,32 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
   display:flex;align-items:center;justify-content:center;
   font-size:1.4rem;font-weight:800;color:#0b2a1a;margin:0 auto .85rem;}
 .modal-name{font-size:1.05rem;font-weight:800;text-align:center;margin-bottom:.25rem;}
-.modal-role{font-size:.82rem;color:var(--green2);text-align:center;margin-bottom:.85rem;}
-.modal-bio{font-size:.88rem;color:var(--muted);line-height:1.7;}
+.modal-role{font-size:.78rem;color:var(--green2);text-align:center;margin-bottom:.85rem;}
+.modal-bio{font-size:.82rem;color:var(--muted);line-height:1.7;}
 
-/* LOCAL */
+/* ── LOCAL SCREEN ── */
 .map-wrap{border-radius:12px;overflow:hidden;height:200px;border:1px solid var(--border2);margin-bottom:.75rem;}
 .map-wrap iframe{width:100%;height:100%;border:none;}
 .list-item{display:flex;align-items:center;gap:.65rem;padding:.55rem .75rem;
-  background:rgba(255,255,255,.03);border-radius:8px;font-size:.85rem;margin-bottom:.4rem;}
+  background:rgba(255,255,255,.03);border-radius:8px;font-size:.8rem;margin-bottom:.4rem;}
 .ldot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;}
 
-/* FAQ */
+/* ── INFO SCREEN ── */
 .faq-item{background:var(--card);border:1px solid var(--border2);border-radius:11px;
   overflow:hidden;margin-bottom:.5rem;}
-.faq-q{padding:.85rem 1rem;font-size:.9rem;font-weight:600;cursor:pointer;
+.faq-q{padding:.85rem 1rem;font-size:.84rem;font-weight:600;cursor:pointer;
   display:flex;justify-content:space-between;align-items:center;}
 .faq-q:hover{color:var(--green);}
 .faq-arr{transition:.3s;font-size:.65rem;color:var(--muted);}
 .faq-item.open .faq-arr{transform:rotate(180deg);color:var(--green);}
-.faq-a{max-height:0;overflow:hidden;transition:.3s;font-size:.86rem;color:var(--muted);line-height:1.7;}
+.faq-a{max-height:0;overflow:hidden;transition:.3s;font-size:.8rem;color:var(--muted);line-height:1.7;}
 .faq-item.open .faq-a{max-height:200px;padding:0 1rem .85rem;}
 
 .contact-card{background:linear-gradient(135deg,rgba(62,201,92,.08),rgba(42,191,160,.06));
   border:1px solid var(--border);border-radius:14px;padding:1.1rem;
   text-align:center;margin-top:.75rem;}
-.contact-card h3{font-size:.9rem;font-weight:700;margin-bottom:.4rem;}
-.contact-card a{color:var(--green);font-size:.86rem;text-decoration:none;}
+.contact-card h3{font-size:.85rem;font-weight:700;margin-bottom:.4rem;}
+.contact-card a{color:var(--green);font-size:.82rem;text-decoration:none;}
 
 @media(min-width:500px){
   .spk-grid{grid-template-columns:repeat(3,1fr);}
@@ -308,15 +313,12 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
       <div class="spk-grid">
         <div class="spk-card" onclick="openModal('VM','Vinícius Marques de Carvalho','Ministro da Controladoria-Geral da União — CGU','Bio em breve.')"><div class="spk-av">VM</div><div class="spk-name">Vinícius M. de Carvalho</div><div class="spk-role">Ministro da CGU</div></div>
         <div class="spk-card" onclick="openModal('MP','Marcelo Pontes Vianna','Secretário de Integridade Privada da CGU','Bio em breve.')"><div class="spk-av">MP</div><div class="spk-name">Marcelo Pontes Vianna</div><div class="spk-role">Secretário de Integridade Privada/CGU</div></div>
-        <div class="spk-card" onclick="openModal('GW','Gilberto Waller Júnior','Procurador Federal — Advocacia-Geral da União','Bio em breve.')"><div class="spk-av">GW</div><div class="spk-name">Gilberto Waller Júnior</div><div class="spk-role">Procurador Federal/AGU</div></div>
-        <div class="spk-card" onclick="openModal('RL','Raniere Rocha Lins','Procurador Nacional de Patrimônio Público e Probidade — PGU/AGU','Bio em breve.')"><div class="spk-av">RL</div><div class="spk-name">Raniere Rocha Lins</div><div class="spk-role">Procurador Nacional/PGU/AGU</div></div>
+        <div class="spk-card" onclick="openModal('GW','Gilberto Waller Júnior','Advogado-Geral da União — AGU','Bio em breve.')"><div class="spk-av">GW</div><div class="spk-name">Gilberto Waller Júnior</div><div class="spk-role">Advogado-Geral da União</div></div>
+        <div class="spk-card" onclick="openModal('RL','Raniere Rocha Lins','Procurador-Chefe da Procuradoria-Geral da União','Bio em breve.')"><div class="spk-av">RL</div><div class="spk-name">Raniere Rocha Lins</div><div class="spk-role">Procurador-Chefe da PGU</div></div>
         <div class="spk-card" onclick="openModal('CJ','Carlos Jacques','Conselheiro do Conselho Administrativo de Defesa Econômica — CADE','Bio em breve.')"><div class="spk-av">CJ</div><div class="spk-name">Carlos Jacques</div><div class="spk-role">Conselheiro do CADE</div></div>
-        <div class="spk-card" onclick="openModal('AA','Ana Aranha','Gerente Sênior em Anticorrupção no Pacto Global das Nações Unidas','Bio em breve.')"><div class="spk-av">AA</div><div class="spk-name">Ana Aranha</div><div class="spk-role">Gerente Sênior — Pacto Global/ONU</div></div>
         <div class="spk-card" onclick="openModal('KS','Keity Saboya','Juíza de Direito — Tribunal de Justiça do Rio Grande do Norte','Bio em breve.')"><div class="spk-av">KS</div><div class="spk-name">Keity Saboya</div><div class="spk-role">Juíza de Direito — TJRN</div></div>
         <div class="spk-card" onclick="openModal('JP','Juliana Palma','Professora da Fundação Getúlio Vargas — FGV','Bio em breve.')"><div class="spk-av">JP</div><div class="spk-name">Juliana Palma</div><div class="spk-role">Professora — FGV</div></div>
         <div class="spk-card" onclick="openModal('VS','Valdir Simão','Advogado · Ex-Ministro da CGU','Bio em breve.')"><div class="spk-av">VS</div><div class="spk-name">Valdir Simão</div><div class="spk-role">Advogado · Ex-Ministro CGU</div></div>
-        <div class="spk-card" onclick="openModal('RG','Reynaldo Goto','Professor e especialista em compliance','Bio em breve.')"><div class="spk-av">RG</div><div class="spk-name">Reynaldo Goto</div><div class="spk-role">Professor · Especialista em compliance</div></div>
-        <div class="spk-card" onclick="openModal('MS','Mário Vinícius Spinelli','Professor e especialista em compliance','Bio em breve.')"><div class="spk-av">MS</div><div class="spk-name">Mário V. Spinelli</div><div class="spk-role">Professor · Especialista em compliance</div></div>
         <div class="spk-card" onclick="openModal('EB','Eveline Martins Brito','Secretária-Executiva da CGU','Bio em breve.')"><div class="spk-av">EB</div><div class="spk-name">Eveline Martins Brito</div><div class="spk-role">Secretária-Executiva da CGU</div></div>
         <div class="spk-card spk-ghost"><div class="spk-av">+</div><div class="spk-name">Em breve</div><div class="spk-role">Outros palestrantes a confirmar</div></div>
       </div>
@@ -328,30 +330,35 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
       <div class="eyebrow">Local & Logística</div>
       <div class="stitle">Como Chegar</div>
       <p class="ssub">Brasília, DF · 30 Jun e 1º Jul 2026</p>
+
       <div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18217.724804070047!2d-47.94448181284177!3d-15.776486199999978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cef7daf5d3e1a9%3A0x318e15ceebd81b0d!2sPOUPEX%20-%20Edif%C3%ADcio%20Sede!5e1!3m2!1spt-BR!2sbr" allowfullscreen loading="lazy"></iframe></div>
+
       <div class="card" style="margin-bottom:.75rem">
-        <div style="font-size:.85rem;font-weight:700;color:var(--green2);margin-bottom:.5rem">📍 POUPEX — Edifício Sede</div>
-        <div style="font-size:.88rem;color:var(--muted);line-height:1.6">Setor Militar Urbano, Parte A · Plano Piloto · Brasília – DF</div>
-        <a href="https://maps.app.goo.gl/bjLgE9oTgWLGnVGe9" target="_blank" style="display:inline-block;margin-top:.6rem;font-size:.82rem;color:var(--green);text-decoration:none">📌 Abrir no Google Maps →</a>
-        <div style="margin-top:.6rem;font-size:.8rem;color:#e8a030">⚠️ Estacionamento limitado — use aplicativo de transporte</div>
+        <div style="font-size:.78rem;font-weight:700;color:var(--green2);margin-bottom:.5rem">📍 POUPEX — Edifício Sede</div>
+        <div style="font-size:.82rem;color:var(--muted);line-height:1.6">Setor Militar Urbano, Parte A · Plano Piloto · Brasília – DF</div>
+        <a href="https://maps.app.goo.gl/bjLgE9oTgWLGnVGe9" target="_blank" style="display:inline-block;margin-top:.6rem;font-size:.75rem;color:var(--green);text-decoration:none">📌 Abrir no Google Maps →</a>
+        <div style="margin-top:.6rem;font-size:.75rem;color:#e8a030">⚠️ Estacionamento limitado — use aplicativo de transporte</div>
       </div>
+
       <div class="card" style="margin-bottom:.75rem">
-        <div style="font-size:.85rem;font-weight:700;color:var(--green2);margin-bottom:.6rem">✈️ Chegando a Brasília</div>
-        <div style="font-size:.88rem;color:var(--muted);line-height:1.6">Ao desembarcar, dirija-se à Praça Pick-up (térreo do terminal) para solicitar transporte por aplicativo ou táxi.</div>
+        <div style="font-size:.78rem;font-weight:700;color:var(--green2);margin-bottom:.6rem">✈️ Chegando a Brasília</div>
+        <div style="font-size:.82rem;color:var(--muted);line-height:1.6">Ao desembarcar, dirija-se à Praça Pick-up (térreo do terminal) para solicitar transporte por aplicativo ou táxi.</div>
       </div>
+
       <div class="card" style="margin-bottom:.75rem">
-        <div style="font-size:.85rem;font-weight:700;color:var(--green2);margin-bottom:.6rem">🍽️ Restaurantes próximos</div>
-        <div class="list-item"><span class="ldot"></span><div><strong>Mané Mercado</strong> <span style="font-size:.78rem;color:var(--muted)">— Seg–Qui 12h–00h | Sex–Sáb 11h–01h | Dom 11h–23h</span></div></div>
-        <div class="list-item"><span class="ldot"></span><div><strong>Brasília Shopping</strong> <span style="font-size:.78rem;color:var(--muted)">— SCN Qd. 5, Asa Norte · Seg–Sáb 10h–22h</span></div></div>
+        <div style="font-size:.78rem;font-weight:700;color:var(--green2);margin-bottom:.6rem">🍽️ Restaurantes próximos</div>
+        <div class="list-item"><span class="ldot"></span><div><strong style="font-size:.8rem">Mané Mercado</strong> <span style="font-size:.72rem;color:var(--muted)">— Seg–Qui 12h–00h | Sex–Sáb 11h–01h | Dom 11h–23h</span></div></div>
+        <div class="list-item"><span class="ldot"></span><div><strong style="font-size:.8rem">Brasília Shopping</strong> <span style="font-size:.72rem;color:var(--muted)">— SCN Qd. 5, Asa Norte · Seg–Sáb 10h–22h</span></div></div>
       </div>
+
       <div class="card">
-        <div style="font-size:.85rem;font-weight:700;color:var(--green2);margin-bottom:.6rem">🏨 Hotéis sugeridos</div>
-        <div class="list-item"><span class="ldot"></span><span><strong>Mercure Brasília Líder</strong> · (61) 3426-4000</span></div>
-        <div class="list-item"><span class="ldot"></span><span><strong>Windsor Plaza Brasília</strong> · (61) 2195-1100</span></div>
-        <div class="list-item"><span class="ldot"></span><span><strong>Kubitschek Plaza</strong> · (61) 3329-3333</span></div>
-        <div class="list-item"><span class="ldot"></span><span><strong>Manhattan Plaza</strong> · (61) 3319-3543</span></div>
-        <div class="list-item"><span class="ldot"></span><span><strong>Athos Bulcão HPlus</strong> · (61) 99102-1608</span></div>
-        <div class="list-item"><span class="ldot"></span><span><strong>Brasília Imperial Hotel</strong> · (61) 3425-0000</span></div>
+        <div style="font-size:.78rem;font-weight:700;color:var(--green2);margin-bottom:.6rem">🏨 Hotéis sugeridos</div>
+        <div class="list-item"><span class="ldot"></span><span style="font-size:.8rem"><strong>Mercure Brasília Líder</strong> · (61) 3426-4000</span></div>
+        <div class="list-item"><span class="ldot"></span><span style="font-size:.8rem"><strong>Windsor Plaza Brasília</strong> · (61) 2195-1100</span></div>
+        <div class="list-item"><span class="ldot"></span><span style="font-size:.8rem"><strong>Kubitschek Plaza</strong> · (61) 3329-3333</span></div>
+        <div class="list-item"><span class="ldot"></span><span style="font-size:.8rem"><strong>Manhattan Plaza</strong> · (61) 3319-3543</span></div>
+        <div class="list-item"><span class="ldot"></span><span style="font-size:.8rem"><strong>Athos Bulcão HPlus</strong> · (61) 99102-1608</span></div>
+        <div class="list-item"><span class="ldot"></span><span style="font-size:.8rem"><strong>Brasília Imperial Hotel</strong> · (61) 3425-0000</span></div>
       </div>
     </div>
 
@@ -361,21 +368,24 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
       <div class="eyebrow">Informações</div>
       <div class="stitle">Tudo sobre o evento</div>
       <p class="ssub">Inscrição, certificado e dúvidas frequentes</p>
+
       <div class="card" style="margin-bottom:.75rem;text-align:center">
         <div style="font-size:1.8rem;margin-bottom:.5rem">🎟️</div>
-        <div style="font-size:.95rem;font-weight:700;margin-bottom:.3rem">Inscrições abertas!</div>
-        <div style="font-size:.85rem;color:var(--muted);margin-bottom:.9rem">Gratuito · Certificado digital para todos os participantes</div>
-        <a href="https://forms.office.com/r/sAcLitJmPA" target="_blank" style="display:inline-block;background:linear-gradient(135deg,var(--green3),var(--green));color:#0b2a1a;font-weight:800;font-size:.88rem;padding:.65rem 2rem;border-radius:30px;text-decoration:none;">Inscreva-se agora →</a>
+        <div style="font-size:.88rem;font-weight:700;margin-bottom:.3rem">Inscrições abertas!</div>
+        <div style="font-size:.78rem;color:var(--muted);margin-bottom:.9rem">Gratuito · Certificado digital para todos os participantes</div>
+        <a href="https://forms.office.com/r/sAcLitJmPA" target="_blank" style="display:inline-block;background:linear-gradient(135deg,var(--green3),var(--green));color:#0b2a1a;font-weight:800;font-size:.82rem;padding:.65rem 2rem;border-radius:30px;text-decoration:none;">Inscreva-se agora →</a>
       </div>
+
       <div class="faq-item"><div class="faq-q" onclick="tFaq(this)">Onde será realizado o evento? <span class="faq-arr">▼</span></div><div class="faq-a">Nos dias 30/06 e 01/07/2026, no Auditório da POUPEX — Setor Militar Urbano, Plano Piloto, Brasília – DF.</div></div>
       <div class="faq-item"><div class="faq-q" onclick="tFaq(this)">Como confirmar minha inscrição? <span class="faq-arr">▼</span></div><div class="faq-a">Após preencher o formulário, você receberá confirmação automática no e-mail. Não é necessária confirmação adicional.</div></div>
       <div class="faq-item"><div class="faq-q" onclick="tFaq(this)">Haverá certificado? <span class="faq-arr">▼</span></div><div class="faq-a">Sim — certificado digital enviado ao e-mail informado na inscrição, após a participação.</div></div>
       <div class="faq-item"><div class="faq-q" onclick="tFaq(this)">Posso me inscrever para um dia só? <span class="faq-arr">▼</span></div><div class="faq-a">Não. A inscrição é válida para os dois dias do evento.</div></div>
       <div class="faq-item"><div class="faq-q" onclick="tFaq(this)">Como será o credenciamento? <span class="faq-arr">▼</span></div><div class="faq-a">Haverá equipe de credenciamento no local. Chegue o mais cedo possível com documento de identidade com foto.</div></div>
+
       <div class="contact-card">
         <h3>📧 Fale com a organização</h3>
         <a href="mailto:integridade.empresarial@cgu.gov.br">integridade.empresarial@cgu.gov.br</a>
-        <div style="margin-top:.6rem;font-size:.75rem;color:var(--muted2)">Organização: Secretaria de Integridade Privada · CGU · Governo do Brasil</div>
+        <div style="margin-top:.6rem;font-size:.7rem;color:var(--muted2)">Organização: Secretaria de Integridade Privada · CGU · Governo do Brasil</div>
       </div>
     </div>
 
@@ -406,7 +416,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 <div class="modal-overlay" id="modal" onclick="closeModal(event)">
   <div class="modal-box">
     <div class="modal-header">
-      <span style="font-size:.75rem;color:var(--muted);font-weight:600;letter-spacing:1px;text-transform:uppercase">Palestrante</span>
+      <span style="font-size:.7rem;color:var(--muted);font-weight:600;letter-spacing:1px;text-transform:uppercase">Palestrante</span>
       <button class="modal-close" onclick="closeModalBtn()">✕</button>
     </div>
     <div class="modal-av" id="m-av"></div>
@@ -418,6 +428,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 
 <script>
 const screenMap={'s-home':'tab-home','s-prog':'tab-prog','s-spk':'tab-spk','s-local':'tab-local','s-info':'tab-info'};
+
 function goTo(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -425,11 +436,14 @@ function goTo(id){
   document.getElementById(screenMap[id]).classList.add('active');
   document.getElementById(id).scrollTop=0;
 }
+
 function showDay(i){
   document.querySelectorAll('.pday').forEach((d,j)=>d.classList.toggle('active',j===i));
   document.querySelectorAll('.dtab').forEach((t,j)=>t.classList.toggle('active',j===i));
 }
+
 function tFaq(el){el.parentElement.classList.toggle('open');}
+
 function openModal(initials,name,role,bio){
   document.getElementById('m-av').textContent=initials;
   document.getElementById('m-name').textContent=name;
