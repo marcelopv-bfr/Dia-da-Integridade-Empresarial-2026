@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Integridade Empresarial 2026</title>
+<style>
+:root{
+  --bg:#0b2a1a;--bg2:#0d3320;--bg3:#0f3d26;
+  --card:#0f3322;--card2:#133d28;
+  --green:#3ec95c;--green2:#56e070;--green3:#27a845;
+  --teal:#2abfa0;--gold:#f0c040;
+  --text:#e8f5ec;--muted:#7ab08a;--muted2:#5a9070;
+  --border:rgba(62,201,92,0.18);--border2:rgba(62,201,92,0.08);
+  --nav-h:58px;--tab-h:64px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
+  font-family:'Segoe UI',system-ui,sans-serif;}
+
+/* ── LAYOUT ── */
+#app{display:flex;flex-direction:column;height:100vh;}
+
+/* TOP BAR */
+.topbar{height:var(--nav-h);background:rgba(11,42,26,.97);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);display:flex;align-items:center;
+  justify-content:space-between;padding:0 1.2rem;flex-shrink:0;z-index:50;}
+.topbar-brand{display:flex;align-items:center;gap:.55rem;}
+.cgu-tag{background:var(--green);color:#0b2a1a;font-size:.65rem;font-weight:800;
+  padding:.18rem .5rem;border-radius:4px;letter-spacing:.4px;}
+.topbar-title{font-size:.78rem;color:var(--muted);font-weight:500;}
+.topbar-btn{background:linear-gradient(135deg,var(--green3),var(--green));
+  color:#0b2a1a;font-size:.72rem;font-weight:800;padding:.38rem .85rem;
+  border-radius:20px;text-decoration:none;white-space:nowrap;}
+
+/* SCREENS */
+#screens{flex:1;overflow:hidden;position:relative;}
+.screen{position:absolute;inset:0;overflow-y:auto;padding:1.25rem 1rem 1.5rem;
+  display:none;animation:fadeIn .2s ease;}
+.screen.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* BOTTOM TABS */
+.tabs{height:var(--tab-h);background:rgba(11,42,26,.98);backdrop-filter:blur(14px);
+  border-top:1px solid var(--border);display:flex;align-items:stretch;flex-shrink:0;}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:.22rem;cursor:pointer;transition:.15s;border:none;background:none;
+  color:var(--muted2);padding:.4rem .2rem;}
+.tab:hover{color:var(--muted);}
+.tab.active{color:var(--green);}
+.tab-icon{font-size:1.25rem;line-height:1;}
+.tab-label{font-size:.6rem;font-weight:600;letter-spacing:.3px;}
+.tab-dot{width:4px;height:4px;border-radius:50%;background:var(--green);
+  opacity:0;transition:.15s;margin-top:1px;}
+.tab.active .tab-dot{opacity:1;}
+
+/* ── SCROLLBAR ── */
+.screen::-webkit-scrollbar{width:4px;}
+.screen::-webkit-scrollbar-track{background:transparent;}
+.screen::-webkit-scrollbar-thumb{background:var(--green3);border-radius:2px;}
+
+/* ── COMPONENTS ── */
+.eyebrow{font-size:.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--green);margin-bottom:.3rem;display:flex;align-items:center;gap:.35rem;}
+.eyebrow::before{content:'';width:14px;height:2px;background:var(--green);border-radius:1px;}
+.stitle{font-size:1.35rem;font-weight:800;margin-bottom:.2rem;}
+.ssub{color:var(--muted);font-size:.82rem;margin-bottom:1.2rem;}
+
+.card{background:var(--card);border:1px solid var(--border2);border-radius:14px;padding:1.1rem;}
+.card+.card{margin-top:.75rem;}
+
+/* ── HOME SCREEN ── */
+.hero-banner{border-radius:16px;overflow:hidden;margin-bottom:1rem;position:relative;
+  background:linear-gradient(145deg,#0d3d26,#071d10);padding:1.6rem 1.2rem 0;}
+.hero-banner::before{content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(62,201,92,.2) 1px,transparent 1px);
+  background-size:30px 30px;opacity:.4;}
+.hero-banner-inner{position:relative;z-index:2;}
+.hb-badge{display:inline-flex;align-items:center;gap:.4rem;
+  background:rgba(62,201,92,.12);border:1px solid rgba(62,201,92,.3);
+  border-radius:6px;padding:.28rem .75rem;margin-bottom:.75rem;}
+.hb-badge .pill{background:var(--green);color:#0b2a1a;font-size:.58rem;
+  font-weight:800;padding:.1rem .4rem;border-radius:3px;letter-spacing:.4px;}
+.hb-badge span{font-size:.7rem;color:var(--green2);font-weight:600;}
+.hb-title{font-size:1.5rem;font-weight:900;line-height:1.15;margin-bottom:.3rem;}
+.hb-title em{font-style:normal;color:var(--green2);}
+.hb-meta{font-size:.78rem;color:var(--muted);margin-bottom:1.1rem;}
+.hb-cta{display:inline-block;background:linear-gradient(135deg,var(--green3),var(--green));
+  color:#0b2a1a;font-weight:800;font-size:.82rem;padding:.65rem 1.6rem;
+  border-radius:30px;text-decoration:none;margin-bottom:1.4rem;
+  box-shadow:0 3px 16px rgba(62,201,92,.35);}
+.hb-skyline{display:block;width:100%;margin-bottom:-1px;}
+
+.info-pills{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1rem;}
+.info-pill{background:var(--card);border:1px solid var(--border2);border-radius:12px;
+  padding:.85rem .9rem;display:flex;align-items:center;gap:.6rem;}
+.ip-icon{font-size:1.2rem;flex-shrink:0;}
+.ip-label{font-size:.68rem;color:var(--muted);display:block;}
+.ip-value{font-size:.82rem;font-weight:700;color:var(--text);display:block;line-height:1.3;}
+
+.quick-btns{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1rem;}
+.qbtn{background:var(--card2);border:1px solid var(--border);border-radius:12px;
+  padding:.9rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;
+  cursor:pointer;transition:.15s;border:none;color:var(--text);width:100%;}
+.qbtn:hover{background:var(--bg3);border-color:rgba(62,201,92,.3);}
+.qbtn .qi{font-size:1.4rem;}
+.qbtn .ql{font-size:.72rem;font-weight:600;color:var(--muted);}
+
+.apoio-strip{border-radius:12px;background:var(--card);border:1px solid var(--border2);
+  padding:.8rem 1rem;display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;}
+.apoio-strip span{font-size:.65rem;color:var(--muted);}
+.apoio-tag{background:rgba(62,201,92,.08);border:1px solid var(--border);
+  border-radius:5px;padding:.18rem .5rem;font-size:.65rem;color:var(--green2);font-weight:600;}
+
+/* ── PROGRAMAÇÃO SCREEN ── */
+.day-tabs{display:flex;gap:.45rem;margin-bottom:1rem;}
+.dtab{background:var(--card);border:1px solid var(--border2);color:var(--muted);
+  font-size:.78rem;font-weight:600;padding:.5rem 1.1rem;border-radius:8px;
+  cursor:pointer;transition:.15s;}
+.dtab.active{background:var(--green3);color:#fff;border-color:transparent;
+  box-shadow:0 2px 10px rgba(62,201,92,.28);}
+.pday{display:none;}
+.pday.active{display:block;}
+
+.pitem{display:flex;gap:.75rem;padding:.9rem;border-radius:11px;
+  margin-bottom:.5rem;background:var(--card);border:1px solid var(--border2);transition:.15s;}
+.pitem:hover{border-color:var(--border);}
+.ptime{min-width:80px;font-size:.7rem;font-weight:700;color:var(--green);
+  padding-top:.15rem;flex-shrink:0;line-height:1.4;}
+.pbody strong{font-size:.84rem;display:block;margin-bottom:.2rem;line-height:1.35;}
+.pspk{font-size:.72rem;color:var(--muted);margin-top:.3rem;}
+.pspk span{display:block;padding:.06rem 0;}
+.pbg{display:inline-block;font-size:.6rem;font-weight:700;padding:.15rem .5rem;
+  border-radius:20px;margin-bottom:.25rem;}
+.pb-p{background:rgba(62,201,92,.1);color:var(--green);}
+.pb-c{background:rgba(240,192,64,.1);color:var(--gold);}
+.pb-pr{background:rgba(42,191,160,.1);color:var(--teal);}
+.pb-b{background:rgba(90,144,112,.1);color:var(--muted);}
+
+/* ── PALESTRANTES SCREEN ── */
+.spk-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
+.spk-card{background:var(--card);border:1px solid var(--border2);border-radius:13px;
+  padding:1rem .85rem;text-align:center;transition:.2s;cursor:pointer;}
+.spk-card:hover{border-color:var(--border);transform:translateY(-2px);}
+.spk-av{width:54px;height:54px;border-radius:50%;
+  background:linear-gradient(135deg,#1f8a38,#3ec95c);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.05rem;font-weight:800;margin:0 auto .65rem;color:#0b2a1a;
+  box-shadow:0 3px 12px rgba(39,168,69,.3);}
+.spk-name{font-size:.78rem;font-weight:700;margin-bottom:.2rem;line-height:1.3;}
+.spk-role{font-size:.65rem;color:var(--muted);line-height:1.4;}
+.spk-ghost{opacity:.4;border-style:dashed;}
+.spk-ghost .spk-av{background:rgba(255,255,255,.05);box-shadow:none;}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;
+  display:none;align-items:flex-end;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal-box{background:#0d3320;border:1px solid var(--border);border-radius:20px 20px 0 0;
+  padding:1.5rem 1.2rem 2rem;width:100%;max-width:500px;max-height:80vh;overflow-y:auto;
+  animation:slideUp .25s ease;}
+@keyframes slideUp{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;}
+.modal-close{background:rgba(255,255,255,.07);border:none;color:var(--muted);
+  width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:.9rem;}
+.modal-av{width:72px;height:72px;border-radius:50%;
+  background:linear-gradient(135deg,#1f8a38,#3ec95c);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;font-weight:800;color:#0b2a1a;margin:0 auto .85rem;}
+.modal-name{font-size:1.05rem;font-weight:800;text-align:center;margin-bottom:.25rem;}
+.modal-role{font-size:.78rem;color:var(--green2);text-align:center;margin-bottom:.85rem;}
+.modal-bio{font-size:.82rem;color:var(--muted);line-height:1.7;}
+
+/* ── LOCAL SCREEN ── */
+.map-wrap{border-radius:12px;overflow:hidden;height:200px;border:1px solid var(--border2);margin-bottom:.75rem;}
+.map-wrap iframe{width:100%;height:100%;border:none;}
+.list-item{display:flex;align-items:center;gap:.65rem;padding:.55rem .75rem;
+  background:rgba(255,255,255,.03);border-radius:8px;font-size:.8rem;margin-bottom:.4rem;}
+.ldot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;}
+
+/* ── INFO SCREEN ── */
+.faq-item{background:var(--card);border:1px solid var(--border2);border-radius:11px;
+  overflow:hidden;margin-bottom:.5rem;}
+.faq-q{padding:.85rem 1rem;font-size:.84rem;font-weight:600;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;}
+.faq-q:hover{color:var(--green);}
+.faq-arr{transition:.3s;font-size:.65rem;color:var(--muted);}
+.faq-item.open .faq-arr{transform:rotate(180deg);color:var(--green);}
+.faq-a{max-height:0;overflow:hidden;transition:.3s;font-size:.8rem;color:var(--muted);line-height:1.7;}
+.faq-item.open .faq-a{max-height:200px;padding:0 1rem .85rem;}
+
+.contact-card{background:linear-gradient(135deg,rgba(62,201,92,.08),rgba(42,191,160,.06));
+  border:1px solid var(--border);border-radius:14px;padding:1.1rem;
+  text-align:center;margin-top:.75rem;}
+.contact-card h3{font-size:.85rem;font-weight:700;margin-bottom:.4rem;}
+.contact-card a{color:var(--green);font-size:.82rem;text-decoration:none;}
+
+@media(min-width:500px){
+  .spk-grid{grid-template-columns:repeat(3,1fr);}
+  .info-pills{grid-template-columns:repeat(4,1fr);}
+  .quick-btns{grid-template-columns:repeat(4,1fr);}
+}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-brand">
+      <span class="cgu-tag">CGU</span>
+      <span class="topbar-title">Integridade Empresarial 2026</span>
+    </div>
+    <a href="https://forms.office.com/r/sAcLitJmPA" target="_blank" class="topbar-btn">Inscreva-se</a>
+  </div>
+
+  <!-- SCREENS -->
+  <div id="screens">
+
+    <!-- HOME -->
+    <div class="screen active" id="s-home">
+      <div class="hero-banner">
+        <div class="hero-banner-inner">
+          <div class="hb-badge"><span class="pill">PREMIAÇÃO</span><span>Empresa Pró-Ética 2025·2026</span></div>
+          <div class="hb-title">DIA DA<br><em>INTEGRIDADE<br>EMPRESARIAL</em></div>
+          <div class="hb-meta">30 JUN · 1º JUL 2026 &nbsp;·&nbsp; Brasília/DF</div>
+          <a href="https://forms.office.com/r/sAcLitJmPA" target="_blank" class="hb-cta">Inscreva-se gratuitamente →</a>
+        </div>
+        <svg class="hb-skyline" viewBox="0 0 800 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3ec95c" stop-opacity=".65"/><stop offset="100%" stop-color="#3ec95c" stop-opacity=".08"/></linearGradient></defs>
+          <rect x="0" y="42" width="10" height="28" fill="url(#sg)" rx="1"/><rect x="14" y="30" width="12" height="40" fill="url(#sg)" rx="1"/><rect x="30" y="38" width="9" height="32" fill="url(#sg)" rx="1"/><rect x="43" y="22" width="13" height="48" fill="url(#sg)" rx="1"/><rect x="60" y="34" width="10" height="36" fill="url(#sg)" rx="1"/><rect x="74" y="18" width="14" height="52" fill="url(#sg)" rx="1"/><rect x="92" y="38" width="10" height="32" fill="url(#sg)" rx="1"/><rect x="106" y="26" width="12" height="44" fill="url(#sg)" rx="1"/><rect x="122" y="33" width="10" height="37" fill="url(#sg)" rx="1"/><rect x="136" y="20" width="13" height="50" fill="url(#sg)" rx="1"/><rect x="154" y="40" width="9" height="30" fill="url(#sg)" rx="1"/><rect x="167" y="28" width="12" height="42" fill="url(#sg)" rx="1"/><rect x="183" y="35" width="10" height="35" fill="url(#sg)" rx="1"/><rect x="197" y="16" width="15" height="54" fill="url(#sg)" rx="1"/><rect x="216" y="38" width="9" height="32" fill="url(#sg)" rx="1"/><rect x="229" y="24" width="12" height="46" fill="url(#sg)" rx="1"/><rect x="245" y="31" width="11" height="39" fill="url(#sg)" rx="1"/><rect x="260" y="19" width="14" height="51" fill="url(#sg)" rx="1"/><rect x="278" y="40" width="9" height="30" fill="url(#sg)" rx="1"/><rect x="291" y="27" width="12" height="43" fill="url(#sg)" rx="1"/><rect x="307" y="34" width="10" height="36" fill="url(#sg)" rx="1"/><rect x="321" y="21" width="13" height="49" fill="url(#sg)" rx="1"/><rect x="338" y="39" width="9" height="31" fill="url(#sg)" rx="1"/><rect x="351" y="25" width="12" height="45" fill="url(#sg)" rx="1"/><rect x="367" y="32" width="11" height="38" fill="url(#sg)" rx="1"/><rect x="382" y="17" width="15" height="53" fill="url(#sg)" rx="1"/><rect x="401" y="37" width="10" height="33" fill="url(#sg)" rx="1"/><rect x="415" y="23" width="13" height="47" fill="url(#sg)" rx="1"/><rect x="432" y="30" width="11" height="40" fill="url(#sg)" rx="1"/><rect x="447" y="18" width="14" height="52" fill="url(#sg)" rx="1"/><rect x="465" y="38" width="9" height="32" fill="url(#sg)" rx="1"/><rect x="478" y="26" width="12" height="44" fill="url(#sg)" rx="1"/><rect x="494" y="33" width="10" height="37" fill="url(#sg)" rx="1"/><rect x="508" y="20" width="14" height="50" fill="url(#sg)" rx="1"/><rect x="526" y="40" width="9" height="30" fill="url(#sg)" rx="1"/><rect x="539" y="27" width="12" height="43" fill="url(#sg)" rx="1"/><rect x="555" y="35" width="10" height="35" fill="url(#sg)" rx="1"/><rect x="569" y="15" width="16" height="55" fill="url(#sg)" rx="1"/><rect x="589" y="37" width="10" height="33" fill="url(#sg)" rx="1"/><rect x="603" y="24" width="12" height="46" fill="url(#sg)" rx="1"/><rect x="619" y="31" width="11" height="39" fill="url(#sg)" rx="1"/><rect x="634" y="19" width="14" height="51" fill="url(#sg)" rx="1"/><rect x="652" y="39" width="9" height="31" fill="url(#sg)" rx="1"/><rect x="665" y="26" width="12" height="44" fill="url(#sg)" rx="1"/><rect x="681" y="33" width="10" height="37" fill="url(#sg)" rx="1"/><rect x="695" y="21" width="13" height="49" fill="url(#sg)" rx="1"/><rect x="712" y="40" width="9" height="30" fill="url(#sg)" rx="1"/><rect x="725" y="28" width="12" height="42" fill="url(#sg)" rx="1"/><rect x="741" y="35" width="10" height="35" fill="url(#sg)" rx="1"/><rect x="755" y="18" width="15" height="52" fill="url(#sg)" rx="1"/><rect x="774" y="38" width="9" height="32" fill="url(#sg)" rx="1"/><rect x="787" y="25" width="13" height="45" fill="url(#sg)" rx="1"/>
+          <circle cx="80" cy="12" r="1.5" fill="#3ec95c" opacity=".7"/><circle cx="220" cy="10" r="1.5" fill="#3ec95c" opacity=".6"/><circle cx="390" cy="8" r="1.5" fill="#3ec95c" opacity=".7"/><circle cx="570" cy="9" r="1.5" fill="#3ec95c" opacity=".6"/><circle cx="720" cy="11" r="1.5" fill="#3ec95c" opacity=".7"/>
+          <polyline points="80,12 220,10 390,8 570,9 720,11" fill="none" stroke="#3ec95c" stroke-width=".4" opacity=".25"/>
+        </svg>
+      </div>
+
+      <div class="info-pills">
+        <div class="info-pill"><span class="ip-icon">📅</span><div><span class="ip-label">Data</span><span class="ip-value">30 Jun · 1 Jul 2026</span></div></div>
+        <div class="info-pill"><span class="ip-icon">📍</span><div><span class="ip-label">Local</span><span class="ip-value">POUPEX · Brasília</span></div></div>
+        <div class="info-pill"><span class="ip-icon">📜</span><div><span class="ip-label">Certificado</span><span class="ip-value">Digital · Gratuito</span></div></div>
+        <div class="info-pill"><span class="ip-icon">🏆</span><div><span class="ip-label">Destaque</span><span class="ip-value">Pró-Ética 25/26</span></div></div>
+      </div>
+
+      <div class="quick-btns">
+        <button class="qbtn" onclick="goTo('s-prog')"><span class="qi">🗓️</span><span class="ql">Programação</span></button>
+        <button class="qbtn" onclick="goTo('s-spk')"><span class="qi">🎙️</span><span class="ql">Palestrantes</span></button>
+        <button class="qbtn" onclick="goTo('s-local')"><span class="qi">📍</span><span class="ql">Local</span></button>
+        <button class="qbtn" onclick="goTo('s-info')"><span class="qi">ℹ️</span><span class="ql">Informações</span></button>
+      </div>
+
+      <div class="apoio-strip">
+        <span>Apoio:</span>
+        <span class="apoio-tag">Sebrae</span>
+        <span class="apoio-tag">FHE · Poupex</span>
+        <span class="apoio-tag">ApexBrasil</span>
+        <span class="apoio-tag">MDIC</span>
+        <span class="apoio-tag">CGU · Governo do Brasil</span>
+      </div>
+    </div>
+
+    <!-- PROGRAMAÇÃO -->
+    <div class="screen" id="s-prog">
+      <div class="eyebrow">Programação</div>
+      <div class="stitle">Grade do Evento</div>
+      <p class="ssub">Selecione o dia para ver a agenda completa</p>
+      <div class="day-tabs">
+        <button class="dtab active" onclick="showDay(0)">📅 30 de Junho</button>
+        <button class="dtab" onclick="showDay(1)">📅 1º de Julho</button>
+      </div>
+
+      <!-- DIA 1 -->
+      <div class="pday active" id="pd0">
+        <div class="pitem"><div class="ptime">08h–09h</div><div class="pbody"><span class="pbg pb-b">Recepção</span><strong>Credenciamento e Welcome Coffee</strong></div></div>
+        <div class="pitem"><div class="ptime">09h–10h30</div><div class="pbody"><span class="pbg pb-c">Abertura</span><strong>Cerimônia de Abertura Oficial</strong><div class="pspk"><span>🎙 Vinícius Marques de Carvalho — Ministro da CGU</span><span>🎙 Gen Ex Valério Stumpf Trindade — Presidente da FHE/POUPEX</span></div></div></div>
+        <div class="pitem"><div class="ptime">10h30–11h</div><div class="pbody"><span class="pbg pb-p">Apresentação</span><strong>Resultados e projetos da Secretaria de Integridade Privada da CGU</strong><div class="pspk"><span>🎙 Marcelo Pontes Vianna — Secretário de Integridade Privada/CGU</span></div></div></div>
+        <div class="pitem"><div class="ptime">11h–12h</div><div class="pbody"><span class="pbg pb-p">Key note</span><strong>Key note speaker</strong><div class="pspk"><span>A confirmar</span></div></div></div>
+        <div class="pitem"><div class="ptime">12h–14h</div><div class="pbody"><span class="pbg pb-b">Pausa</span><strong>Intervalo para Almoço</strong></div></div>
+        <div class="pitem"><div class="ptime">14h–15h30</div><div class="pbody"><span class="pbg pb-p">Painel 1</span><strong>Lidando com casos complexos: Lei Anticorrupção na prática</strong><div class="pspk"><span>🎙 Moderadora: Viviane André Antunes — Chefe da Coord.-Geral de Acordos de Leniência/CGU</span><span>🎙 Felipe Barbosa Brandt — Dir. de Responsabilização de Entes Privados/CGU</span><span>🎙 Raniere Rocha Lins — Procurador Nacional de Patrimônio Público e Probidade/PGU/AGU</span><span>🎙 Gilberto Waller Júnior — Procurador Federal/AGU</span><span>🎙 Carlos Jacques — Conselheiro do CADE</span></div></div></div>
+        <div class="pitem"><div class="ptime">15h30–16h15</div><div class="pbody"><span class="pbg pb-p">Entrevista</span><strong>Integridade em tempos de eleição</strong><div class="pspk"><span>A confirmar</span></div></div></div>
+        <div class="pitem"><div class="ptime">16h15–16h30</div><div class="pbody"><span class="pbg pb-b">Pausa</span><strong>Coffee Break</strong></div></div>
+        <div class="pitem"><div class="ptime">16h30–17h30</div><div class="pbody"><span class="pbg pb-p">Painel 2</span><strong>Acordos de Leniência: Lições do Passado Recente e os Novos Caminhos da Cooperação Corporativa</strong><div class="pspk"><span>🎙 Moderador: Luiz Henrique Pandolfi Miranda — Dir. de Acordos de Leniência/CGU</span><span>🎙 Keity Saboya — Juíza de Direito do TJRN</span><span>🎙 Juliana Palma — Professora da FGV</span><span>🎙 Luis Wielewick — Advogado</span></div></div></div>
+        <div class="pitem"><div class="ptime">17h30–18h</div><div class="pbody"><span class="pbg pb-c">Cultura</span><strong>Apresentação da Orquestra da Força Aérea Brasileira</strong></div></div>
+      </div>
+
+      <!-- DIA 2 -->
+      <div class="pday" id="pd1">
+        <div class="pitem"><div class="ptime">08h–09h</div><div class="pbody"><span class="pbg pb-b">Recepção</span><strong>Credenciamento</strong></div></div>
+        <div class="pitem"><div class="ptime">09h–10h</div><div class="pbody"><span class="pbg pb-p">Painel 3</span><strong>Olhando para o futuro: Como a Lei Anticorrupção pode melhorar?</strong><div class="pspk"><span>🎙 Moderadora: Ana Aranha — Gerente Sênior em Anticorrupção, Pacto Global/ONU</span><span>🎙 Vanir Fridriczewski — Advogado da União / Assessor no STF</span><span>🎙 Valdir Simão — Advogado · Ex-Ministro da CGU</span><span>🎙 Renato Machado — Advogado e pesquisador</span></div></div></div>
+        <div class="pitem"><div class="ptime">10h–10h30</div><div class="pbody"><span class="pbg pb-p">Entrevista</span><strong>Transformando crise em integridade</strong><div class="pspk"><span>🎙 Entrevistadora: Monique Cerqueira Zuidema — Coord.-Geral de Promoção de Integridade Privada/CGU</span><span>🎙 Reynaldo Goto — Professor e especialista em compliance</span><span>🎙 Mário Vinícius Spinelli — Professor e especialista em compliance</span></div></div></div>
+        <div class="pitem"><div class="ptime">10h30–12h</div><div class="pbody"><span class="pbg pb-p">Painel 4</span><strong>O impacto do Pacto e do Pró-Ética: tirando a integridade do papel</strong><div class="pspk"><span>🎙 Moderadora: Cristine Köhler Ganzenmüller — Diretora de Promoção e Avaliação de Integridade Privada/CGU</span><span>🎙 Painelistas: a definir</span></div></div></div>
+        <div class="pitem"><div class="ptime">12h–14h</div><div class="pbody"><span class="pbg pb-b">Pausa</span><strong>Intervalo para Almoço</strong></div></div>
+        <div class="pitem"><div class="ptime">14h–15h</div><div class="pbody"><span class="pbg pb-p">Debate</span><strong>Integridade antifacção: do que estamos falando?</strong><div class="pspk"><span>A definir</span></div></div></div>
+        <div class="pitem"><div class="ptime">15h–15h40</div><div class="pbody"><span class="pbg pb-c">⭐ Surpresa</span><strong>Atração especial surpresa</strong></div></div>
+        <div class="pitem"><div class="ptime">15h40–16h</div><div class="pbody"><span class="pbg pb-b">Pausa</span><strong>Coffee Break</strong></div></div>
+        <div class="pitem"><div class="ptime">16h–17h30</div><div class="pbody"><span class="pbg pb-pr">🏆 Premiação</span><strong>Premiação das empresas vencedoras do Pró-Ética 2025–2026</strong></div></div>
+        <div class="pitem"><div class="ptime">17h30–17h45</div><div class="pbody"><span class="pbg pb-c">Encerramento</span><strong>Encerramento Oficial</strong><div class="pspk"><span>🎙 Eveline Martins Brito — Secretária-Executiva da CGU</span></div></div></div>
+      </div>
+    </div>
+
+    <!-- PALESTRANTES -->
+    <div class="screen" id="s-spk">
+      <div class="eyebrow">Palestrantes</div>
+      <div class="stitle">Quem vai falar</div>
+      <p class="ssub">Toque em um palestrante para mais detalhes</p>
+      <div class="spk-grid">
+        <div class="spk-card" onclick="openModal('VM','Vinícius Marques de Carvalho','Ministro da Controladoria-Geral da União — CGU','Bio em breve.')"><div class="spk-av">VM</div><div class="spk-name">Vinícius M. de Carvalho</div><div class="spk-role">Ministro da CGU</div></div>
+        <div class="spk-card" onclick="openModal('MP','Marcelo Pontes Vianna','Secretário de Integridade Privada da CGU','Bio em breve.')"><div class="spk-av">MP</div><div class="spk-name">Marcelo Pontes Vianna</div><div class="spk-role">Secretário de Integridade Privada/CGU</div></div>
+        <div class="spk-card" onclick="openModal('GW','Gilberto Waller Júnior','Procurador Federal — Advocacia-Geral da União','Bio em breve.')"><div class="spk-av">GW</div><div class="spk-name">Gilberto Waller Júnior</div><div class="spk-role">Procurador Federal/AGU</div></div>
+        <div class="spk-card" onclick="openModal('RL','Raniere Rocha Lins','Procurador Nacional de Patrimônio Público e Probidade — PGU/AGU','Bio em breve.')"><div class="spk-av">RL</div><div class="spk-name">Raniere Rocha Lins</div><div class="spk-role">Procurador Nacional/PGU/AGU</div></div>
+        <div class="spk-card" onclick="openModal('CJ','Carlos Jacques','Conselheiro do Conselho Administrativo de Defesa Econômica — CADE','Bio em breve.')"><div class="spk-av">CJ</div><div class="spk-name">Carlos Jacques</div><div class="spk-role">Conselheiro do CADE</div></div>
+        <div class="spk-card" onclick="openModal('AA','Ana Aranha','Gerente Sênior em Anticorrupção no Pacto Global das Nações Unidas','Bio em breve.')"><div class="spk-av">AA</div><div class="spk-name">Ana Aranha</div><div class="spk-role">Gerente Sênior — Pacto Global/ONU</div></div>
+        <div class="spk-card" onclick="openModal('KS','Keity Saboya','Juíza de Direito — Tribunal de Justiça do Rio Grande do Norte','Bio em breve.')"><div class="spk-av">KS</div><div class="spk-name">Keity Saboya</div><div class="spk-role">Juíza de Direito — TJRN</div></div>
+        <div class="spk-card" onclick="openModal('JP','Juliana Palma','Professora da Fundação Getúlio Vargas — FGV','Bio em breve.')"><div class="spk-av">JP</div><div class="spk-name">Juliana Palma</div><div class="spk-role">Professora — FGV</div></div>
+        <div class="spk-card" onclick="openModal('VS','Valdir Simão','Advogado · Ex-Ministro da CGU','Bio em breve.')"><div class="spk-av">VS</div><div class="spk-name">Valdir Simão</div><div class="spk-role">Advogado · Ex-Ministro CGU</div></div>
+        <div class="spk-card" onclick="openModal('RG','Reynaldo Goto','Professor e especialista em compliance','Bio em breve.')"><div class="spk-av">RG</div><div class="spk-name">Reynaldo Goto</div><div class="spk-role">Professor · Especialista em compliance</div></div>
+        <div class="spk-card" onclick="openModal('MS','Mário Vinícius Spinelli','Professor e especialista em compliance','Bio em breve.')"><div class="spk-av">MS</div><div class="spk-name">Mário V. Spinelli</div><div class="spk-role">Professor · Especialista em compliance</div></div>
+        <div class="spk-card" onclick="openModal('EB','Eveline Martins Brito','Secretária-Executiva da CGU','Bio em breve.')"><div class="spk-av">EB</div><div class="spk-name">Eveline Martins Brito</div><div class="spk-role">Secretária-Executiva da CGU</div></div>
+        <div class="spk-card spk-ghost"><div class="spk-av">+</div><div class="spk-name">Em breve</div><div class="spk-role">Outros palestrantes a confirmar</div></div>
+      </div>
+    </div>
+
+    <!-- LOCAL -->
+    <div class="screen" id="s-local">
+      <div class="eyebrow">Local & Logística</div>
+      <div class="stitle">Como Chegar</div>
+      <p class="ssub">Brasília, DF · 30 Jun e 1º Jul 2026</p>
+
+      <div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18217.724804070047!2d-47.94448181284177!3d-15.776486199999978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cef7daf5d3e1a9%3A0x318e15ceebd81b0d!2sPOUPEX%20-%20Edif%C3%ADcio%20Sede!5e1!3m2!1spt-BR!2sbr" allowfullscreen loading="lazy"></iframe></div>
+
+      <div class="card" style="margin-bottom:.75rem">
+        <div style="font-size:.78rem;font-weight:700;color:var(--green2);margin-bottom:.5rem">📍 POUPEX — Edifício Sede</div>
+        <div style="font-size:.82rem;color:var(--muted);line-height:1.6">Setor Militar Urbano, Parte A · Plano Piloto · Brasília – DF</div>
+        <a href="https://maps.app.goo.gl/bjLgE9oTgWLGnVGe9" target="_blank" style="display:inline-block;margin-top:.6rem;font-size:.75rem;color:var(--green);text-decoration:none">📌 Abrir no Google Maps →</a>
+        <div style="margin-top:.6rem;font-size:.75rem;color:#e8a030">⚠️ Estacionamento limitado — use aplicativo de transporte</div>
+      </div>
+
+      <div class="card" style="margin-bottom:.75rem">
+        <div style="font-size:.78rem;font-weight:700;color:var(--green2);margin-bottom:.6rem">✈️ Chegando a Brasília</div>
+        <div style="font-size:.82rem;color:var(--muted);line-height:1.6">Ao desembarcar, dirija-se à Praça Pick-up (térreo do terminal) para solicitar transporte por aplicativo ou táxi.</div>
+      </div>
+
+      <div class="card" style="margin-bottom:.75rem">
+        <div style="font-size:.78rem;font-weight:700;color:var(--green2);margin-bottom:.6rem">🍽️ Restaurantes próximos</div>
+        <div class="list-item"><span class="ldot"></span><div><strong style="font-size:.8rem">Mané Mercado</strong> <span style="font-size:.72rem;color:var(--muted)">— Seg–Qui 12h–00h | Sex–Sáb 11h–01h | Dom 11h–23h</span></div></div>
+        <div class="list-item"><span class="ldot"></span><div><strong style="font-size:.8rem">Brasília Shopping</strong> <span style="font-size:.72rem;color:var(--muted)">— SCN Qd. 5, Asa Norte · Seg–Sáb 10h–22h</span></div></div>
+      </div>
+
+      <div class="card">
+        <div style="font-size:.78rem;font-weight:700;color:var(--green2);margin-bottom:.6rem">🏨 Hotéis sugeridos</div>
+        <div class="list-item"><span class="ldot"></span><span style="font-size:.8rem"><strong>Mercure Brasília Líder</strong> · (61) 3426-4000</span></div>
+        <div class="list-item"><span class="ldot"></span><span style="font-size:.8rem"><strong>Windsor Plaza Brasília</strong> · (61) 2195-1100</span></div>
+        <div class="list-item"><span class="ldot"></span><span style="font-size:.8rem"><strong>Kubitschek Plaza</strong> · (61) 3329-3333</span></div>
+        <div class="list-item"><span class="ldot"></span><span style="font-size:.8rem"><strong>Manhattan Plaza</strong> · (61) 3319-3543</span></div>
+        <div class="list-item"><span class="ldot"></span><span style="font-size:.8rem"><strong>Athos Bulcão HPlus</strong> · (61) 99102-1608</span></div>
+        <div class="list-item"><span class="ldot"></span><span style="font-size:.8rem"><strong>Brasília Imperial Hotel</strong> · (61) 3425-0000</span></div>
+      </div>
+    </div>
+
+    <!-- INFO -->
+    <div class="screen" id="s-info">
+      <div class="eyebrow">Informações</div>
+      <div class="stitle">Tudo sobre o evento</div>
+      <p class="ssub">Inscrição, certificado e dúvidas frequentes</p>
+
+      <div class="card" style="margin-bottom:.75rem;text-align:center">
+        <div style="font-size:1.8rem;margin-bottom:.5rem">🎟️</div>
+        <div style="font-size:.88rem;font-weight:700;margin-bottom:.3rem">Inscrições abertas!</div>
+        <div style="font-size:.78rem;color:var(--muted);margin-bottom:.9rem">Gratuito · Certificado digital para todos os participantes</div>
+        <a href="https://forms.office.com/r/sAcLitJmPA" target="_blank" style="display:inline-block;background:linear-gradient(135deg,var(--green3),var(--green));color:#0b2a1a;font-weight:800;font-size:.82rem;padding:.65rem 2rem;border-radius:30px;text-decoration:none;">Inscreva-se agora →</a>
+      </div>
+
+      <div class="faq-item"><div class="faq-q" onclick="tFaq(this)">Onde será realizado o evento? <span class="faq-arr">▼</span></div><div class="faq-a">Nos dias 30/06 e 01/07/2026, no Auditório da POUPEX — Setor Militar Urbano, Plano Piloto, Brasília – DF.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="tFaq(this)">Como confirmar minha inscrição? <span class="faq-arr">▼</span></div><div class="faq-a">Após preencher o formulário, você receberá confirmação automática no e-mail. Não é necessária confirmação adicional.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="tFaq(this)">Haverá certificado? <span class="faq-arr">▼</span></div><div class="faq-a">Sim — certificado digital enviado ao e-mail informado na inscrição, após a participação.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="tFaq(this)">Posso me inscrever para um dia só? <span class="faq-arr">▼</span></div><div class="faq-a">Não. A inscrição é válida para os dois dias do evento.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="tFaq(this)">Como será o credenciamento? <span class="faq-arr">▼</span></div><div class="faq-a">Haverá equipe de credenciamento no local. Chegue o mais cedo possível com documento de identidade com foto.</div></div>
+
+      <div class="contact-card">
+        <h3>📧 Fale com a organização</h3>
+        <a href="mailto:integridade.empresarial@cgu.gov.br">integridade.empresarial@cgu.gov.br</a>
+        <div style="margin-top:.6rem;font-size:.7rem;color:var(--muted2)">Organização: Secretaria de Integridade Privada · CGU · Governo do Brasil</div>
+      </div>
+    </div>
+
+  </div><!-- /screens -->
+
+  <!-- BOTTOM TABS -->
+  <div class="tabs">
+    <button class="tab active" id="tab-home" onclick="goTo('s-home')">
+      <span class="tab-icon">🏠</span><span class="tab-label">Início</span><span class="tab-dot"></span>
+    </button>
+    <button class="tab" id="tab-prog" onclick="goTo('s-prog')">
+      <span class="tab-icon">🗓️</span><span class="tab-label">Programação</span><span class="tab-dot"></span>
+    </button>
+    <button class="tab" id="tab-spk" onclick="goTo('s-spk')">
+      <span class="tab-icon">🎙️</span><span class="tab-label">Palestrantes</span><span class="tab-dot"></span>
+    </button>
+    <button class="tab" id="tab-local" onclick="goTo('s-local')">
+      <span class="tab-icon">📍</span><span class="tab-label">Local</span><span class="tab-dot"></span>
+    </button>
+    <button class="tab" id="tab-info" onclick="goTo('s-info')">
+      <span class="tab-icon">ℹ️</span><span class="tab-label">Info</span><span class="tab-dot"></span>
+    </button>
+  </div>
+
+</div><!-- /app -->
+
+<!-- SPEAKER MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span style="font-size:.7rem;color:var(--muted);font-weight:600;letter-spacing:1px;text-transform:uppercase">Palestrante</span>
+      <button class="modal-close" onclick="closeModalBtn()">✕</button>
+    </div>
+    <div class="modal-av" id="m-av"></div>
+    <div class="modal-name" id="m-name"></div>
+    <div class="modal-role" id="m-role"></div>
+    <div class="modal-bio" id="m-bio"></div>
+  </div>
+</div>
+
+<script>
+const screenMap={'s-home':'tab-home','s-prog':'tab-prog','s-spk':'tab-spk','s-local':'tab-local','s-info':'tab-info'};
+
+function goTo(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.getElementById(screenMap[id]).classList.add('active');
+  document.getElementById(id).scrollTop=0;
+}
+
+function showDay(i){
+  document.querySelectorAll('.pday').forEach((d,j)=>d.classList.toggle('active',j===i));
+  document.querySelectorAll('.dtab').forEach((t,j)=>t.classList.toggle('active',j===i));
+}
+
+function tFaq(el){el.parentElement.classList.toggle('open');}
+
+function openModal(initials,name,role,bio){
+  document.getElementById('m-av').textContent=initials;
+  document.getElementById('m-name').textContent=name;
+  document.getElementById('m-role').textContent=role;
+  document.getElementById('m-bio').textContent=bio;
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal(e){if(e.target===document.getElementById('modal'))closeModalBtn();}
+function closeModalBtn(){document.getElementById('modal').classList.remove('open');}
+</script>
+</body>
+</html>
