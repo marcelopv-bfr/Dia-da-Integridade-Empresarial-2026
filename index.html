@@ -20,6 +20,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 
 #app{display:flex;flex-direction:column;height:100vh;}
 
+/* TOP BAR */
 .topbar{height:var(--nav-h);background:rgba(11,42,26,.97);backdrop-filter:blur(14px);
   border-bottom:1px solid var(--border);display:flex;align-items:center;
   justify-content:space-between;padding:0 1.2rem;flex-shrink:0;z-index:50;}
@@ -38,12 +39,14 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
   border-radius:20px;cursor:pointer;margin-bottom:1rem;transition:.15s;}
 .back-btn:hover{background:rgba(62,201,92,.18);}
 
+/* SCREENS */
 #screens{flex:1;overflow:hidden;position:relative;}
 .screen{position:absolute;inset:0;overflow-y:auto;padding:1.25rem 1rem 1.5rem;
   display:none;animation:fadeIn .2s ease;}
 .screen.active{display:block;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
+/* BOTTOM TABS */
 .tabs{height:var(--tab-h);background:rgba(11,42,26,.98);backdrop-filter:blur(14px);
   border-top:1px solid var(--border);display:flex;align-items:stretch;flex-shrink:0;}
 .tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -57,16 +60,17 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
   opacity:0;transition:.15s;margin-top:1px;}
 .tab.active .tab-dot{opacity:1;}
 
+/* SCROLLBAR */
 .screen::-webkit-scrollbar{width:4px;}
 .screen::-webkit-scrollbar-track{background:transparent;}
 .screen::-webkit-scrollbar-thumb{background:var(--green3);border-radius:2px;}
 
+/* SHARED COMPONENTS */
 .eyebrow{font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
   color:var(--green);margin-bottom:.3rem;display:flex;align-items:center;gap:.35rem;}
 .eyebrow::before{content:'';width:14px;height:2px;background:var(--green);border-radius:1px;}
 .stitle{font-size:1.55rem;font-weight:800;margin-bottom:.2rem;}
 .ssub{color:var(--muted);font-size:.92rem;margin-bottom:1.2rem;}
-
 .card{background:var(--card);border:1px solid var(--border2);border-radius:14px;padding:1.1rem;}
 .card+.card{margin-top:.75rem;}
 
@@ -177,7 +181,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
   background:rgba(255,255,255,.03);border-radius:8px;font-size:.85rem;margin-bottom:.4rem;}
 .ldot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;}
 
-/* INFO / FAQ */
+/* FAQ */
 .faq-item{background:var(--card);border:1px solid var(--border2);border-radius:11px;
   overflow:hidden;margin-bottom:.5rem;}
 .faq-q{padding:.85rem 1rem;font-size:.9rem;font-weight:600;cursor:pointer;
@@ -204,6 +208,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 <body>
 <div id="app">
 
+  <!-- TOP BAR -->
   <div class="topbar">
     <div class="topbar-brand">
       <span class="cgu-tag">CGU</span>
@@ -212,6 +217,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
     <a href="https://forms.office.com/r/sAcLitJmPA" target="_blank" class="topbar-btn">Inscreva-se</a>
   </div>
 
+  <!-- SCREENS -->
   <div id="screens">
 
     <!-- HOME -->
@@ -322,27 +328,22 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
       <div class="eyebrow">Local & Logística</div>
       <div class="stitle">Como Chegar</div>
       <p class="ssub">Brasília, DF · 30 Jun e 1º Jul 2026</p>
-
       <div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18217.724804070047!2d-47.94448181284177!3d-15.776486199999978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cef7daf5d3e1a9%3A0x318e15ceebd81b0d!2sPOUPEX%20-%20Edif%C3%ADcio%20Sede!5e1!3m2!1spt-BR!2sbr" allowfullscreen loading="lazy"></iframe></div>
-
       <div class="card" style="margin-bottom:.75rem">
         <div style="font-size:.85rem;font-weight:700;color:var(--green2);margin-bottom:.5rem">📍 POUPEX — Edifício Sede</div>
         <div style="font-size:.88rem;color:var(--muted);line-height:1.6">Setor Militar Urbano, Parte A · Plano Piloto · Brasília – DF</div>
         <a href="https://maps.app.goo.gl/bjLgE9oTgWLGnVGe9" target="_blank" style="display:inline-block;margin-top:.6rem;font-size:.82rem;color:var(--green);text-decoration:none">📌 Abrir no Google Maps →</a>
         <div style="margin-top:.6rem;font-size:.8rem;color:#e8a030">⚠️ Estacionamento limitado — use aplicativo de transporte</div>
       </div>
-
       <div class="card" style="margin-bottom:.75rem">
         <div style="font-size:.85rem;font-weight:700;color:var(--green2);margin-bottom:.6rem">✈️ Chegando a Brasília</div>
         <div style="font-size:.88rem;color:var(--muted);line-height:1.6">Ao desembarcar, dirija-se à Praça Pick-up (térreo do terminal) para solicitar transporte por aplicativo ou táxi.</div>
       </div>
-
       <div class="card" style="margin-bottom:.75rem">
         <div style="font-size:.85rem;font-weight:700;color:var(--green2);margin-bottom:.6rem">🍽️ Restaurantes próximos</div>
         <div class="list-item"><span class="ldot"></span><div><strong>Mané Mercado</strong> <span style="font-size:.78rem;color:var(--muted)">— Seg–Qui 12h–00h | Sex–Sáb 11h–01h | Dom 11h–23h</span></div></div>
         <div class="list-item"><span class="ldot"></span><div><strong>Brasília Shopping</strong> <span style="font-size:.78rem;color:var(--muted)">— SCN Qd. 5, Asa Norte · Seg–Sáb 10h–22h</span></div></div>
       </div>
-
       <div class="card">
         <div style="font-size:.85rem;font-weight:700;color:var(--green2);margin-bottom:.6rem">🏨 Hotéis sugeridos</div>
         <div class="list-item"><span class="ldot"></span><span><strong>Mercure Brasília Líder</strong> · (61) 3426-4000</span></div>
@@ -360,20 +361,17 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
       <div class="eyebrow">Informações</div>
       <div class="stitle">Tudo sobre o evento</div>
       <p class="ssub">Inscrição, certificado e dúvidas frequentes</p>
-
       <div class="card" style="margin-bottom:.75rem;text-align:center">
         <div style="font-size:1.8rem;margin-bottom:.5rem">🎟️</div>
         <div style="font-size:.95rem;font-weight:700;margin-bottom:.3rem">Inscrições abertas!</div>
         <div style="font-size:.85rem;color:var(--muted);margin-bottom:.9rem">Gratuito · Certificado digital para todos os participantes</div>
         <a href="https://forms.office.com/r/sAcLitJmPA" target="_blank" style="display:inline-block;background:linear-gradient(135deg,var(--green3),var(--green));color:#0b2a1a;font-weight:800;font-size:.88rem;padding:.65rem 2rem;border-radius:30px;text-decoration:none;">Inscreva-se agora →</a>
       </div>
-
       <div class="faq-item"><div class="faq-q" onclick="tFaq(this)">Onde será realizado o evento? <span class="faq-arr">▼</span></div><div class="faq-a">Nos dias 30/06 e 01/07/2026, no Auditório da POUPEX — Setor Militar Urbano, Plano Piloto, Brasília – DF.</div></div>
       <div class="faq-item"><div class="faq-q" onclick="tFaq(this)">Como confirmar minha inscrição? <span class="faq-arr">▼</span></div><div class="faq-a">Após preencher o formulário, você receberá confirmação automática no e-mail. Não é necessária confirmação adicional.</div></div>
       <div class="faq-item"><div class="faq-q" onclick="tFaq(this)">Haverá certificado? <span class="faq-arr">▼</span></div><div class="faq-a">Sim — certificado digital enviado ao e-mail informado na inscrição, após a participação.</div></div>
       <div class="faq-item"><div class="faq-q" onclick="tFaq(this)">Posso me inscrever para um dia só? <span class="faq-arr">▼</span></div><div class="faq-a">Não. A inscrição é válida para os dois dias do evento.</div></div>
       <div class="faq-item"><div class="faq-q" onclick="tFaq(this)">Como será o credenciamento? <span class="faq-arr">▼</span></div><div class="faq-a">Haverá equipe de credenciamento no local. Chegue o mais cedo possível com documento de identidade com foto.</div></div>
-
       <div class="contact-card">
         <h3>📧 Fale com a organização</h3>
         <a href="mailto:integridade.empresarial@cgu.gov.br">integridade.empresarial@cgu.gov.br</a>
@@ -420,7 +418,6 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 
 <script>
 const screenMap={'s-home':'tab-home','s-prog':'tab-prog','s-spk':'tab-spk','s-local':'tab-local','s-info':'tab-info'};
-
 function goTo(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
