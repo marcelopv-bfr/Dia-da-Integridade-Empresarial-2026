@@ -18,29 +18,32 @@
 html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
   font-family:'Segoe UI',system-ui,sans-serif;}
 
-/* ── LAYOUT ── */
 #app{display:flex;flex-direction:column;height:100vh;}
 
-/* TOP BAR */
 .topbar{height:var(--nav-h);background:rgba(11,42,26,.97);backdrop-filter:blur(14px);
   border-bottom:1px solid var(--border);display:flex;align-items:center;
   justify-content:space-between;padding:0 1.2rem;flex-shrink:0;z-index:50;}
 .topbar-brand{display:flex;align-items:center;gap:.55rem;}
 .cgu-tag{background:var(--green);color:#0b2a1a;font-size:.65rem;font-weight:800;
   padding:.18rem .5rem;border-radius:4px;letter-spacing:.4px;}
-.topbar-title{font-size:.78rem;color:var(--muted);font-weight:500;}
+.topbar-title{font-size:.88rem;color:var(--muted);font-weight:500;}
 .topbar-btn{background:linear-gradient(135deg,var(--green3),var(--green));
-  color:#0b2a1a;font-size:.72rem;font-weight:800;padding:.38rem .85rem;
+  color:#0b2a1a;font-size:.82rem;font-weight:800;padding:.38rem .85rem;
   border-radius:20px;text-decoration:none;white-space:nowrap;}
 
-/* SCREENS */
+/* BACK BUTTON */
+.back-btn{display:inline-flex;align-items:center;gap:.4rem;
+  background:rgba(62,201,92,.1);border:1px solid var(--border);
+  color:var(--green);font-size:.82rem;font-weight:600;padding:.45rem .9rem;
+  border-radius:20px;cursor:pointer;margin-bottom:1rem;transition:.15s;}
+.back-btn:hover{background:rgba(62,201,92,.18);}
+
 #screens{flex:1;overflow:hidden;position:relative;}
 .screen{position:absolute;inset:0;overflow-y:auto;padding:1.25rem 1rem 1.5rem;
   display:none;animation:fadeIn .2s ease;}
 .screen.active{display:block;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
-/* BOTTOM TABS */
 .tabs{height:var(--tab-h);background:rgba(11,42,26,.98);backdrop-filter:blur(14px);
   border-top:1px solid var(--border);display:flex;align-items:stretch;flex-shrink:0;}
 .tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -54,22 +57,20 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
   opacity:0;transition:.15s;margin-top:1px;}
 .tab.active .tab-dot{opacity:1;}
 
-/* ── SCROLLBAR ── */
 .screen::-webkit-scrollbar{width:4px;}
 .screen::-webkit-scrollbar-track{background:transparent;}
 .screen::-webkit-scrollbar-thumb{background:var(--green3);border-radius:2px;}
 
-/* ── COMPONENTS ── */
-.eyebrow{font-size:.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+.eyebrow{font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
   color:var(--green);margin-bottom:.3rem;display:flex;align-items:center;gap:.35rem;}
 .eyebrow::before{content:'';width:14px;height:2px;background:var(--green);border-radius:1px;}
-.stitle{font-size:1.35rem;font-weight:800;margin-bottom:.2rem;}
-.ssub{color:var(--muted);font-size:.82rem;margin-bottom:1.2rem;}
+.stitle{font-size:1.55rem;font-weight:800;margin-bottom:.2rem;}
+.ssub{color:var(--muted);font-size:.92rem;margin-bottom:1.2rem;}
 
 .card{background:var(--card);border:1px solid var(--border2);border-radius:14px;padding:1.1rem;}
 .card+.card{margin-top:.75rem;}
 
-/* ── HOME SCREEN ── */
+/* HOME */
 .hero-banner{border-radius:16px;overflow:hidden;margin-bottom:1rem;position:relative;
   background:linear-gradient(145deg,#0d3d26,#071d10);padding:1.6rem 1.2rem 0;}
 .hero-banner::before{content:'';position:absolute;inset:0;
@@ -101,43 +102,41 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 .quick-btns{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1rem;}
 .qbtn{background:var(--card2);border:1px solid var(--border);border-radius:12px;
   padding:.9rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;
-  cursor:pointer;transition:.15s;border:none;color:var(--text);width:100%;}
+  cursor:pointer;transition:.15s;color:var(--text);width:100%;}
 .qbtn:hover{background:var(--bg3);border-color:rgba(62,201,92,.3);}
 .qbtn .qi{font-size:1.4rem;}
-.qbtn .ql{font-size:.72rem;font-weight:600;color:var(--muted);}
+.qbtn .ql{font-size:.78rem;font-weight:600;color:var(--muted);}
 
 .apoio-strip{border-radius:12px;background:var(--card);border:1px solid var(--border2);
   padding:.8rem 1rem;display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;}
-.apoio-strip span{font-size:.65rem;color:var(--muted);}
+.apoio-strip span{font-size:.7rem;color:var(--muted);}
 .apoio-tag{background:rgba(62,201,92,.08);border:1px solid var(--border);
-  border-radius:5px;padding:.18rem .5rem;font-size:.65rem;color:var(--green2);font-weight:600;}
+  border-radius:5px;padding:.18rem .5rem;font-size:.7rem;color:var(--green2);font-weight:600;}
 
-/* ── PROGRAMAÇÃO SCREEN ── */
+/* PROGRAMAÇÃO */
 .day-tabs{display:flex;gap:.45rem;margin-bottom:1rem;}
 .dtab{background:var(--card);border:1px solid var(--border2);color:var(--muted);
-  font-size:.78rem;font-weight:600;padding:.5rem 1.1rem;border-radius:8px;
-  cursor:pointer;transition:.15s;}
+  font-size:.84rem;font-weight:600;padding:.5rem 1.1rem;border-radius:8px;cursor:pointer;transition:.15s;}
 .dtab.active{background:var(--green3);color:#fff;border-color:transparent;
   box-shadow:0 2px 10px rgba(62,201,92,.28);}
 .pday{display:none;}
 .pday.active{display:block;}
-
 .pitem{display:flex;gap:.75rem;padding:.9rem;border-radius:11px;
   margin-bottom:.5rem;background:var(--card);border:1px solid var(--border2);transition:.15s;}
 .pitem:hover{border-color:var(--border);}
-.ptime{min-width:80px;font-size:.7rem;font-weight:700;color:var(--green);
+.ptime{min-width:80px;font-size:.8rem;font-weight:700;color:var(--green);
   padding-top:.15rem;flex-shrink:0;line-height:1.4;}
-.pbody strong{font-size:.84rem;display:block;margin-bottom:.2rem;line-height:1.35;}
-.pspk{font-size:.72rem;color:var(--muted);margin-top:.3rem;}
+.pbody strong{font-size:.93rem;display:block;margin-bottom:.2rem;line-height:1.35;}
+.pspk{font-size:.8rem;color:var(--muted);margin-top:.3rem;}
 .pspk span{display:block;padding:.06rem 0;}
-.pbg{display:inline-block;font-size:.6rem;font-weight:700;padding:.15rem .5rem;
+.pbg{display:inline-block;font-size:.68rem;font-weight:700;padding:.15rem .5rem;
   border-radius:20px;margin-bottom:.25rem;}
 .pb-p{background:rgba(62,201,92,.1);color:var(--green);}
 .pb-c{background:rgba(240,192,64,.1);color:var(--gold);}
 .pb-pr{background:rgba(42,191,160,.1);color:var(--teal);}
 .pb-b{background:rgba(90,144,112,.1);color:var(--muted);}
 
-/* ── PALESTRANTES SCREEN ── */
+/* PALESTRANTES */
 .spk-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
 .spk-card{background:var(--card);border:1px solid var(--border2);border-radius:13px;
   padding:1rem .85rem;text-align:center;transition:.2s;cursor:pointer;}
@@ -147,8 +146,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
   display:flex;align-items:center;justify-content:center;
   font-size:1.05rem;font-weight:800;margin:0 auto .65rem;color:#0b2a1a;
   box-shadow:0 3px 12px rgba(39,168,69,.3);}
-.spk-name{font-size:.78rem;font-weight:700;margin-bottom:.2rem;line-height:1.3;}
-.spk-role{font-size:.65rem;color:var(--muted);line-height:1.4;}
+.spk-name{font-size:.88rem;font-weight:700;margin-bottom:.2rem;line-height:1.3;}
+.spk-role{font-size:.75rem;color:var(--muted);line-height:1.4;}
 .spk-ghost{opacity:.4;border-style:dashed;}
 .spk-ghost .spk-av{background:rgba(255,255,255,.05);box-shadow:none;}
 
@@ -168,32 +167,32 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
   display:flex;align-items:center;justify-content:center;
   font-size:1.4rem;font-weight:800;color:#0b2a1a;margin:0 auto .85rem;}
 .modal-name{font-size:1.05rem;font-weight:800;text-align:center;margin-bottom:.25rem;}
-.modal-role{font-size:.78rem;color:var(--green2);text-align:center;margin-bottom:.85rem;}
-.modal-bio{font-size:.82rem;color:var(--muted);line-height:1.7;}
+.modal-role{font-size:.82rem;color:var(--green2);text-align:center;margin-bottom:.85rem;}
+.modal-bio{font-size:.88rem;color:var(--muted);line-height:1.7;}
 
-/* ── LOCAL SCREEN ── */
+/* LOCAL */
 .map-wrap{border-radius:12px;overflow:hidden;height:200px;border:1px solid var(--border2);margin-bottom:.75rem;}
 .map-wrap iframe{width:100%;height:100%;border:none;}
 .list-item{display:flex;align-items:center;gap:.65rem;padding:.55rem .75rem;
-  background:rgba(255,255,255,.03);border-radius:8px;font-size:.8rem;margin-bottom:.4rem;}
+  background:rgba(255,255,255,.03);border-radius:8px;font-size:.85rem;margin-bottom:.4rem;}
 .ldot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;}
 
-/* ── INFO SCREEN ── */
+/* INFO / FAQ */
 .faq-item{background:var(--card);border:1px solid var(--border2);border-radius:11px;
   overflow:hidden;margin-bottom:.5rem;}
-.faq-q{padding:.85rem 1rem;font-size:.84rem;font-weight:600;cursor:pointer;
+.faq-q{padding:.85rem 1rem;font-size:.9rem;font-weight:600;cursor:pointer;
   display:flex;justify-content:space-between;align-items:center;}
 .faq-q:hover{color:var(--green);}
 .faq-arr{transition:.3s;font-size:.65rem;color:var(--muted);}
 .faq-item.open .faq-arr{transform:rotate(180deg);color:var(--green);}
-.faq-a{max-height:0;overflow:hidden;transition:.3s;font-size:.8rem;color:var(--muted);line-height:1.7;}
+.faq-a{max-height:0;overflow:hidden;transition:.3s;font-size:.86rem;color:var(--muted);line-height:1.7;}
 .faq-item.open .faq-a{max-height:200px;padding:0 1rem .85rem;}
 
 .contact-card{background:linear-gradient(135deg,rgba(62,201,92,.08),rgba(42,191,160,.06));
   border:1px solid var(--border);border-radius:14px;padding:1.1rem;
   text-align:center;margin-top:.75rem;}
-.contact-card h3{font-size:.85rem;font-weight:700;margin-bottom:.4rem;}
-.contact-card a{color:var(--green);font-size:.82rem;text-decoration:none;}
+.contact-card h3{font-size:.9rem;font-weight:700;margin-bottom:.4rem;}
+.contact-card a{color:var(--green);font-size:.86rem;text-decoration:none;}
 
 @media(min-width:500px){
   .spk-grid{grid-template-columns:repeat(3,1fr);}
@@ -205,7 +204,6 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 <body>
 <div id="app">
 
-  <!-- TOP BAR -->
   <div class="topbar">
     <div class="topbar-brand">
       <span class="cgu-tag">CGU</span>
@@ -214,7 +212,6 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
     <a href="https://forms.office.com/r/sAcLitJmPA" target="_blank" class="topbar-btn">Inscreva-se</a>
   </div>
 
-  <!-- SCREENS -->
   <div id="screens">
 
     <!-- HOME -->
@@ -260,6 +257,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 
     <!-- PROGRAMAÇÃO -->
     <div class="screen" id="s-prog">
+      <button class="back-btn" onclick="goTo('s-home')">← Início</button>
       <div class="eyebrow">Programação</div>
       <div class="stitle">Grade do Evento</div>
       <p class="ssub">Selecione o dia para ver a agenda completa</p>
@@ -268,7 +266,6 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
         <button class="dtab" onclick="showDay(1)">📅 1º de Julho</button>
       </div>
 
-      <!-- DIA 1 -->
       <div class="pday active" id="pd0">
         <div class="pitem"><div class="ptime">08h–09h</div><div class="pbody"><span class="pbg pb-b">Recepção</span><strong>Credenciamento e Welcome Coffee</strong></div></div>
         <div class="pitem"><div class="ptime">09h–10h30</div><div class="pbody"><span class="pbg pb-c">Abertura</span><strong>Cerimônia de Abertura Oficial</strong><div class="pspk"><span>🎙 Vinícius Marques de Carvalho — Ministro da CGU</span><span>🎙 Gen Ex Valério Stumpf Trindade — Presidente da FHE/POUPEX</span></div></div></div>
@@ -282,7 +279,6 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
         <div class="pitem"><div class="ptime">17h30–18h</div><div class="pbody"><span class="pbg pb-c">Cultura</span><strong>Apresentação da Orquestra da Força Aérea Brasileira</strong></div></div>
       </div>
 
-      <!-- DIA 2 -->
       <div class="pday" id="pd1">
         <div class="pitem"><div class="ptime">08h–09h</div><div class="pbody"><span class="pbg pb-b">Recepção</span><strong>Credenciamento</strong></div></div>
         <div class="pitem"><div class="ptime">09h–10h</div><div class="pbody"><span class="pbg pb-p">Painel 3</span><strong>Olhando para o futuro: Como a Lei Anticorrupção pode melhorar?</strong><div class="pspk"><span>🎙 Moderadora: Ana Aranha — Gerente Sênior em Anticorrupção, Pacto Global/ONU</span><span>🎙 Vanir Fridriczewski — Advogado da União / Assessor no STF</span><span>🎙 Valdir Simão — Advogado · Ex-Ministro da CGU</span><span>🎙 Renato Machado — Advogado e pesquisador</span></div></div></div>
@@ -299,6 +295,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 
     <!-- PALESTRANTES -->
     <div class="screen" id="s-spk">
+      <button class="back-btn" onclick="goTo('s-home')">← Início</button>
       <div class="eyebrow">Palestrantes</div>
       <div class="stitle">Quem vai falar</div>
       <p class="ssub">Toque em um palestrante para mais detalhes</p>
@@ -321,6 +318,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 
     <!-- LOCAL -->
     <div class="screen" id="s-local">
+      <button class="back-btn" onclick="goTo('s-home')">← Início</button>
       <div class="eyebrow">Local & Logística</div>
       <div class="stitle">Como Chegar</div>
       <p class="ssub">Brasília, DF · 30 Jun e 1º Jul 2026</p>
@@ -328,45 +326,46 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
       <div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18217.724804070047!2d-47.94448181284177!3d-15.776486199999978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cef7daf5d3e1a9%3A0x318e15ceebd81b0d!2sPOUPEX%20-%20Edif%C3%ADcio%20Sede!5e1!3m2!1spt-BR!2sbr" allowfullscreen loading="lazy"></iframe></div>
 
       <div class="card" style="margin-bottom:.75rem">
-        <div style="font-size:.78rem;font-weight:700;color:var(--green2);margin-bottom:.5rem">📍 POUPEX — Edifício Sede</div>
-        <div style="font-size:.82rem;color:var(--muted);line-height:1.6">Setor Militar Urbano, Parte A · Plano Piloto · Brasília – DF</div>
-        <a href="https://maps.app.goo.gl/bjLgE9oTgWLGnVGe9" target="_blank" style="display:inline-block;margin-top:.6rem;font-size:.75rem;color:var(--green);text-decoration:none">📌 Abrir no Google Maps →</a>
-        <div style="margin-top:.6rem;font-size:.75rem;color:#e8a030">⚠️ Estacionamento limitado — use aplicativo de transporte</div>
+        <div style="font-size:.85rem;font-weight:700;color:var(--green2);margin-bottom:.5rem">📍 POUPEX — Edifício Sede</div>
+        <div style="font-size:.88rem;color:var(--muted);line-height:1.6">Setor Militar Urbano, Parte A · Plano Piloto · Brasília – DF</div>
+        <a href="https://maps.app.goo.gl/bjLgE9oTgWLGnVGe9" target="_blank" style="display:inline-block;margin-top:.6rem;font-size:.82rem;color:var(--green);text-decoration:none">📌 Abrir no Google Maps →</a>
+        <div style="margin-top:.6rem;font-size:.8rem;color:#e8a030">⚠️ Estacionamento limitado — use aplicativo de transporte</div>
       </div>
 
       <div class="card" style="margin-bottom:.75rem">
-        <div style="font-size:.78rem;font-weight:700;color:var(--green2);margin-bottom:.6rem">✈️ Chegando a Brasília</div>
-        <div style="font-size:.82rem;color:var(--muted);line-height:1.6">Ao desembarcar, dirija-se à Praça Pick-up (térreo do terminal) para solicitar transporte por aplicativo ou táxi.</div>
+        <div style="font-size:.85rem;font-weight:700;color:var(--green2);margin-bottom:.6rem">✈️ Chegando a Brasília</div>
+        <div style="font-size:.88rem;color:var(--muted);line-height:1.6">Ao desembarcar, dirija-se à Praça Pick-up (térreo do terminal) para solicitar transporte por aplicativo ou táxi.</div>
       </div>
 
       <div class="card" style="margin-bottom:.75rem">
-        <div style="font-size:.78rem;font-weight:700;color:var(--green2);margin-bottom:.6rem">🍽️ Restaurantes próximos</div>
-        <div class="list-item"><span class="ldot"></span><div><strong style="font-size:.8rem">Mané Mercado</strong> <span style="font-size:.72rem;color:var(--muted)">— Seg–Qui 12h–00h | Sex–Sáb 11h–01h | Dom 11h–23h</span></div></div>
-        <div class="list-item"><span class="ldot"></span><div><strong style="font-size:.8rem">Brasília Shopping</strong> <span style="font-size:.72rem;color:var(--muted)">— SCN Qd. 5, Asa Norte · Seg–Sáb 10h–22h</span></div></div>
+        <div style="font-size:.85rem;font-weight:700;color:var(--green2);margin-bottom:.6rem">🍽️ Restaurantes próximos</div>
+        <div class="list-item"><span class="ldot"></span><div><strong>Mané Mercado</strong> <span style="font-size:.78rem;color:var(--muted)">— Seg–Qui 12h–00h | Sex–Sáb 11h–01h | Dom 11h–23h</span></div></div>
+        <div class="list-item"><span class="ldot"></span><div><strong>Brasília Shopping</strong> <span style="font-size:.78rem;color:var(--muted)">— SCN Qd. 5, Asa Norte · Seg–Sáb 10h–22h</span></div></div>
       </div>
 
       <div class="card">
-        <div style="font-size:.78rem;font-weight:700;color:var(--green2);margin-bottom:.6rem">🏨 Hotéis sugeridos</div>
-        <div class="list-item"><span class="ldot"></span><span style="font-size:.8rem"><strong>Mercure Brasília Líder</strong> · (61) 3426-4000</span></div>
-        <div class="list-item"><span class="ldot"></span><span style="font-size:.8rem"><strong>Windsor Plaza Brasília</strong> · (61) 2195-1100</span></div>
-        <div class="list-item"><span class="ldot"></span><span style="font-size:.8rem"><strong>Kubitschek Plaza</strong> · (61) 3329-3333</span></div>
-        <div class="list-item"><span class="ldot"></span><span style="font-size:.8rem"><strong>Manhattan Plaza</strong> · (61) 3319-3543</span></div>
-        <div class="list-item"><span class="ldot"></span><span style="font-size:.8rem"><strong>Athos Bulcão HPlus</strong> · (61) 99102-1608</span></div>
-        <div class="list-item"><span class="ldot"></span><span style="font-size:.8rem"><strong>Brasília Imperial Hotel</strong> · (61) 3425-0000</span></div>
+        <div style="font-size:.85rem;font-weight:700;color:var(--green2);margin-bottom:.6rem">🏨 Hotéis sugeridos</div>
+        <div class="list-item"><span class="ldot"></span><span><strong>Mercure Brasília Líder</strong> · (61) 3426-4000</span></div>
+        <div class="list-item"><span class="ldot"></span><span><strong>Windsor Plaza Brasília</strong> · (61) 2195-1100</span></div>
+        <div class="list-item"><span class="ldot"></span><span><strong>Kubitschek Plaza</strong> · (61) 3329-3333</span></div>
+        <div class="list-item"><span class="ldot"></span><span><strong>Manhattan Plaza</strong> · (61) 3319-3543</span></div>
+        <div class="list-item"><span class="ldot"></span><span><strong>Athos Bulcão HPlus</strong> · (61) 99102-1608</span></div>
+        <div class="list-item"><span class="ldot"></span><span><strong>Brasília Imperial Hotel</strong> · (61) 3425-0000</span></div>
       </div>
     </div>
 
     <!-- INFO -->
     <div class="screen" id="s-info">
+      <button class="back-btn" onclick="goTo('s-home')">← Início</button>
       <div class="eyebrow">Informações</div>
       <div class="stitle">Tudo sobre o evento</div>
       <p class="ssub">Inscrição, certificado e dúvidas frequentes</p>
 
       <div class="card" style="margin-bottom:.75rem;text-align:center">
         <div style="font-size:1.8rem;margin-bottom:.5rem">🎟️</div>
-        <div style="font-size:.88rem;font-weight:700;margin-bottom:.3rem">Inscrições abertas!</div>
-        <div style="font-size:.78rem;color:var(--muted);margin-bottom:.9rem">Gratuito · Certificado digital para todos os participantes</div>
-        <a href="https://forms.office.com/r/sAcLitJmPA" target="_blank" style="display:inline-block;background:linear-gradient(135deg,var(--green3),var(--green));color:#0b2a1a;font-weight:800;font-size:.82rem;padding:.65rem 2rem;border-radius:30px;text-decoration:none;">Inscreva-se agora →</a>
+        <div style="font-size:.95rem;font-weight:700;margin-bottom:.3rem">Inscrições abertas!</div>
+        <div style="font-size:.85rem;color:var(--muted);margin-bottom:.9rem">Gratuito · Certificado digital para todos os participantes</div>
+        <a href="https://forms.office.com/r/sAcLitJmPA" target="_blank" style="display:inline-block;background:linear-gradient(135deg,var(--green3),var(--green));color:#0b2a1a;font-weight:800;font-size:.88rem;padding:.65rem 2rem;border-radius:30px;text-decoration:none;">Inscreva-se agora →</a>
       </div>
 
       <div class="faq-item"><div class="faq-q" onclick="tFaq(this)">Onde será realizado o evento? <span class="faq-arr">▼</span></div><div class="faq-a">Nos dias 30/06 e 01/07/2026, no Auditório da POUPEX — Setor Militar Urbano, Plano Piloto, Brasília – DF.</div></div>
@@ -378,7 +377,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
       <div class="contact-card">
         <h3>📧 Fale com a organização</h3>
         <a href="mailto:integridade.empresarial@cgu.gov.br">integridade.empresarial@cgu.gov.br</a>
-        <div style="margin-top:.6rem;font-size:.7rem;color:var(--muted2)">Organização: Secretaria de Integridade Privada · CGU · Governo do Brasil</div>
+        <div style="margin-top:.6rem;font-size:.75rem;color:var(--muted2)">Organização: Secretaria de Integridade Privada · CGU · Governo do Brasil</div>
       </div>
     </div>
 
@@ -409,7 +408,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 <div class="modal-overlay" id="modal" onclick="closeModal(event)">
   <div class="modal-box">
     <div class="modal-header">
-      <span style="font-size:.7rem;color:var(--muted);font-weight:600;letter-spacing:1px;text-transform:uppercase">Palestrante</span>
+      <span style="font-size:.75rem;color:var(--muted);font-weight:600;letter-spacing:1px;text-transform:uppercase">Palestrante</span>
       <button class="modal-close" onclick="closeModalBtn()">✕</button>
     </div>
     <div class="modal-av" id="m-av"></div>
@@ -429,14 +428,11 @@ function goTo(id){
   document.getElementById(screenMap[id]).classList.add('active');
   document.getElementById(id).scrollTop=0;
 }
-
 function showDay(i){
   document.querySelectorAll('.pday').forEach((d,j)=>d.classList.toggle('active',j===i));
   document.querySelectorAll('.dtab').forEach((t,j)=>t.classList.toggle('active',j===i));
 }
-
 function tFaq(el){el.parentElement.classList.toggle('open');}
-
 function openModal(initials,name,role,bio){
   document.getElementById('m-av').textContent=initials;
   document.getElementById('m-name').textContent=name;
