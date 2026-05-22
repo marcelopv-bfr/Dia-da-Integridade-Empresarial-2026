@@ -17,10 +17,8 @@
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html,body{height:100%;height:100dvh;overflow:hidden;background:var(--bg);color:var(--text);
   font-family:'Segoe UI',system-ui,sans-serif;}
-
 #app{display:flex;flex-direction:column;height:100vh;height:100dvh;}
 
-/* TOP BAR */
 .topbar{height:var(--nav-h);background:rgba(7,32,26,.97);backdrop-filter:blur(14px);
   border-bottom:1px solid var(--border);display:flex;align-items:center;
   justify-content:space-between;padding:0 1.2rem;flex-shrink:0;z-index:50;}
@@ -32,21 +30,18 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--bg);color:v
   color:#07201a;font-size:.82rem;font-weight:800;padding:.38rem .85rem;
   border-radius:20px;text-decoration:none;white-space:nowrap;}
 
-/* BACK BUTTON */
 .back-btn{display:inline-flex;align-items:center;gap:.4rem;
   background:rgba(42,191,160,.1);border:1px solid var(--border);
   color:var(--teal);font-size:.82rem;font-weight:600;padding:.45rem .9rem;
   border-radius:20px;cursor:pointer;margin-bottom:1rem;transition:.15s;}
 .back-btn:hover{background:rgba(42,191,160,.18);}
 
-/* SCREENS */
 #screens{flex:1;overflow:hidden;position:relative;}
 .screen{position:absolute;inset:0;overflow-y:auto;padding:1.25rem 1rem 1.5rem;
   display:none;animation:fadeIn .2s ease;}
 .screen.active{display:block;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
-/* BOTTOM TABS */
 .tabs{height:var(--tab-h);background:rgba(7,32,26,.98);backdrop-filter:blur(14px);
   border-top:1px solid var(--border);display:flex;align-items:stretch;flex-shrink:0;}
 .tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -60,12 +55,10 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--bg);color:v
   opacity:0;transition:.15s;margin-top:1px;}
 .tab.active .tab-dot{opacity:1;}
 
-/* SCROLLBAR */
 .screen::-webkit-scrollbar{width:4px;}
 .screen::-webkit-scrollbar-track{background:transparent;}
 .screen::-webkit-scrollbar-thumb{background:var(--teal2);border-radius:2px;}
 
-/* SHARED */
 .eyebrow{font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
   color:var(--teal);margin-bottom:.3rem;display:flex;align-items:center;gap:.35rem;}
 .eyebrow::before{content:'';width:14px;height:2px;background:var(--teal);border-radius:1px;}
@@ -74,7 +67,7 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--bg);color:v
 .card{background:var(--card);border:1px solid var(--border2);border-radius:14px;padding:1.1rem;}
 .card+.card{margin-top:.75rem;}
 
-/* HERO BANNER */
+/* HERO */
 .hero-banner{border-radius:16px;overflow:hidden;margin-bottom:1rem;position:relative;
   background:linear-gradient(155deg,#0d4a32 0%,#083d28 40%,#052818 100%);padding:1.4rem 1.2rem 0;}
 .hero-banner::before{content:'';position:absolute;inset:0;
@@ -83,7 +76,6 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--bg);color:v
 .hero-banner-inner{position:relative;z-index:2;}
 .hb-deco{position:absolute;top:0;right:0;width:100%;height:100%;pointer-events:none;z-index:1;}
 
-/* Pró-Ética badge */
 .hb-proetic{margin-bottom:.9rem;display:inline-block;}
 .hb-proetic-label{font-size:.58rem;font-weight:700;letter-spacing:2px;color:var(--green2);
   text-transform:uppercase;margin-bottom:.3rem;}
@@ -108,7 +100,6 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--bg);color:v
   box-shadow:0 3px 20px rgba(42,191,160,.35);}
 .hb-skyline{display:block;width:100%;margin-bottom:-1px;position:relative;z-index:2;}
 
-/* INFO PILLS */
 .info-pills{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1rem;}
 .info-pill{background:var(--card);border:1px solid var(--border2);border-radius:12px;
   padding:.85rem .9rem;display:flex;align-items:center;gap:.6rem;}
@@ -116,7 +107,6 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--bg);color:v
 .ip-label{font-size:.68rem;color:var(--muted);display:block;}
 .ip-value{font-size:.82rem;font-weight:700;color:var(--text);display:block;line-height:1.3;}
 
-/* QUICK BTNS */
 .quick-btns{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1rem;}
 .qbtn{background:var(--card2);border:1px solid var(--border);border-radius:12px;
   padding:.9rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;
@@ -125,7 +115,6 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--bg);color:v
 .qbtn .qi{font-size:1.4rem;}
 .qbtn .ql{font-size:.78rem;font-weight:600;color:var(--muted);}
 
-/* APOIO */
 .apoio-strip{border-radius:12px;background:var(--card);border:1px solid var(--border2);
   padding:.8rem 1rem;display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;}
 .apoio-strip span{font-size:.7rem;color:var(--muted);}
@@ -225,7 +214,6 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--bg);color:v
 <body>
 <div id="app">
 
-  <!-- TOP BAR -->
   <div class="topbar">
     <div class="topbar-brand">
       <span class="cgu-tag">CGU</span>
@@ -351,22 +339,41 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--bg);color:v
       <div class="stitle">Quem vai falar</div>
       <p class="ssub">Toque em um palestrante para mais detalhes</p>
       <div class="spk-grid">
+
         <div class="spk-card" onclick="openModal('VM','Vinícius Marques de Carvalho','Ministro da Controladoria-Geral da União — CGU','Bio em breve.')"><div class="spk-av">VM</div><div class="spk-name">Vinícius M. de Carvalho</div><div class="spk-role">Ministro da CGU</div></div>
+
         <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/2025.02.04%20Marcelo%20Pontes%20Viana%20-%20SIPRI-2.jpg','Marcelo Pontes Vianna','Secretário de Integridade Privada da CGU','Advogado e cientista político, possui pós-graduações em Direito Público, Avaliação de Políticas Públicas e Economia Nacional pela George Washington University. Mestre em Direito pela University of Notre Dame. Auditor Federal da CGU desde 2006, onde ocupou diversos cargos de direção, como os de Corregedor-Geral Adjunto e Diretor de Responsabilização de Entes Privados. Integrante, desde 2019, das delegações brasileiras junto aos fóruns anticorrupção da OCDE e ONU. Entre 2024 e 2025, foi copresidente do Grupo de Trabalho Anticorrupção do G20. Desde 2023, exerce o cargo de Secretário de Integridade Privada.')">
           <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/2025.02.04%20Marcelo%20Pontes%20Viana%20-%20SIPRI-2.jpg" alt="Marcelo Pontes Vianna" onerror="this.style.display='none';this.parentElement.textContent='MP'"/></div>
           <div class="spk-name">Marcelo Pontes Vianna</div>
           <div class="spk-role">Secretário de Integridade Privada/CGU</div>
         </div>
+
         <div class="spk-card" onclick="openModal('GW','Gilberto Waller Júnior','Procurador Federal — Advocacia-Geral da União','Bio em breve.')"><div class="spk-av">GW</div><div class="spk-name">Gilberto Waller Júnior</div><div class="spk-role">Procurador Federal/AGU</div></div>
+
         <div class="spk-card" onclick="openModal('RL','Raniere Rocha Lins','Procurador Nacional de Patrimônio Público e Probidade — PGU/AGU','Bio em breve.')"><div class="spk-av">RL</div><div class="spk-name">Raniere Rocha Lins</div><div class="spk-role">Procurador Nacional/PGU/AGU</div></div>
+
         <div class="spk-card" onclick="openModal('CJ','Carlos Jacques','Conselheiro do Conselho Administrativo de Defesa Econômica — CADE','Bio em breve.')"><div class="spk-av">CJ</div><div class="spk-name">Carlos Jacques</div><div class="spk-role">Conselheiro do CADE</div></div>
+
         <div class="spk-card" onclick="openModal('AA','Ana Aranha','Gerente Sênior em Anticorrupção no Pacto Global das Nações Unidas','Bio em breve.')"><div class="spk-av">AA</div><div class="spk-name">Ana Aranha</div><div class="spk-role">Gerente Sênior — Pacto Global/ONU</div></div>
+
         <div class="spk-card" onclick="openModal('KS','Keity Saboya','Juíza de Direito — Tribunal de Justiça do Rio Grande do Norte','Bio em breve.')"><div class="spk-av">KS</div><div class="spk-name">Keity Saboya</div><div class="spk-role">Juíza de Direito — TJRN</div></div>
+
         <div class="spk-card" onclick="openModal('JP','Juliana Palma','Professora da Fundação Getúlio Vargas — FGV','Bio em breve.')"><div class="spk-av">JP</div><div class="spk-name">Juliana Palma</div><div class="spk-role">Professora — FGV</div></div>
-        <div class="spk-card" onclick="openModal('VS','Valdir Simão','Advogado · Ex-Ministro da CGU','Bio em breve.')"><div class="spk-av">VS</div><div class="spk-name">Valdir Simão</div><div class="spk-role">Advogado · Ex-Ministro CGU</div></div>
+
+        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Valdir%20Sim%C3%A3o.jpg','Valdir Simão','Advogado · Ex-Ministro da CGU','Bio em breve.')">
+          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Valdir%20Sim%C3%A3o.jpg" alt="Valdir Simão" onerror="this.style.display='none';this.parentElement.textContent='VS'"/></div>
+          <div class="spk-name">Valdir Simão</div>
+          <div class="spk-role">Advogado · Ex-Ministro CGU</div>
+        </div>
+
         <div class="spk-card" onclick="openModal('RG','Reynaldo Goto','Professor e especialista em compliance','Bio em breve.')"><div class="spk-av">RG</div><div class="spk-name">Reynaldo Goto</div><div class="spk-role">Professor · Especialista em compliance</div></div>
+
         <div class="spk-card" onclick="openModal('MS','Mário Vinícius Spinelli','Professor e especialista em compliance','Bio em breve.')"><div class="spk-av">MS</div><div class="spk-name">Mário V. Spinelli</div><div class="spk-role">Professor · Especialista em compliance</div></div>
+
+        <div class="spk-card" onclick="openModal('LH','Luiz Henrique Pandolfi Miranda','Diretor de Acordos de Leniência — CGU','Possui graduação em Direito pela Universidade Federal do Espírito Santo (2003), pós-graduação (lato sensu) em Direito Público pela Universidade de Brasília e em Direito Processual pela PUC-MG, e Mestrado em Direito Processual pela UFES (2022–2024). Procurador Federal da AGU desde 2006, já atuou na Corregedoria-Geral da União (Corregedor Setorial), na Consultoria Jurídica do Ministério das Cidades (Consultor Adjunto) e na Procuradoria-Regional Federal da 2ª Região.')"><div class="spk-av">LH</div><div class="spk-name">Luiz H. Pandolfi Miranda</div><div class="spk-role">Diretor de Acordos de Leniência/CGU</div></div>
+
         <div class="spk-card" onclick="openModal('EB','Eveline Martins Brito','Secretária-Executiva da CGU','Bio em breve.')"><div class="spk-av">EB</div><div class="spk-name">Eveline Martins Brito</div><div class="spk-role">Secretária-Executiva da CGU</div></div>
+
         <div class="spk-card spk-ghost"><div class="spk-av">+</div><div class="spk-name">Em breve</div><div class="spk-role">Outros palestrantes a confirmar</div></div>
       </div>
     </div>
@@ -451,7 +458,7 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--bg);color:v
 
 </div><!-- /app -->
 
-<!-- SPEAKER MODAL -->
+<!-- MODAL -->
 <div class="modal-overlay" id="modal" onclick="closeModal(event)">
   <div class="modal-box">
     <div class="modal-header">
