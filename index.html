@@ -22,7 +22,6 @@ html,body{height:100%;height:100dvh;overflow:hidden;color:var(--text);
   background-size:cover;background-position:center;background-attachment:fixed;}
 #app{display:flex;flex-direction:column;height:100vh;height:100dvh;}
 
-/* TOP BAR */
 .topbar{height:var(--nav-h);background:rgba(7,32,26,.97);backdrop-filter:blur(14px);
   border-bottom:1px solid var(--border);display:flex;align-items:center;
   justify-content:space-between;padding:0 1.2rem;flex-shrink:0;z-index:50;}
@@ -34,21 +33,18 @@ html,body{height:100%;height:100dvh;overflow:hidden;color:var(--text);
   color:#07201a;font-size:.82rem;font-weight:800;padding:.38rem .85rem;
   border-radius:20px;text-decoration:none;white-space:nowrap;}
 
-/* BACK BUTTON */
 .back-btn{display:inline-flex;align-items:center;gap:.4rem;
   background:rgba(42,191,160,.1);border:1px solid var(--border);
   color:var(--teal);font-size:.82rem;font-weight:600;padding:.45rem .9rem;
   border-radius:20px;cursor:pointer;margin-bottom:1rem;transition:.15s;}
 .back-btn:hover{background:rgba(42,191,160,.18);}
 
-/* SCREENS */
 #screens{flex:1;overflow:hidden;position:relative;}
 .screen{position:absolute;inset:0;overflow-y:auto;padding:1.25rem 1rem 1.5rem;
   display:none;animation:fadeIn .2s ease;}
 .screen.active{display:block;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
-/* BOTTOM TABS */
 .tabs{height:var(--tab-h);background:rgba(7,32,26,.97);backdrop-filter:blur(14px);
   border-top:1px solid var(--border);display:flex;align-items:stretch;flex-shrink:0;}
 .tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -65,7 +61,6 @@ html,body{height:100%;height:100dvh;overflow:hidden;color:var(--text);
 .screen::-webkit-scrollbar-track{background:transparent;}
 .screen::-webkit-scrollbar-thumb{background:var(--teal2);border-radius:2px;}
 
-/* SHARED */
 .eyebrow{font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
   color:var(--teal);margin-bottom:.3rem;display:flex;align-items:center;gap:.35rem;}
 .eyebrow::before{content:'';width:14px;height:2px;background:var(--teal);border-radius:1px;}
@@ -85,22 +80,28 @@ html,body{height:100%;height:100dvh;overflow:hidden;color:var(--text);
   color:#051a10;font-weight:800;font-size:.82rem;padding:.65rem 1.6rem;
   border-radius:30px;text-decoration:none;box-shadow:0 3px 20px rgba(42,191,160,.35);}
 
-/* INFO PILLS */
-.info-pills{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1rem;}
-.info-pill{background:rgba(13,40,34,.92);border:1px solid var(--border2);border-radius:12px;
-  padding:.85rem .9rem;display:flex;align-items:center;gap:.6rem;backdrop-filter:blur(4px);}
-.ip-icon{font-size:1.2rem;flex-shrink:0;}
-.ip-label{font-size:.68rem;color:var(--muted);display:block;}
-.ip-value{font-size:.82rem;font-weight:700;color:var(--text);display:block;line-height:1.3;}
-
 /* QUICK BTNS */
-.quick-btns{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1rem;}
+.quick-btns{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:.75rem;}
 .qbtn{background:rgba(16,48,42,.92);border:1px solid var(--border);border-radius:12px;
   padding:.9rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;
   cursor:pointer;transition:.15s;color:var(--text);width:100%;backdrop-filter:blur(4px);}
 .qbtn:hover{background:var(--bg3);border-color:rgba(42,191,160,.3);}
 .qbtn .qi{font-size:1.4rem;}
 .qbtn .ql{font-size:.78rem;font-weight:600;color:var(--muted);}
+
+/* EM BREVE BTNS */
+.em-breve-btns{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1rem;}
+.eb-btn{background:rgba(16,48,42,.92);border:1px solid var(--border);border-radius:12px;
+  padding:1rem 1.2rem;color:var(--text);font-size:.88rem;font-weight:600;
+  text-align:left;cursor:pointer;transition:.15s;backdrop-filter:blur(4px);width:100%;}
+.eb-btn:hover{background:var(--bg3);border-color:var(--teal);}
+
+/* EM BREVE SCREEN */
+.em-breve-screen{display:flex;flex-direction:column;align-items:center;
+  justify-content:center;height:100%;text-align:center;padding:2rem;}
+.em-breve-icon{font-size:3.5rem;margin-bottom:1rem;}
+.em-breve-title{font-size:1.3rem;font-weight:800;margin-bottom:.5rem;}
+.em-breve-sub{font-size:.9rem;color:var(--muted);max-width:280px;line-height:1.6;}
 
 /* APOIO */
 .apoio-strip{border-radius:12px;background:rgba(13,40,34,.92);border:1px solid var(--border2);
@@ -188,7 +189,6 @@ html,body{height:100%;height:100dvh;overflow:hidden;color:var(--text);
 
 @media(min-width:500px){
   .spk-grid{grid-template-columns:repeat(3,1fr);}
-  .info-pills{grid-template-columns:repeat(4,1fr);}
   .quick-btns{grid-template-columns:repeat(4,1fr);}
 }
 </style>
@@ -196,7 +196,6 @@ html,body{height:100%;height:100dvh;overflow:hidden;color:var(--text);
 <body>
 <div id="app">
 
-  <!-- TOP BAR -->
   <div class="topbar">
     <div class="topbar-brand">
       <span class="cgu-tag">CGU</span>
@@ -209,28 +208,12 @@ html,body{height:100%;height:100dvh;overflow:hidden;color:var(--text);
 
     <!-- HOME -->
     <div class="screen active" id="s-home">
-
       <div class="hero-banner">
-        <img class="hero-banner-img"
-          src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Hero%20banner.jpg"
-          alt="Dia da Integridade Empresarial 2026"/>
+        <img class="hero-banner-img" src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Hero%20banner.jpg" alt="Dia da Integridade Empresarial 2026"/>
         <div class="hero-overlay">
           <div class="hb-meta">30 JUN · 1º JUL 2026 &nbsp;·&nbsp; POUPEX · Brasília/DF</div>
           <a href="https://forms.office.com/r/sAcLitJmPA" target="_blank" class="hb-cta">Inscreva-se gratuitamente →</a>
         </div>
-      </div>
-
-      <div style="text-align:center;margin-bottom:.75rem;">
-        <img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Badge%20Pro%CC%81-E%CC%81tica.png"
-          alt="Badge Pró-Ética 2025-2026"
-          style="max-height:72px;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(42,191,160,.3))"/>
-      </div>
-
-      <div class="info-pills">
-        <div class="info-pill"><span class="ip-icon">📅</span><div><span class="ip-label">Data</span><span class="ip-value">30 Jun · 1 Jul 2026</span></div></div>
-        <div class="info-pill"><span class="ip-icon">📍</span><div><span class="ip-label">Local</span><span class="ip-value">POUPEX · Brasília</span></div></div>
-        <div class="info-pill"><span class="ip-icon">📜</span><div><span class="ip-label">Certificado</span><span class="ip-value">Digital · Gratuito</span></div></div>
-        <div class="info-pill"><span class="ip-icon">🏆</span><div><span class="ip-label">Destaque</span><span class="ip-value">Pró-Ética 25/26</span></div></div>
       </div>
 
       <div class="quick-btns">
@@ -240,6 +223,11 @@ html,body{height:100%;height:100dvh;overflow:hidden;color:var(--text);
         <button class="qbtn" onclick="goTo('s-info')"><span class="qi">ℹ️</span><span class="ql">Informações</span></button>
       </div>
 
+      <div class="em-breve-btns">
+        <button class="eb-btn" onclick="goTo('s-proetica')">🏆 Conheça as empresas Pró-Ética 2025/2026</button>
+        <button class="eb-btn" onclick="goTo('s-lancamentos')">📦 Lançamentos CGU</button>
+      </div>
+
       <div class="apoio-strip">
         <span>Apoio:</span>
         <span class="apoio-tag">Sebrae</span>
@@ -247,6 +235,26 @@ html,body{height:100%;height:100dvh;overflow:hidden;color:var(--text);
         <span class="apoio-tag">ApexBrasil</span>
         <span class="apoio-tag">MDIC</span>
         <span class="apoio-tag">CGU · Governo do Brasil</span>
+      </div>
+    </div>
+
+    <!-- PRÓ-ÉTICA EM BREVE -->
+    <div class="screen" id="s-proetica">
+      <button class="back-btn" onclick="goTo('s-home')">← Início</button>
+      <div class="em-breve-screen">
+        <div class="em-breve-icon">🏆</div>
+        <div class="em-breve-title">Empresas Pró-Ética 2025/2026</div>
+        <div class="em-breve-sub">Esta seção estará disponível durante o evento com as informações sobre as empresas vencedoras.</div>
+      </div>
+    </div>
+
+    <!-- LANÇAMENTOS EM BREVE -->
+    <div class="screen" id="s-lancamentos">
+      <button class="back-btn" onclick="goTo('s-home')">← Início</button>
+      <div class="em-breve-screen">
+        <div class="em-breve-icon">📦</div>
+        <div class="em-breve-title">Lançamentos CGU</div>
+        <div class="em-breve-sub">Esta seção estará disponível durante o evento com as informações sobre os lançamentos da CGU.</div>
       </div>
     </div>
 
@@ -287,7 +295,7 @@ html,body{height:100%;height:100dvh;overflow:hidden;color:var(--text);
       </div>
     </div>
 
-    <!-- PALESTRANTES -->
+    <!-- PALESTRANTES — ordem alfabética pelo primeiro nome -->
     <div class="screen" id="s-spk">
       <button class="back-btn" onclick="goTo('s-home')">← Início</button>
       <div class="eyebrow">Palestrantes</div>
@@ -295,29 +303,9 @@ html,body{height:100%;height:100dvh;overflow:hidden;color:var(--text);
       <p class="ssub">Toque em um palestrante para mais detalhes</p>
       <div class="spk-grid">
 
-        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/MinistroViniciusdeCarvalho.jpg','Vinícius Marques de Carvalho','Ministro da CGU','Nascido em São Paulo/SP, graduado em Direito pela USP, Doutor em Direito Comercial pela USP e em Direito Comparado pela Université de Paris 1 Pantheon-Sorbonne, onde foi professor-visitante. Desde 2014, é professor da USP. Presidiu o CADE de 2012 a 2016. Também ocupou os cargos de Secretário de Direito Econômico, Conselheiro do CADE e chefe de gabinete da Secretaria Especial dos Direitos Humanos.','https://www.linkedin.com/in/vinicius-marques-de-carvalho-9a9063b0/','')">
-          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/MinistroViniciusdeCarvalho.jpg" alt="Vinícius Marques de Carvalho" onerror="this.style.display='none';this.parentElement.textContent='VM'"/></div>
-          <div class="spk-name">Vinícius M. de Carvalho</div><div class="spk-role">Ministro da CGU</div>
-        </div>
-
-        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/2025.02.04%20Marcelo%20Pontes%20Viana%20-%20SIPRI-2.jpg','Marcelo Pontes Vianna','Secretário de Integridade Privada — CGU','Advogado e cientista político, possui pós-graduações em Direito Público, Avaliação de Políticas Públicas e Economia Nacional pela George Washington University. Mestre em Direito pela University of Notre Dame. Auditor Federal da CGU desde 2006, onde ocupou diversos cargos de direção, como os de Corregedor-Geral Adjunto e Diretor de Responsabilização de Entes Privados. Integrante, desde 2019, das delegações brasileiras junto aos fóruns anticorrupção da OCDE e ONU. Entre 2024 e 2025, foi copresidente do Grupo de Trabalho Anticorrupção do G20. Desde 2023, exerce o cargo de Secretário de Integridade Privada.','https://br.linkedin.com/in/marcelo-pontes-vianna','marcelo.vianna@cgu.gov.br')">
-          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/2025.02.04%20Marcelo%20Pontes%20Viana%20-%20SIPRI-2.jpg" alt="Marcelo Pontes Vianna" onerror="this.style.display='none';this.parentElement.textContent='MP'"/></div>
-          <div class="spk-name">Marcelo Pontes Vianna</div><div class="spk-role">Secretário de Integridade Privada/CGU</div>
-        </div>
-
-        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Felipe%20Brandt.jpg','Felipe Barbosa Brandt','Diretor de Responsabilização de Entes Privados — CGU','Atualmente é Diretor de Responsabilização de Entes Privados na Secretaria de Integridade Privada da CGU. Anteriormente, exerceu o cargo de Coordenador-Geral de Responsabilização de Entes Privados na CGU, além de atuar como assessor de Juiz Federal e ocupar diversos cargos na Caixa Econômica Federal. É graduado em Direito pela Universidade Federal da Paraíba, com pós-graduação em Direito Público e Combate à Corrupção e à Lavagem de Dinheiro.','https://www.linkedin.com/in/felipe-barbosa-brandt-33705b203/','felipe.brandt@cgu.gov.br')">
-          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Felipe%20Brandt.jpg" alt="Felipe Barbosa Brandt" onerror="this.style.display='none';this.parentElement.textContent='FB'"/></div>
-          <div class="spk-name">Felipe Barbosa Brandt</div><div class="spk-role">Dir. de Responsabilização/CGU</div>
-        </div>
-
-        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Raniere.jpg','Raniere Rocha Lins','Procurador Nacional de Patrimônio Público e Probidade — PGU/AGU','Possui graduação em Direito pela Universidade Federal de Alagoas (2014). Especialista em Prática Processual nos Tribunais pelo UNICEUB (2018). Mestre em Direito Constitucional pelo IDP (2020). Doutorando em Direito na UnB (2022). Advogado da União desde 2017. Atualmente ocupa o cargo de Procurador Nacional da União de Patrimônio Público e Probidade. Ex-Procurador da Fazenda Nacional (2016) e Assessor do MPF em Alagoas (2015–2016).','','')">
-          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Raniere.jpg" alt="Raniere Rocha Lins" onerror="this.style.display='none';this.parentElement.textContent='RL'"/></div>
-          <div class="spk-name">Raniere Rocha Lins</div><div class="spk-role">Procurador Nacional/PGU/AGU</div>
-        </div>
-
-        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Gilberto%20Waller.jpg','Gilberto Waller Júnior','Procurador Federal — AGU','Procurador federal, exerceu diversos cargos de destaque na Administração Pública Federal, dentre eles Ouvidor-Geral da União, Corregedor-Geral da União e Presidente do INSS. Possui bacharelado em Direito, especialização em combate à corrupção e quase 30 anos de carreira no serviço público brasileiro.','https://br.linkedin.com/in/gilbertowaller','')">
-          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Gilberto%20Waller.jpg" alt="Gilberto Waller Júnior" onerror="this.style.display='none';this.parentElement.textContent='GW'"/></div>
-          <div class="spk-name">Gilberto Waller Júnior</div><div class="spk-role">Procurador Federal/AGU</div>
+        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Ana%20Aranha.jpg','Ana Aranha','Gerente Sênior — Pacto Global das Nações Unidas','Doutora e Mestre em Ciência Política pela UFMG. Gerente Sênior do Pacto Global das Nações Unidas (EUA), liderando o Acelerador de Integridade Empresarial. Professora colaboradora da Universidade Federal do Piauí.','https://www.linkedin.com/in/ana-luiza-aranha-5b31a1116/','aranha@unglobalcompact.org')">
+          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Ana%20Aranha.jpg" alt="Ana Aranha" onerror="this.style.display='none';this.parentElement.textContent='AA'"/></div>
+          <div class="spk-name">Ana Aranha</div><div class="spk-role">Gerente Sênior — Pacto Global/ONU</div>
         </div>
 
         <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Carlos%20Jacques.jpeg','Carlos Jacques Vieira Gomes','Conselheiro — CADE','Mestre em Direito e especialista em Direito Regulatório de Telecomunicações pela UnB. Professor de pós-graduação em Direito Empresarial no IDP, IBMEC e FGV-Rio. Atuou como Consultor Legislativo do Senado Federal nas áreas de Direito Econômico, da Regulação e Empresarial (2004–2023) e como assessor da Ministra Nancy Andrighi no STJ (2000–2004). Foi Secretário do Plenário do CADE (1998–2000) e é autor do livro Ordem Econômica Constitucional e Direito Antitruste (Sérgio Fabris, 2004).','','')">
@@ -325,24 +313,29 @@ html,body{height:100%;height:100dvh;overflow:hidden;color:var(--text);
           <div class="spk-name">Carlos Jacques V. Gomes</div><div class="spk-role">Conselheiro do CADE</div>
         </div>
 
+        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/WhatsApp%20Image%202026-05-31%20at%2015.14.22.jpeg','Cristine Köhler Ganzenmüller','Diretora de Promoção e Avaliação de Integridade Privada — CGU','Auditora Federal da CGU. Na CGU já atuou como Coordenadora de Promoção de Integridade, Chefe na Coordenação de Negociação de Acordos de Leniência e Corregedora do Ministério da Cultura e do Ministério do Esporte. Também possui experiência como advogada corporativa. Formada em Direito pela UFPR, possui MBA em Direito Econômico e Empresarial pela FGV.','https://www.linkedin.com/in/cristine-ganzenm%C3%BCller-1238a2334/','cristine.kohler@cgu.gov.br')">
+          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/WhatsApp%20Image%202026-05-31%20at%2015.14.22.jpeg" alt="Cristine Köhler Ganzenmüller" onerror="this.style.display='none';this.parentElement.textContent='CK'"/></div>
+          <div class="spk-name">Cristine K. Ganzenmüller</div><div class="spk-role">Diretora de Integridade Privada/CGU</div>
+        </div>
+
+        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/eveline-martins-brito-e1741804236426.jpg','Eveline Martins Brito','Secretária-Executiva da CGU','Servidora da CGU com 27 anos na carreira de Finanças e Controle. Atuou na CGU como Coordenadora-Geral de Auditoria, Diretora de Planejamento e Desenvolvimento Institucional e Coordenadora-Geral de Julgamento de Servidores e Empregados Públicos. Foi Ouvidora-Adjunta Chefe na EBC e a primeira ouvidora na Presidência da República. Em 2023 retornou à CGU como Secretária Federal de Controle Interno Adjunta e, em 2024, assumiu como Secretária-Executiva.','https://www.linkedin.com/in/eveline-brito-94089914a/','')">
+          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/eveline-martins-brito-e1741804236426.jpg" alt="Eveline Martins Brito" onerror="this.style.display='none';this.parentElement.textContent='EB'"/></div>
+          <div class="spk-name">Eveline Martins Brito</div><div class="spk-role">Secretária-Executiva da CGU</div>
+        </div>
+
         <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Fabri%CC%81cio.webp','Fabrício Juliano Mendes Medeiros','Advogado — Medeiros & Barros Correia Advogados','Graduado pela Faculdade de Direito da UFS, Mestre em Direito pelo UniCEUB e Especialista em Direito Constitucional Processual pela UFS. Professor do IDP. Foi Assessor de Ministro do STF e do TSE e Assessor Jurídico na Câmara dos Deputados e no Senado Federal. Membro do IBRADE. Integrou a lista tríplice aprovada pelo STF para Ministro-Substituto do TSE em 2022. Autor do livro O ativismo judicial e direito à saúde (Fórum, 2011).','https://br.linkedin.com/in/fabr%C3%ADcio-juliano-mendes-medeiros-676063176','')">
           <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Fabri%CC%81cio.webp" alt="Fabrício Medeiros" onerror="this.style.display='none';this.parentElement.textContent='FM'"/></div>
           <div class="spk-name">Fabrício J. M. Medeiros</div><div class="spk-role">Advogado — Direito Eleitoral</div>
         </div>
 
-        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Raphael%20Sore%CC%81.jpeg','Raphael Rodrigues Soré','Advogado · Dir. de Compliance e Investigações — IBRAC','Mestre em Direito do Estado pela USP. Especialista em Direito Público pela Escola Paulista da Magistratura e em Direito Comunitário Europeu pela Universidade de Coimbra. Foi assistente da Presidência da Corregedoria Geral da Administração do Estado de SP, Secretário-Executivo do CONACI e Presidente do Comitê do Portal da Transparência do Estado de SP. Atualmente é advogado especializado em Compliance empresarial e anticorrupção.','https://www.linkedin.com/in/raphaelsore/','RSore@machadomeyer.com.br')">
-          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Raphael%20Sore%CC%81.jpeg" alt="Raphael Soré" onerror="this.style.display='none';this.parentElement.textContent='RS'"/></div>
-          <div class="spk-name">Raphael Rodrigues Soré</div><div class="spk-role">Advogado · Dir. Compliance/IBRAC</div>
+        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Felipe%20Brandt.jpg','Felipe Barbosa Brandt','Diretor de Responsabilização de Entes Privados — CGU','Atualmente é Diretor de Responsabilização de Entes Privados na Secretaria de Integridade Privada da CGU. Anteriormente, exerceu o cargo de Coordenador-Geral de Responsabilização de Entes Privados na CGU, além de atuar como assessor de Juiz Federal e ocupar diversos cargos na Caixa Econômica Federal. É graduado em Direito pela Universidade Federal da Paraíba, com pós-graduação em Direito Público e Combate à Corrupção e à Lavagem de Dinheiro.','https://www.linkedin.com/in/felipe-barbosa-brandt-33705b203/','felipe.brandt@cgu.gov.br')">
+          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Felipe%20Brandt.jpg" alt="Felipe Barbosa Brandt" onerror="this.style.display='none';this.parentElement.textContent='FB'"/></div>
+          <div class="spk-name">Felipe Barbosa Brandt</div><div class="spk-role">Dir. de Responsabilização/CGU</div>
         </div>
 
-        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Luiz%20Pandolfi.jpg','Luiz Henrique Pandolfi Miranda','Diretor de Acordos de Leniência — CGU','Possui graduação em Direito pela UFES (2003), pós-graduação em Direito Público pela UnB e em Direito Processual pela PUC-MG, e Mestrado em Direito Processual pela UFES (2022–2024). Procurador Federal da AGU desde 2006, já atuou na Corregedoria-Geral da União (Corregedor Setorial), na Consultoria Jurídica do Ministério das Cidades (Consultor Adjunto) e na Procuradoria-Regional Federal da 2ª Região.','','luiz.miranda@cgu.gov.br')">
-          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Luiz%20Pandolfi.jpg" alt="Luiz Henrique Pandolfi Miranda" onerror="this.style.display='none';this.parentElement.textContent='LH'"/></div>
-          <div class="spk-name">Luiz H. Pandolfi Miranda</div><div class="spk-role">Dir. de Acordos de Leniência/CGU</div>
-        </div>
-
-        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/keity%20saboia.jpeg','Keity Saboya','Juíza de Direito — TJ/RN','Professora Associada da UFRN, atuando na área das Ciências Criminais. Coordenadora do Programa de Residência Judicial da Escola da Magistratura do RN. Juíza de Direito do Estado do Rio Grande do Norte. Doutora em Direito Penal pela UERJ com Estágio Doutoral na Universidad de Castilla-La Mancha. Pesquisadora do Max-Planck-Institut. Mestre em Direito Constitucional pela UFRN. Autora do livro Ne Bis in idem: História, Teoria e Perspectivas (Lumen Juris).','https://br.linkedin.com/in/keity-saboya-7429aa106','')">
-          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/keity%20saboia.jpeg" alt="Keity Saboya" onerror="this.style.display='none';this.parentElement.textContent='KS'"/></div>
-          <div class="spk-name">Keity Saboya</div><div class="spk-role">Juíza de Direito — TJ/RN</div>
+        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Gilberto%20Waller.jpg','Gilberto Waller Júnior','Procurador Federal — AGU','Procurador federal, exerceu diversos cargos de destaque na Administração Pública Federal, dentre eles Ouvidor-Geral da União, Corregedor-Geral da União e Presidente do INSS. Possui bacharelado em Direito, especialização em combate à corrupção e quase 30 anos de carreira no serviço público brasileiro.','https://br.linkedin.com/in/gilbertowaller','')">
+          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Gilberto%20Waller.jpg" alt="Gilberto Waller Júnior" onerror="this.style.display='none';this.parentElement.textContent='GW'"/></div>
+          <div class="spk-name">Gilberto Waller Júnior</div><div class="spk-role">Procurador Federal/AGU</div>
         </div>
 
         <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Juliana%20palma.jpg','Juliana Palma','Professora Associada — FGV Direito SP','Professora Associada da FGV Direito SP com regime de dedicação exclusiva. Coordenadora do Núcleo Público da FGV Direito SP e do FGV ECIC. Doutora e Mestre pela USP. Master of Laws (LL.M.) pela Yale Law School, bolsista da Lilian Goldman Perpetual Scholarship. Bacharel em Direito pela PUC-SP. Visiting scholar na Washington College of Law - American University. Pesquisas em Direito Administrativo, Consensualidade, Regulação e Direito & Burocracia.','https://direitosp.fgv.br/professor/juliana-bonacorsi-de-palma','juliana.palma@fgv.br')">
@@ -350,24 +343,34 @@ html,body{height:100%;height:100dvh;overflow:hidden;color:var(--text);
           <div class="spk-name">Juliana Palma</div><div class="spk-role">Professora — FGV Direito SP</div>
         </div>
 
+        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/keity%20saboia.jpeg','Keity Saboya','Juíza de Direito — TJ/RN','Professora Associada da UFRN, atuando na área das Ciências Criminais. Coordenadora do Programa de Residência Judicial da Escola da Magistratura do RN. Juíza de Direito do Estado do Rio Grande do Norte. Doutora em Direito Penal pela UERJ com Estágio Doutoral na Universidad de Castilla-La Mancha. Pesquisadora do Max-Planck-Institut. Mestre em Direito Constitucional pela UFRN. Autora do livro Ne Bis in idem: História, Teoria e Perspectivas (Lumen Juris).','https://br.linkedin.com/in/keity-saboya-7429aa106','')">
+          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/keity%20saboia.jpeg" alt="Keity Saboya" onerror="this.style.display='none';this.parentElement.textContent='KS'"/></div>
+          <div class="spk-name">Keity Saboya</div><div class="spk-role">Juíza de Direito — TJ/RN</div>
+        </div>
+
         <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Luis%20W.png','Luis Wielewick','Advogado — wm&t Advogados','Formado em Direito cum laude pela Universidade Estadual de Londrina, mestre (LL.M.) pela Universidade Columbia e Doutor em Direito pela USP. Sócio-fundador do escritório paulistano wm&t. Foi escolhido, em 2025, Investigations Professional of the Year pela publicação britânica Global Investigations Review.','','wielewicki@wmt.com.br')">
           <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Luis%20W.png" alt="Luis Wielewick" onerror="this.style.display='none';this.parentElement.textContent='LW'"/></div>
           <div class="spk-name">Luis Wielewick</div><div class="spk-role">Advogado — wm&t Advogados</div>
         </div>
 
-        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Ana%20Aranha.jpg','Ana Aranha','Gerente Sênior — Pacto Global das Nações Unidas','Doutora e Mestre em Ciência Política pela UFMG. Gerente Sênior do Pacto Global das Nações Unidas (EUA), liderando o Acelerador de Integridade Empresarial. Professora colaboradora da Universidade Federal do Piauí.','https://www.linkedin.com/in/ana-luiza-aranha-5b31a1116/','aranha@unglobalcompact.org')">
-          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Ana%20Aranha.jpg" alt="Ana Aranha" onerror="this.style.display='none';this.parentElement.textContent='AA'"/></div>
-          <div class="spk-name">Ana Aranha</div><div class="spk-role">Gerente Sênior — Pacto Global/ONU</div>
+        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Luiz%20Pandolfi.jpg','Luiz Henrique Pandolfi Miranda','Diretor de Acordos de Leniência — CGU','Possui graduação em Direito pela UFES (2003), pós-graduação em Direito Público pela UnB e em Direito Processual pela PUC-MG, e Mestrado em Direito Processual pela UFES (2022–2024). Procurador Federal da AGU desde 2006, já atuou na Corregedoria-Geral da União (Corregedor Setorial), na Consultoria Jurídica do Ministério das Cidades (Consultor Adjunto) e na Procuradoria-Regional Federal da 2ª Região.','','luiz.miranda@cgu.gov.br')">
+          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Luiz%20Pandolfi.jpg" alt="Luiz Henrique Pandolfi Miranda" onerror="this.style.display='none';this.parentElement.textContent='LH'"/></div>
+          <div class="spk-name">Luiz H. Pandolfi Miranda</div><div class="spk-role">Dir. de Acordos de Leniência/CGU</div>
         </div>
 
-        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Vanir.webp','Vanir Fridriczewski','Assessor de Ministro — STF','Advogado da União, atual Assessor de Ministro no Supremo Tribunal Federal (STF) e Doutor em Estado de Direito e Governança Global pela Universidade de Salamanca. Especialista em Direito Público e autor de obras jurídicas na área de Direito Administrativo Sancionador.','https://br.linkedin.com/in/vanir-fridriczewski-b27585205','')">
-          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Vanir.webp" alt="Vanir Fridriczewski" onerror="this.style.display='none';this.parentElement.textContent='VF'"/></div>
-          <div class="spk-name">Vanir Fridriczewski</div><div class="spk-role">Assessor de Ministro — STF</div>
+        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/2025.02.04%20Marcelo%20Pontes%20Viana%20-%20SIPRI-2.jpg','Marcelo Pontes Vianna','Secretário de Integridade Privada — CGU','Advogado e cientista político, possui pós-graduações em Direito Público, Avaliação de Políticas Públicas e Economia Nacional pela George Washington University. Mestre em Direito pela University of Notre Dame. Auditor Federal da CGU desde 2006, onde ocupou diversos cargos de direção, como os de Corregedor-Geral Adjunto e Diretor de Responsabilização de Entes Privados. Integrante, desde 2019, das delegações brasileiras junto aos fóruns anticorrupção da OCDE e ONU. Entre 2024 e 2025, foi copresidente do Grupo de Trabalho Anticorrupção do G20. Desde 2023, exerce o cargo de Secretário de Integridade Privada.','https://br.linkedin.com/in/marcelo-pontes-vianna','marcelo.vianna@cgu.gov.br')">
+          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/2025.02.04%20Marcelo%20Pontes%20Viana%20-%20SIPRI-2.jpg" alt="Marcelo Pontes Vianna" onerror="this.style.display='none';this.parentElement.textContent='MP'"/></div>
+          <div class="spk-name">Marcelo Pontes Vianna</div><div class="spk-role">Secretário de Integridade Privada/CGU</div>
         </div>
 
-        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Valdir%20Sim%C3%A3o.jpg','Valdir Moyses Simão','Advogado — Warde Advogados','Advogado com atuação em compliance e consultor em governança pública e privada. Auditor-fiscal por 29 anos, ocupou cargos como Ministro do Planejamento, Ministro-Chefe da CGU, Secretário da Fazenda, Presidente do INSS e Secretário-Executivo da Casa Civil. Na CGU, regulamentou a Lei Anticorrupção brasileira. Doutor em Estado de Direito e Governança Global pela Universidade de Salamanca. Master em Direção e Gestão de Sistemas de Seguridade Social pela Universidade de Alcalá.','https://www.linkedin.com/in/valdirsimao/','valdirmsimao@gmail.com')">
-          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Valdir%20Sim%C3%A3o.jpg" alt="Valdir Simão" onerror="this.style.display='none';this.parentElement.textContent='VS'"/></div>
-          <div class="spk-name">Valdir Moyses Simão</div><div class="spk-role">Advogado — Warde Advogados</div>
+        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Mario%20Spinelli.jpg','Mário Vinícius Spinelli','Sócio-Diretor — MS Integridade e Reasoning Global Advisory','Doutor em Administração Pública e Governo pela FGV-EAESP. Mestre em Administração Pública pela FJP-MG. Professor de pós-graduação em Controle e Compliance em diversas instituições. Ex-Controlador-Geral de MG e de SP. Ex-Diretor de Governança e Compliance e Ouvidor-Geral da Petrobras. Ex-Secretário de Prevenção da Corrupção na CGU. Auditor Federal de Finanças e Controle da CGU.','https://www.linkedin.com/in/m%C3%A1rio-spinelli-570565106/','')">
+          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Mario%20Spinelli.jpg" alt="Mário Vinícius Spinelli" onerror="this.style.display='none';this.parentElement.textContent='MS'"/></div>
+          <div class="spk-name">Mário V. Spinelli</div><div class="spk-role">Sócio-Diretor — MS Integridade</div>
+        </div>
+
+        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Raniere.jpg','Raniere Rocha Lins','Procurador Nacional de Patrimônio Público e Probidade — PGU/AGU','Possui graduação em Direito pela Universidade Federal de Alagoas (2014). Especialista em Prática Processual nos Tribunais pelo UNICEUB (2018). Mestre em Direito Constitucional pelo IDP (2020). Doutorando em Direito na UnB (2022). Advogado da União desde 2017. Atualmente ocupa o cargo de Procurador Nacional da União de Patrimônio Público e Probidade. Ex-Procurador da Fazenda Nacional (2016) e Assessor do MPF em Alagoas (2015–2016).','','')">
+          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Raniere.jpg" alt="Raniere Rocha Lins" onerror="this.style.display='none';this.parentElement.textContent='RL'"/></div>
+          <div class="spk-name">Raniere Rocha Lins</div><div class="spk-role">Procurador Nacional/PGU/AGU</div>
         </div>
 
         <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Renato%20Machado.jpg','Renato Machado Souza','Advogado — Maeda, Ayres e Sarubbi Advogados','Advogado e professor do Programa de Doutorado da Universidade de Salamanca.','https://www.linkedin.com/in/renato-machado-de-souza-047144105/','renato.machado@maedaayres.com')">
@@ -380,24 +383,29 @@ html,body{height:100%;height:100dvh;overflow:hidden;color:var(--text);
           <div class="spk-name">Reynaldo Goto</div><div class="spk-role">Consultor — Governança e Compliance</div>
         </div>
 
-        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/WhatsApp%20Image%202026-05-31%20at%2015.14.22.jpeg','Cristine Köhler Ganzenmüller','Diretora de Promoção e Avaliação de Integridade Privada — CGU','Auditora Federal da CGU. Na CGU já atuou como Coordenadora de Promoção de Integridade, Chefe na Coordenação de Negociação de Acordos de Leniência e Corregedora do Ministério da Cultura e do Ministério do Esporte. Também possui experiência como advogada corporativa. Formada em Direito pela UFPR, possui MBA em Direito Econômico e Empresarial pela FGV.','https://www.linkedin.com/in/cristine-ganzenm%C3%BCller-1238a2334/','cristine.kohler@cgu.gov.br')">
-          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/WhatsApp%20Image%202026-05-31%20at%2015.14.22.jpeg" alt="Cristine Köhler Ganzenmüller" onerror="this.style.display='none';this.parentElement.textContent='CK'"/></div>
-          <div class="spk-name">Cristine K. Ganzenmüller</div><div class="spk-role">Diretora de Integridade Privada/CGU</div>
+        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Raphael%20Sore%CC%81.jpeg','Raphael Rodrigues Soré','Advogado · Dir. de Compliance e Investigações — IBRAC','Mestre em Direito do Estado pela USP. Especialista em Direito Público pela Escola Paulista da Magistratura e em Direito Comunitário Europeu pela Universidade de Coimbra. Foi assistente da Presidência da Corregedoria Geral da Administração do Estado de SP, Secretário-Executivo do CONACI e Presidente do Comitê do Portal da Transparência do Estado de SP. Atualmente é advogado especializado em Compliance empresarial e anticorrupção.','https://www.linkedin.com/in/raphaelsore/','RSore@machadomeyer.com.br')">
+          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Raphael%20Sore%CC%81.jpeg" alt="Raphael Soré" onerror="this.style.display='none';this.parentElement.textContent='RS'"/></div>
+          <div class="spk-name">Raphael Rodrigues Soré</div><div class="spk-role">Advogado · Dir. Compliance/IBRAC</div>
+        </div>
+
+        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Valdir%20Sim%C3%A3o.jpg','Valdir Moyses Simão','Advogado — Warde Advogados','Advogado com atuação em compliance e consultor em governança pública e privada. Auditor-fiscal por 29 anos, ocupou cargos como Ministro do Planejamento, Ministro-Chefe da CGU, Secretário da Fazenda, Presidente do INSS e Secretário-Executivo da Casa Civil. Na CGU, regulamentou a Lei Anticorrupção brasileira. Doutor em Estado de Direito e Governança Global pela Universidade de Salamanca. Master em Direção e Gestão de Sistemas de Seguridade Social pela Universidade de Alcalá.','https://www.linkedin.com/in/valdirsimao/','valdirmsimao@gmail.com')">
+          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Valdir%20Sim%C3%A3o.jpg" alt="Valdir Simão" onerror="this.style.display='none';this.parentElement.textContent='VS'"/></div>
+          <div class="spk-name">Valdir Moyses Simão</div><div class="spk-role">Advogado — Warde Advogados</div>
+        </div>
+
+        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Vanir.webp','Vanir Fridriczewski','Assessor de Ministro — STF','Advogado da União, atual Assessor de Ministro no Supremo Tribunal Federal (STF) e Doutor em Estado de Direito e Governança Global pela Universidade de Salamanca. Especialista em Direito Público e autor de obras jurídicas na área de Direito Administrativo Sancionador.','https://br.linkedin.com/in/vanir-fridriczewski-b27585205','')">
+          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Vanir.webp" alt="Vanir Fridriczewski" onerror="this.style.display='none';this.parentElement.textContent='VF'"/></div>
+          <div class="spk-name">Vanir Fridriczewski</div><div class="spk-role">Assessor de Ministro — STF</div>
+        </div>
+
+        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/MinistroViniciusdeCarvalho.jpg','Vinícius Marques de Carvalho','Ministro da CGU','Nascido em São Paulo/SP, graduado em Direito pela USP, Doutor em Direito Comercial pela USP e em Direito Comparado pela Université de Paris 1 Pantheon-Sorbonne, onde foi professor-visitante. Desde 2014, é professor da USP. Presidiu o CADE de 2012 a 2016. Também ocupou os cargos de Secretário de Direito Econômico, Conselheiro do CADE e chefe de gabinete da Secretaria Especial dos Direitos Humanos.','https://www.linkedin.com/in/vinicius-marques-de-carvalho-9a9063b0/','')">
+          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/MinistroViniciusdeCarvalho.jpg" alt="Vinícius Marques de Carvalho" onerror="this.style.display='none';this.parentElement.textContent='VM'"/></div>
+          <div class="spk-name">Vinícius M. de Carvalho</div><div class="spk-role">Ministro da CGU</div>
         </div>
 
         <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Viviane-Mose-5_Easy-Resize.com_.jpg','Viviane Mosé','Filósofa, Psicanalista, Poeta e Especialista em Políticas Públicas','Viviane Mosé é filósofa, psicanalista, poeta e especialista em elaboração e implementação de políticas públicas. Reconhecida por sua capacidade de traduzir temas complexos da filosofia para o público geral, abordando questões contemporâneas sobre sociedade, educação, comportamento feminino e tecnologia.','','')">
           <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Viviane-Mose-5_Easy-Resize.com_.jpg" alt="Viviane Mosé" onerror="this.style.display='none';this.parentElement.textContent='VM'"/></div>
           <div class="spk-name">Viviane Mosé</div><div class="spk-role">Filósofa · Psicanalista · Poeta</div>
-        </div>
-
-        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Mario%20Spinelli.jpg','Mário Vinícius Spinelli','Sócio-Diretor — MS Integridade e Reasoning Global Advisory','Doutor em Administração Pública e Governo pela FGV-EAESP. Mestre em Administração Pública pela FJP-MG. Professor de pós-graduação em Controle e Compliance em diversas instituições. Ex-Controlador-Geral de MG e de SP. Ex-Diretor de Governança e Compliance e Ouvidor-Geral da Petrobras. Ex-Secretário de Prevenção da Corrupção na CGU. Auditor Federal de Finanças e Controle da CGU.','https://www.linkedin.com/in/m%C3%A1rio-spinelli-570565106/','')">
-          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Mario%20Spinelli.jpg" alt="Mário Vinícius Spinelli" onerror="this.style.display='none';this.parentElement.textContent='MS'"/></div>
-          <div class="spk-name">Mário V. Spinelli</div><div class="spk-role">Sócio-Diretor — MS Integridade</div>
-        </div>
-
-        <div class="spk-card" onclick="openModal('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/eveline-martins-brito-e1741804236426.jpg','Eveline Martins Brito','Secretária-Executiva da CGU','Servidora da CGU com 27 anos na carreira de Finanças e Controle. Atuou na CGU como Coordenadora-Geral de Auditoria, Diretora de Planejamento e Desenvolvimento Institucional e Coordenadora-Geral de Julgamento de Servidores e Empregados Públicos. Foi Ouvidora-Adjunta Chefe na EBC e a primeira ouvidora na Presidência da República. Em 2023 retornou à CGU como Secretária Federal de Controle Interno Adjunta e, em 2024, assumiu como Secretária-Executiva.','https://www.linkedin.com/in/eveline-brito-94089914a/','')">
-          <div class="spk-av"><img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/eveline-martins-brito-e1741804236426.jpg" alt="Eveline Martins Brito" onerror="this.style.display='none';this.parentElement.textContent='EB'"/></div>
-          <div class="spk-name">Eveline Martins Brito</div><div class="spk-role">Secretária-Executiva da CGU</div>
         </div>
 
         <div class="spk-card spk-ghost"><div class="spk-av">+</div><div class="spk-name">Em breve</div><div class="spk-role">Outros palestrantes a confirmar</div></div>
@@ -490,7 +498,7 @@ html,body{height:100%;height:100dvh;overflow:hidden;color:var(--text);
 </div>
 
 <script>
-const screenMap={'s-home':'tab-home','s-prog':'tab-prog','s-spk':'tab-spk','s-local':'tab-local','s-info':'tab-info'};
+const screenMap={'s-home':'tab-home','s-prog':'tab-prog','s-spk':'tab-spk','s-local':'tab-local','s-info':'tab-info','s-proetica':'tab-home','s-lancamentos':'tab-home'};
 function goTo(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
