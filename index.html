@@ -6,7 +6,6 @@
 <title>Integridade Empresarial 2026</title>
 <style>
 :root{
-  /* CGU palette from official art */
   --bg:#071f14;--bg2:#0a2b1a;--bg3:#0d3320;
   --card:rgba(10,38,22,.92);--card2:rgba(14,48,28,.95);
   --green:#3ec95c;--green2:#6fdd80;--green3:#27a845;--green4:#1a7a35;
@@ -41,54 +40,39 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 .tab-dot{width:3px;height:3px;border-radius:50%;background:var(--green);opacity:0;margin-top:1px;}
 .tab.active .tab-dot{opacity:1;}
 
-/* ── HERO — built in CSS/SVG, no external images ── */
-.hero{position:relative;overflow:hidden;margin-bottom:0;
-  background:linear-gradient(160deg,#0d3d22 0%,#071f14 55%,#041508 100%);}
+/* ── HERO com imagem real ── */
+.hero{position:relative;overflow:hidden;margin-bottom:0;min-height:220px;}
+.hero-bg{position:absolute;inset:0;
+  background-image:url('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/5814ecf558bc7591425a8c7da1decf3c9e2e96e2/banner.jpg');
+  background-size:cover;background-position:center top;
+  filter:brightness(.55);}
+.hero-overlay{position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(7,31,20,.45) 0%,rgba(4,15,8,.92) 100%);}
+.hero-inner{position:relative;z-index:2;padding:1.2rem 1rem 0;}
 
-/* radial glow */
-.hero::before{content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 70% 60% at 30% 40%,rgba(62,201,92,.13) 0%,transparent 70%),
-             radial-gradient(ellipse 50% 50% at 80% 20%,rgba(42,191,160,.08) 0%,transparent 60%);
-  pointer-events:none;}
-
-.hero-inner{position:relative;z-index:2;padding:1.1rem 1rem 0;}
-
-/* PRÓ-ÉTICA badge row */
-.badge-row{display:flex;align-items:center;gap:.5rem;margin-bottom:.85rem;}
-.badge-box{background:linear-gradient(135deg,#1a7a35,#27a845);
-  border-radius:6px 0 0 6px;padding:.35rem .6rem;display:flex;align-items:center;gap:.35rem;}
-.badge-empresa{font-size:.52rem;font-weight:800;color:rgba(255,255,255,.75);
-  text-transform:uppercase;letter-spacing:1.5px;line-height:1;}
-.badge-pe{font-size:1.05rem;font-weight:900;color:#fff;line-height:1.05;letter-spacing:.5px;}
-.badge-years{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);
-  border-radius:0 6px 6px 0;padding:.35rem .55rem;
-  display:flex;flex-direction:column;gap:.1rem;}
-.badge-years span{font-size:.62rem;font-weight:800;color:#fff;letter-spacing:.5px;}
-/* globe icon */
-.badge-globe{width:36px;height:36px;border-radius:50%;
-  background:linear-gradient(135deg,#1a9e6a,#0d5c3a);
-  border:2px solid rgba(255,255,255,.25);
-  display:flex;align-items:center;justify-content:center;font-size:1rem;
-  box-shadow:0 2px 8px rgba(0,0,0,.4);}
-.badge-premiacao{font-size:.6rem;font-weight:800;letter-spacing:2.5px;
-  text-transform:uppercase;color:var(--lime);margin-top:.2rem;
-  display:block;padding-left:.1rem;}
+/* Logo Pró-Ética real */
+.badge-row{display:flex;align-items:center;gap:.6rem;margin-bottom:.9rem;}
+.badge-logo{height:56px;width:auto;display:block;
+  filter:drop-shadow(0 2px 8px rgba(0,0,0,.6));}
 
 /* Title block */
-.hero-dia{font-size:.95rem;font-weight:600;color:rgba(255,255,255,.65);
-  letter-spacing:2px;text-transform:uppercase;margin-bottom:.15rem;}
-.hero-title{font-size:clamp(1.6rem,7vw,2.2rem);font-weight:900;line-height:1.05;
-  color:#fff;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.5rem;}
+.hero-dia{font-size:.9rem;font-weight:600;color:rgba(255,255,255,.75);
+  letter-spacing:2.5px;text-transform:uppercase;margin-bottom:.1rem;
+  text-shadow:0 1px 4px rgba(0,0,0,.8);}
+.hero-title{font-size:clamp(2rem,8.5vw,2.8rem);font-weight:900;line-height:1.0;
+  color:#fff;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.55rem;
+  text-shadow:0 2px 12px rgba(0,0,0,.9);}
 .hero-title span{color:var(--lime);}
 .hero-meta{display:inline-flex;align-items:center;gap:.45rem;
-  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
-  border-radius:20px;padding:.28rem .75rem;margin-bottom:1rem;}
+  background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.2);
+  border-radius:20px;padding:.3rem .8rem;margin-bottom:1.1rem;
+  backdrop-filter:blur(6px);}
 .hero-meta-dot{width:5px;height:5px;border-radius:50%;
-  background:var(--green);box-shadow:0 0 5px var(--green);}
-.hero-meta span{font-size:.7rem;font-weight:700;color:rgba(255,255,255,.85);letter-spacing:.3px;}
+  background:var(--green);box-shadow:0 0 6px var(--green);}
+.hero-meta span{font-size:.72rem;font-weight:700;color:rgba(255,255,255,.9);letter-spacing:.3px;}
 
-/* skyline SVG strip */
-.hero-skyline{display:block;width:100%;position:relative;z-index:2;}
+/* Spacer to push content below hero image */
+.hero-spacer{height:1rem;position:relative;z-index:2;}
 
 /* 2 feature buttons */
 .feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;
@@ -140,6 +124,11 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 .card+.card{margin-top:.65rem;}
 
 /* ── PROGRAMAÇÃO ── */
+/* Legenda de cores */
+.prog-legend{display:flex;flex-wrap:wrap;gap:.35rem;padding:0 1rem .7rem;}
+.leg-item{display:flex;align-items:center;gap:.3rem;font-size:.62rem;color:var(--muted);}
+.leg-dot{width:8px;height:8px;border-radius:3px;flex-shrink:0;}
+
 .day-tabs{display:flex;gap:.4rem;margin-bottom:.85rem;padding:0 1rem;}
 .dtab{background:var(--card);border:1px solid var(--border2);color:var(--muted);
   font-size:.76rem;font-weight:700;padding:.48rem 1rem;border-radius:8px;cursor:pointer;}
@@ -171,8 +160,9 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
   background:linear-gradient(135deg,var(--green4),var(--green));
   display:flex;align-items:center;justify-content:center;
   font-size:1rem;font-weight:800;margin:0 auto .6rem;color:#071f14;
-  box-shadow:0 3px 10px rgba(39,168,69,.35);}
-.spk-av img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+  box-shadow:0 3px 10px rgba(39,168,69,.35);flex-shrink:0;}
+.spk-av img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;}
+.spk-initials{font-size:1rem;font-weight:800;color:#071f14;line-height:1;}
 .spk-name{font-size:.84rem;font-weight:700;margin-bottom:.18rem;line-height:1.3;}
 .spk-role{font-size:.7rem;color:var(--muted);line-height:1.4;}
 
@@ -191,7 +181,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
   background:linear-gradient(135deg,var(--green4),var(--green));
   display:flex;align-items:center;justify-content:center;
   font-size:1.3rem;font-weight:800;color:#071f14;margin:0 auto .8rem;}
-.modal-av img{width:100%;height:100%;object-fit:cover;}
+.modal-av img{width:100%;height:100%;object-fit:cover;display:block;}
 .modal-name{font-size:1rem;font-weight:800;text-align:center;margin-bottom:.22rem;}
 .modal-role{font-size:.75rem;color:var(--green2);text-align:center;margin-bottom:.4rem;}
 .modal-links{text-align:center;margin-bottom:.7rem;}
@@ -211,7 +201,42 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
   padding:.9rem 1rem;margin:0 1rem .65rem;}
 .lc-title{font-size:.75rem;font-weight:700;color:var(--green2);margin-bottom:.45rem;}
 
-/* ── EM BREVE ── */
+/* ── PREMIADAS — visual especial ── */
+.premiadas-hero{
+  margin:0 1rem 1rem;border-radius:16px;overflow:hidden;
+  background:linear-gradient(135deg,#0d3a20,#1a6b35);
+  border:1px solid rgba(240,192,64,.3);
+  padding:1.8rem 1.2rem;text-align:center;position:relative;}
+.premiadas-hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(240,192,64,.08) 0%,transparent 70%);
+  pointer-events:none;}
+.premiadas-trophy{font-size:3.2rem;margin-bottom:.6rem;
+  filter:drop-shadow(0 4px 16px rgba(240,192,64,.4));}
+.premiadas-title{font-size:1.15rem;font-weight:900;color:#fff;margin-bottom:.3rem;}
+.premiadas-sub{font-size:.8rem;color:rgba(255,255,255,.65);line-height:1.6;margin-bottom:1.2rem;}
+.premiadas-badge{display:inline-flex;align-items:center;gap:.4rem;
+  background:rgba(240,192,64,.12);border:1px solid rgba(240,192,64,.35);
+  border-radius:20px;padding:.4rem .9rem;}
+.premiadas-badge span{font-size:.72rem;font-weight:800;color:var(--gold);letter-spacing:.5px;}
+
+.countdown-wrap{margin:0 1rem 1rem;}
+.countdown-label{font-size:.65rem;font-weight:800;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--muted2);text-align:center;margin-bottom:.6rem;}
+.countdown-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem;}
+.cd-block{background:var(--card);border:1px solid var(--border2);border-radius:10px;
+  padding:.65rem .3rem;text-align:center;}
+.cd-num{font-size:1.5rem;font-weight:900;color:var(--gold);line-height:1;
+  font-variant-numeric:tabular-nums;}
+.cd-lbl{font-size:.55rem;color:var(--muted2);font-weight:700;
+  text-transform:uppercase;letter-spacing:.8px;margin-top:.15rem;}
+
+.premiadas-info{background:var(--card);border:1px solid var(--border2);
+  border-radius:12px;margin:0 1rem;padding:1rem;}
+.premiadas-info p{font-size:.8rem;color:var(--muted);line-height:1.7;}
+.premiadas-info strong{color:var(--text);}
+
+/* ── NOVIDADES ── */
 .em-breve{text-align:center;padding:3.5rem 1rem;}
 .em-breve .ebi{font-size:2.6rem;margin-bottom:.85rem;}
 .em-breve .ebt{font-size:1.1rem;font-weight:800;margin-bottom:.4rem;}
@@ -230,31 +255,18 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
     <!-- ══ HOME ══ -->
     <div class="screen active" id="s-home">
 
-      <!-- HERO — CSS/SVG only, no external images -->
+      <!-- HERO com imagem real do banner -->
       <div class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
         <div class="hero-inner">
-          <!-- Pró-Ética badge -->
+          <!-- Logo Pró-Ética real -->
           <div class="badge-row">
-            <div>
-              <div style="display:flex;align-items:stretch">
-                <div class="badge-box">
-                  <div>
-                    <div class="badge-empresa">Empresa</div>
-                    <div class="badge-pe">PRÓ<br>ÉTICA</div>
-                  </div>
-                </div>
-                <div class="badge-years">
-                  <span>2025</span>
-                  <span>2026</span>
-                </div>
-                <div style="display:flex;align-items:center;padding:0 .5rem">
-                  <div class="badge-globe">🌐</div>
-                </div>
-              </div>
-              <span class="badge-premiacao">Premiação</span>
-            </div>
+            <img class="badge-logo"
+              src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/logo-pro-etica.png"
+              alt="Empresa Pró-Ética 2025/2026"
+              onerror="this.style.display='none'"/>
           </div>
-
           <!-- Title -->
           <div class="hero-dia">Dia da</div>
           <div class="hero-title"><span>Integridade</span><br>Empresarial</div>
@@ -263,94 +275,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
             <span>30 JUN · 1º JUL 2026 &nbsp;·&nbsp; Brasília/DF</span>
           </div>
         </div>
-
-        <!-- Skyline SVG — matches CGU visual language -->
-        <svg class="hero-skyline" viewBox="0 0 800 110" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="bld1" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#3ec95c" stop-opacity=".7"/>
-              <stop offset="100%" stop-color="#3ec95c" stop-opacity=".04"/>
-            </linearGradient>
-            <linearGradient id="bld2" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#a8e063" stop-opacity=".55"/>
-              <stop offset="100%" stop-color="#a8e063" stop-opacity=".04"/>
-            </linearGradient>
-          </defs>
-          <!-- buildings -->
-          <rect x="2" y="62" width="9" height="48" fill="url(#bld1)" rx="1"/>
-          <rect x="15" y="44" width="11" height="66" fill="url(#bld2)" rx="1"/>
-          <rect x="30" y="55" width="8" height="55" fill="url(#bld1)" rx="1"/>
-          <rect x="42" y="30" width="12" height="80" fill="url(#bld2)" rx="1"/>
-          <rect x="58" y="48" width="9" height="62" fill="url(#bld1)" rx="1"/>
-          <rect x="72" y="18" width="13" height="92" fill="url(#bld2)" rx="1"/>
-          <rect x="89" y="50" width="9" height="60" fill="url(#bld1)" rx="1"/>
-          <rect x="103" y="34" width="11" height="76" fill="url(#bld2)" rx="1"/>
-          <rect x="118" y="42" width="10" height="68" fill="url(#bld1)" rx="1"/>
-          <rect x="132" y="22" width="12" height="88" fill="url(#bld2)" rx="1"/>
-          <rect x="149" y="56" width="8" height="54" fill="url(#bld1)" rx="1"/>
-          <rect x="162" y="36" width="11" height="74" fill="url(#bld2)" rx="1"/>
-          <rect x="178" y="46" width="9" height="64" fill="url(#bld1)" rx="1"/>
-          <rect x="192" y="14" width="14" height="96" fill="url(#bld2)" rx="1"/>
-          <rect x="210" y="52" width="9" height="58" fill="url(#bld1)" rx="1"/>
-          <rect x="224" y="28" width="12" height="82" fill="url(#bld2)" rx="1"/>
-          <rect x="240" y="40" width="10" height="70" fill="url(#bld1)" rx="1"/>
-          <rect x="254" y="20" width="13" height="90" fill="url(#bld2)" rx="1"/>
-          <rect x="272" y="54" width="9" height="56" fill="url(#bld1)" rx="1"/>
-          <rect x="285" y="32" width="11" height="78" fill="url(#bld2)" rx="1"/>
-          <rect x="300" y="44" width="10" height="66" fill="url(#bld1)" rx="1"/>
-          <rect x="315" y="16" width="14" height="94" fill="url(#bld2)" rx="1"/>
-          <rect x="333" y="50" width="9" height="60" fill="url(#bld1)" rx="1"/>
-          <rect x="347" y="30" width="12" height="80" fill="url(#bld2)" rx="1"/>
-          <rect x="363" y="42" width="10" height="68" fill="url(#bld1)" rx="1"/>
-          <rect x="377" y="12" width="15" height="98" fill="url(#bld2)" rx="1"/>
-          <rect x="396" y="48" width="9" height="62" fill="url(#bld1)" rx="1"/>
-          <rect x="410" y="26" width="12" height="84" fill="url(#bld2)" rx="1"/>
-          <rect x="426" y="38" width="10" height="72" fill="url(#bld1)" rx="1"/>
-          <rect x="440" y="18" width="13" height="92" fill="url(#bld2)" rx="1"/>
-          <rect x="458" y="52" width="9" height="58" fill="url(#bld1)" rx="1"/>
-          <rect x="471" y="30" width="11" height="80" fill="url(#bld2)" rx="1"/>
-          <rect x="487" y="44" width="10" height="66" fill="url(#bld1)" rx="1"/>
-          <rect x="501" y="20" width="13" height="90" fill="url(#bld2)" rx="1"/>
-          <rect x="519" y="54" width="8" height="56" fill="url(#bld1)" rx="1"/>
-          <rect x="531" y="34" width="11" height="76" fill="url(#bld2)" rx="1"/>
-          <rect x="547" y="46" width="9" height="64" fill="url(#bld1)" rx="1"/>
-          <rect x="560" y="10" width="16" height="100" fill="url(#bld2)" rx="1"/>
-          <rect x="580" y="50" width="9" height="60" fill="url(#bld1)" rx="1"/>
-          <rect x="594" y="28" width="12" height="82" fill="url(#bld2)" rx="1"/>
-          <rect x="610" y="40" width="10" height="70" fill="url(#bld1)" rx="1"/>
-          <rect x="624" y="18" width="13" height="92" fill="url(#bld2)" rx="1"/>
-          <rect x="641" y="52" width="9" height="58" fill="url(#bld1)" rx="1"/>
-          <rect x="655" y="32" width="11" height="78" fill="url(#bld2)" rx="1"/>
-          <rect x="670" y="44" width="10" height="66" fill="url(#bld1)" rx="1"/>
-          <rect x="684" y="22" width="12" height="88" fill="url(#bld2)" rx="1"/>
-          <rect x="700" y="54" width="8" height="56" fill="url(#bld1)" rx="1"/>
-          <rect x="712" y="34" width="11" height="76" fill="url(#bld2)" rx="1"/>
-          <rect x="728" y="42" width="10" height="68" fill="url(#bld1)" rx="1"/>
-          <rect x="742" y="16" width="14" height="94" fill="url(#bld2)" rx="1"/>
-          <rect x="760" y="50" width="9" height="60" fill="url(#bld1)" rx="1"/>
-          <rect x="774" y="28" width="12" height="82" fill="url(#bld2)" rx="1"/>
-          <rect x="789" y="38" width="11" height="72" fill="url(#bld1)" rx="1"/>
-          <!-- constellation dots -->
-          <circle cx="42" cy="26" r="2.5" fill="#3ec95c" opacity=".9"/>
-          <circle cx="72" cy="14" r="2" fill="#a8e063" opacity=".8"/>
-          <circle cx="192" cy="10" r="3" fill="#3ec95c" opacity=".95"/>
-          <circle cx="254" cy="16" r="2" fill="#a8e063" opacity=".8"/>
-          <circle cx="377" cy="8" r="3" fill="#3ec95c" opacity=".95"/>
-          <circle cx="440" cy="14" r="2" fill="#a8e063" opacity=".8"/>
-          <circle cx="560" cy="6" r="3" fill="#3ec95c" opacity=".95"/>
-          <circle cx="624" cy="14" r="2" fill="#a8e063" opacity=".8"/>
-          <circle cx="742" cy="12" r="2.5" fill="#3ec95c" opacity=".9"/>
-          <!-- constellation lines -->
-          <polyline points="42,26 72,14 192,10 254,16 377,8 440,14 560,6 624,14 742,12"
-            fill="none" stroke="#3ec95c" stroke-width=".7" opacity=".35" stroke-dasharray="4,7"/>
-          <!-- diamond markers -->
-          <polygon points="132,18 136,22 132,26 128,22" fill="none" stroke="#3ec95c" stroke-width="1.2" opacity=".65"/>
-          <polygon points="500,16 504,20 500,24 496,20" fill="none" stroke="#a8e063" stroke-width="1" opacity=".6"/>
-          <polygon points="684,18 688,22 684,26 680,22" fill="none" stroke="#3ec95c" stroke-width="1.1" opacity=".6"/>
-          <!-- sparkles -->
-          <path d="M650,35 L651.5,39 L656,40.5 L651.5,42 L650,46 L648.5,42 L644,40.5 L648.5,39Z" fill="#a8e063" opacity=".55"/>
-          <path d="M710,22 L711,25 L714,26 L711,27 L710,30 L709,27 L706,26 L709,25Z" fill="#3ec95c" opacity=".5"/>
-        </svg>
+        <div class="hero-spacer"></div>
       </div>
 
       <!-- FEATURE BUTTONS -->
@@ -372,7 +297,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
         <button class="qbtn" onclick="goTo('s-prog')"><span class="qi">🗓️</span><span class="ql">Programação</span></button>
         <button class="qbtn" onclick="goTo('s-spk')"><span class="qi">🎙️</span><span class="ql">Palestrantes</span></button>
         <button class="qbtn" onclick="goTo('s-local')"><span class="qi">📍</span><span class="ql">Local</span></button>
-        <button class="qbtn" onclick="goTo('s-novidades')"><span class="qi">🔔</span><span class="ql">Novidades</span></button>
+        <button class="qbtn" onclick="goTo('s-premiadas')"><span class="qi">🏆</span><span class="ql">Premiadas</span></button>
       </div>
 
       <!-- APOIO -->
@@ -400,6 +325,14 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
       <div class="eyebrow">Programação</div>
       <div class="stitle">Grade do Evento</div>
       <p class="ssub">Selecione o dia para ver a agenda completa</p>
+      <!-- Legenda -->
+      <div class="prog-legend">
+        <div class="leg-item"><div class="leg-dot" style="background:rgba(62,201,92,.5)"></div>Painel / Entrevista</div>
+        <div class="leg-item"><div class="leg-dot" style="background:rgba(240,192,64,.5)"></div>Abertura / Cultura</div>
+        <div class="leg-item"><div class="leg-dot" style="background:rgba(42,191,160,.5)"></div>Premiação</div>
+        <div class="leg-item"><div class="leg-dot" style="background:rgba(168,224,99,.5)"></div>Keynote</div>
+        <div class="leg-item"><div class="leg-dot" style="background:rgba(90,144,112,.4)"></div>Pausa / Recepção</div>
+      </div>
       <div class="day-tabs">
         <button class="dtab active" onclick="showDay(0)">📅 30 de Junho</button>
         <button class="dtab" onclick="showDay(1)">📅 1º de Julho</button>
@@ -486,26 +419,48 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
       </div>
     </div>
 
-    <!-- ══ EMPRESAS PREMIADAS ══ -->
+    <!-- ══ EMPRESAS PREMIADAS — visual especial ══ -->
     <div class="screen" id="s-premiadas">
       <button class="back-btn" onclick="goTo('s-home')">← Início</button>
       <div class="eyebrow">Premiação</div>
       <div class="stitle">Empresas Pró-Ética</div>
-      <div class="em-breve">
-        <div class="ebi">🏆</div>
-        <div class="ebt">Empresas Pró-Ética 2025/2026</div>
-        <div class="ebs">As empresas vencedoras serão divulgadas durante a cerimônia de premiação em 1º de julho de 2026.</div>
+      <p class="ssub">2025 · 2026</p>
+
+      <div class="premiadas-hero">
+        <div class="premiadas-trophy">🏆</div>
+        <div class="premiadas-title">Pró-Ética 2025/2026</div>
+        <div class="premiadas-sub">As empresas vencedoras serão reveladas na cerimônia de premiação em 1º de julho de 2026.</div>
+        <div class="premiadas-badge">
+          <span>⏳ Revelação em 1º de julho</span>
+        </div>
       </div>
+
+      <!-- Countdown -->
+      <div class="countdown-wrap">
+        <div class="countdown-label">Contagem regressiva para a premiação</div>
+        <div class="countdown-grid">
+          <div class="cd-block"><div class="cd-num" id="cd-d">--</div><div class="cd-lbl">dias</div></div>
+          <div class="cd-block"><div class="cd-num" id="cd-h">--</div><div class="cd-lbl">horas</div></div>
+          <div class="cd-block"><div class="cd-num" id="cd-m">--</div><div class="cd-lbl">min</div></div>
+          <div class="cd-block"><div class="cd-num" id="cd-s">--</div><div class="cd-lbl">seg</div></div>
+        </div>
+      </div>
+
+      <div class="premiadas-info">
+        <p>O <strong>Selo Pró-Ética</strong> é concedido pela CGU às empresas que se destacam na implementação de programas de integridade e boas práticas anticorrupção. A cerimônia de premiação ocorre no <strong>1º de julho de 2026</strong>, a partir das 16h, encerrando o Dia da Integridade Empresarial.</p>
+      </div>
+      <div style="height:.5rem"></div>
     </div>
 
   </div><!-- /screens -->
 
+  <!-- TABS — Novidades substituída por Premiadas -->
   <div class="tabs">
     <button class="tab active" id="tab-home" onclick="goTo('s-home')"><span class="tab-icon">🏠</span><span class="tab-label">Início</span><span class="tab-dot"></span></button>
     <button class="tab" id="tab-prog" onclick="goTo('s-prog')"><span class="tab-icon">🗓️</span><span class="tab-label">Programação</span><span class="tab-dot"></span></button>
     <button class="tab" id="tab-spk" onclick="goTo('s-spk')"><span class="tab-icon">🎙️</span><span class="tab-label">Palestrantes</span><span class="tab-dot"></span></button>
     <button class="tab" id="tab-local" onclick="goTo('s-local')"><span class="tab-icon">📍</span><span class="tab-label">Local</span><span class="tab-dot"></span></button>
-    <button class="tab" id="tab-novidades" onclick="goTo('s-novidades')"><span class="tab-icon">🔔</span><span class="tab-label">Novidades</span><span class="tab-dot"></span></button>
+    <button class="tab" id="tab-premiadas" onclick="goTo('s-premiadas')"><span class="tab-icon">🏆</span><span class="tab-label">Premiadas</span><span class="tab-dot"></span></button>
   </div>
 </div>
 
@@ -525,7 +480,6 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 </div>
 
 <script>
-// Convert GitHub blob URLs to raw URLs
 function toRaw(url){
   return url
     .replace('https://github.com/','https://raw.githubusercontent.com/')
@@ -666,18 +620,33 @@ const SPEAKERS=[
    bio:'Filósofa, psicanalista, poeta e especialista em elaboração e implementação de políticas públicas brasileira. Reconhecida por sua capacidade de traduzir temas complexos da filosofia para o público geral, abordando questões contemporâneas sobre sociedade, educação, comportamento feminino e tecnologia.'},
 ];
 
+// Renderiza palestrantes com fallback robusto
 (function(){
   const g=document.getElementById('spk-grid');
   SPEAKERS.forEach(s=>{
     const c=document.createElement('div');
     c.className='spk-card';
     c.onclick=()=>openModal(s);
-    c.innerHTML=`<div class="spk-av"><img src="${s.photo}" alt="${s.name}" onerror="this.style.display='none';this.parentElement.textContent='${s.i}'"/></div><div class="spk-name">${s.name}</div><div class="spk-role">${s.role}</div>`;
+    c.innerHTML=`
+      <div class="spk-av">
+        <img src="${s.photo}" alt="${s.name}"
+          onload="this.style.display='block';this.nextElementSibling.style.display='none'"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+          style="display:block"/>
+        <span class="spk-initials" style="display:none">${s.i}</span>
+      </div>
+      <div class="spk-name">${s.name}</div>
+      <div class="spk-role">${s.role}</div>`;
     g.appendChild(c);
   });
 })();
 
-const SM={'s-home':'tab-home','s-prog':'tab-prog','s-spk':'tab-spk','s-local':'tab-local','s-novidades':'tab-novidades','s-premiadas':'tab-novidades'};
+// Navegação
+const SM={
+  's-home':'tab-home','s-prog':'tab-prog','s-spk':'tab-spk',
+  's-local':'tab-local','s-novidades':'tab-home',
+  's-premiadas':'tab-premiadas'
+};
 function goTo(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -689,9 +658,16 @@ function showDay(i){
   document.querySelectorAll('.pday').forEach((d,j)=>d.classList.toggle('active',j===i));
   document.querySelectorAll('.dtab').forEach((t,j)=>t.classList.toggle('active',j===i));
 }
+
+// Modal com fallback robusto
 function openModal(s){
   const av=document.getElementById('m-av');
-  av.innerHTML=`<img src="${s.photo}" alt="${s.name}" onerror="this.style.display='none';this.parentElement.textContent='${s.i}'"/>`;
+  av.innerHTML=`
+    <img src="${s.photo}" alt="${s.name}"
+      onload="this.style.display='block';this.nextElementSibling.style.display='none'"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+      style="display:block;width:100%;height:100%;object-fit:cover;border-radius:50%"/>
+    <span style="display:none;font-size:1.3rem;font-weight:800;color:#071f14">${s.i}</span>`;
   document.getElementById('m-name').textContent=s.name;
   document.getElementById('m-role').textContent=s.role;
   document.getElementById('m-links').innerHTML=s.li?`<a href="${s.li}" target="_blank">🔗 LinkedIn</a>`:'';
@@ -700,6 +676,30 @@ function openModal(s){
 }
 function closeModal(e){if(e.target===document.getElementById('modal'))closeModalBtn();}
 function closeModalBtn(){document.getElementById('modal').classList.remove('open');}
+
+// Countdown para 1º de julho às 16h (Brasília = UTC-3)
+function updateCountdown(){
+  const target=new Date('2026-07-01T16:00:00-03:00');
+  const now=new Date();
+  const diff=target-now;
+  if(diff<=0){
+    document.getElementById('cd-d').textContent='00';
+    document.getElementById('cd-h').textContent='00';
+    document.getElementById('cd-m').textContent='00';
+    document.getElementById('cd-s').textContent='00';
+    return;
+  }
+  const d=Math.floor(diff/86400000);
+  const h=Math.floor((diff%86400000)/3600000);
+  const m=Math.floor((diff%3600000)/60000);
+  const sec=Math.floor((diff%60000)/1000);
+  document.getElementById('cd-d').textContent=String(d).padStart(2,'0');
+  document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
+  document.getElementById('cd-m').textContent=String(m).padStart(2,'0');
+  document.getElementById('cd-s').textContent=String(sec).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown,1000);
 </script>
 </body>
 </html>
