@@ -15,15 +15,9 @@
   --tab-h:64px;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-html,body{
-  height:100%;overflow:hidden;color:var(--text);
-  font-family:'Segoe UI',system-ui,sans-serif;
-  background-color:var(--bg);
-  background-image:url('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/159dc052a6558b654d164ae4725216662203e736/fundo%20evento.jpeg');
-  background-size:cover;background-position:center;background-attachment:fixed;
-}
-body::before{content:'';position:fixed;inset:0;background:rgba(5,18,10,.84);z-index:0;pointer-events:none;}
-#app{display:flex;flex-direction:column;height:100vh;position:relative;z-index:1;}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
+  font-family:'Segoe UI',system-ui,sans-serif;}
+#app{display:flex;flex-direction:column;height:100dvh;}
 
 /* SCREENS */
 #screens{flex:1;overflow:hidden;position:relative;}
@@ -61,28 +55,25 @@ body::before{content:'';position:fixed;inset:0;background:rgba(5,18,10,.84);z-in
 .card+.card{margin-top:.75rem;}
 
 /* ── HOME ── */
-/* Hero: imagem de fundo da assessoria, exibida como <img> com overlay */
 .hero-wrap{border-radius:16px;overflow:hidden;margin-bottom:1rem;position:relative;}
-.hero-img{display:block;width:100%;object-fit:cover;max-height:55vw;min-height:160px;}
+.hero-img{display:block;width:100%;object-fit:cover;max-height:56vw;min-height:160px;}
 .hero-overlay{position:absolute;inset:0;
-  background:linear-gradient(to bottom,rgba(7,32,26,.18) 0%,rgba(7,32,26,.72) 100%);}
-/* Badge pró-ética flutuante */
-.hero-badge{position:absolute;top:.7rem;right:.7rem;width:72px;height:72px;
-  object-fit:contain;filter:drop-shadow(0 2px 6px rgba(0,0,0,.55));}
-/* Data chip */
+  background:linear-gradient(to bottom,rgba(7,32,26,.12) 0%,rgba(7,32,26,.68) 100%);}
+.hero-badge{position:absolute;top:.75rem;right:.75rem;width:76px;height:76px;
+  object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.55));}
 .hero-chip{position:absolute;bottom:.8rem;left:.85rem;
   background:rgba(7,32,26,.72);backdrop-filter:blur(8px);
   border:1px solid var(--border);border-radius:8px;
-  padding:.28rem .7rem;display:flex;align-items:center;gap:.45rem;}
+  padding:.28rem .72rem;display:flex;align-items:center;gap:.45rem;}
 .hero-chip-dot{width:6px;height:6px;border-radius:50%;
   background:var(--green);box-shadow:0 0 6px var(--green);flex-shrink:0;}
 .hero-chip span{font-size:.7rem;font-weight:700;color:var(--text);letter-spacing:.3px;}
 
-/* 2 feature buttons (Novidades + Empresas) */
+/* 2 feature buttons */
 .feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1rem;}
 .feat-btn{background:var(--card);border:1px solid var(--border2);border-radius:14px;
   padding:1rem .9rem;display:flex;flex-direction:column;align-items:flex-start;gap:.3rem;
-  cursor:pointer;transition:.18s;text-align:left;color:var(--text);}
+  cursor:pointer;transition:.18s;text-align:left;color:var(--text);width:100%;}
 .feat-btn:hover{background:var(--card2);border-color:var(--border);transform:translateY(-2px);}
 .feat-btn .fi{font-size:1.4rem;}
 .feat-btn .ft{font-size:.8rem;font-weight:800;color:var(--green2);line-height:1.3;}
@@ -97,7 +88,7 @@ body::before{content:'';position:fixed;inset:0;background:rgba(5,18,10,.84);z-in
 .qbtn .qi{font-size:1.4rem;}
 .qbtn .ql{font-size:.72rem;font-weight:600;color:var(--muted);}
 
-/* apoio strip */
+/* apoio */
 .apoio-strip{border-radius:12px;background:var(--card);border:1px solid var(--border2);
   padding:.8rem 1rem;display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;}
 .apoio-strip > span{font-size:.65rem;color:var(--muted);}
@@ -188,7 +179,6 @@ body::before{content:'';position:fixed;inset:0;background:rgba(5,18,10,.84);z-in
 @media(min-width:500px){
   .spk-grid{grid-template-columns:repeat(3,1fr);}
   .quick-btns{grid-template-columns:repeat(4,1fr);}
-  .feat-grid{grid-template-columns:repeat(2,1fr);}
 }
 </style>
 </head>
@@ -198,13 +188,11 @@ body::before{content:'';position:fixed;inset:0;background:rgba(5,18,10,.84);z-in
 
     <!-- ══ HOME ══ -->
     <div class="screen active" id="s-home">
-
-      <!-- HERO BANNER -->
       <div class="hero-wrap">
         <img class="hero-img"
           src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/648ef5753a05c4ae93863a195d2649dcfedca5b9/Hero%20banner.jpg"
           alt="Dia da Integridade Empresarial 2026"
-          onerror="this.style.minHeight='160px';this.style.background='linear-gradient(135deg,#0d3d26,#06180f)'"/>
+          onerror="this.style.minHeight='180px';this.style.background='linear-gradient(135deg,#0d3d26,#07201a)'"/>
         <div class="hero-overlay"></div>
         <img class="hero-badge"
           src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/648ef5753a05c4ae93863a195d2649dcfedca5b9/Badge%20Pro%CC%81-E%CC%81tica.png"
@@ -216,7 +204,6 @@ body::before{content:'';position:fixed;inset:0;background:rgba(5,18,10,.84);z-in
         </div>
       </div>
 
-      <!-- FEATURE BUTTONS: Novidades + Empresas premiadas -->
       <div class="feat-grid">
         <button class="feat-btn" onclick="goTo('s-novidades')">
           <span class="fi">🔔</span>
@@ -230,15 +217,13 @@ body::before{content:'';position:fixed;inset:0;background:rgba(5,18,10,.84);z-in
         </button>
       </div>
 
-      <!-- NAV BUTTONS -->
       <div class="quick-btns">
         <button class="qbtn" onclick="goTo('s-prog')"><span class="qi">🗓️</span><span class="ql">Programação</span></button>
         <button class="qbtn" onclick="goTo('s-spk')"><span class="qi">🎙️</span><span class="ql">Palestrantes</span></button>
         <button class="qbtn" onclick="goTo('s-local')"><span class="qi">📍</span><span class="ql">Local</span></button>
-        <button class="qbtn" onclick="goTo('s-novidades')"><span class="qi">🔔</span><span class="ql">Agenda</span></button>
+        <button class="qbtn" onclick="goTo('s-novidades')"><span class="qi">🔔</span><span class="ql">Novidades</span></button>
       </div>
 
-      <!-- APOIO + GOV -->
       <div class="apoio-strip">
         <span>Apoio:</span>
         <span class="apoio-tag">Sebrae</span>
@@ -362,7 +347,6 @@ body::before{content:'';position:fixed;inset:0;background:rgba(5,18,10,.84);z-in
 
   </div><!-- /screens -->
 
-  <!-- TABS -->
   <div class="tabs">
     <button class="tab active" id="tab-home" onclick="goTo('s-home')"><span class="tab-icon">🏠</span><span class="tab-label">Início</span><span class="tab-dot"></span></button>
     <button class="tab" id="tab-prog" onclick="goTo('s-prog')"><span class="tab-icon">🗓️</span><span class="tab-label">Programação</span><span class="tab-dot"></span></button>
