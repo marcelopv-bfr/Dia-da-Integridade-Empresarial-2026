@@ -236,6 +236,35 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 .premiadas-info p{font-size:.8rem;color:var(--muted);line-height:1.7;}
 .premiadas-info strong{color:var(--text);}
 
+/* ── MATERIAIS ── */
+.mat-filters{display:flex;gap:.4rem;padding:0 1rem .85rem;overflow-x:auto;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+.mat-filters::-webkit-scrollbar{display:none;}
+.mf{background:var(--card);border:1px solid var(--border2);color:var(--muted);
+  font-size:.72rem;font-weight:700;padding:.4rem .85rem;border-radius:20px;
+  cursor:pointer;white-space:nowrap;flex-shrink:0;}
+.mf.active{background:var(--green3);color:#fff;border-color:transparent;}
+.mat-list{padding:0 1rem;}
+.mat-item{background:var(--card);border:1px solid var(--border2);border-radius:13px;
+  padding:.9rem 1rem;margin-bottom:.55rem;display:flex;gap:.75rem;align-items:flex-start;
+  transition:.15s;text-decoration:none;color:var(--text);}
+.mat-item:hover{border-color:var(--border);transform:translateY(-1px);}
+.mat-item.hidden{display:none;}
+.mat-icon{font-size:1.5rem;flex-shrink:0;margin-top:.1rem;}
+.mat-body{}
+.mat-cat{display:inline-block;font-size:.58rem;font-weight:800;letter-spacing:1px;
+  text-transform:uppercase;padding:.1rem .4rem;border-radius:3px;margin-bottom:.25rem;}
+.mc-r{background:rgba(240,192,64,.12);color:var(--gold);}
+.mc-i{background:rgba(62,201,92,.12);color:var(--green);}
+.mc-t{background:rgba(42,191,160,.12);color:var(--teal);}
+.mc-e{background:rgba(168,224,99,.12);color:var(--lime);}
+.mat-title{font-size:.85rem;font-weight:700;line-height:1.35;margin-bottom:.2rem;}
+.mat-desc{font-size:.72rem;color:var(--muted);line-height:1.6;}
+.mat-link{display:inline-flex;align-items:center;gap:.3rem;margin-top:.45rem;
+  font-size:.7rem;font-weight:700;color:var(--green);
+  background:rgba(62,201,92,.07);border:1px solid var(--border2);
+  border-radius:20px;padding:.22rem .65rem;}
+
 /* ── NOVIDADES ── */
 .em-breve{text-align:center;padding:3.5rem 1rem;}
 .em-breve .ebi{font-size:2.6rem;margin-bottom:.85rem;}
@@ -296,8 +325,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
       <div class="quick-btns">
         <button class="qbtn" onclick="goTo('s-prog')"><span class="qi">🗓️</span><span class="ql">Programação</span></button>
         <button class="qbtn" onclick="goTo('s-spk')"><span class="qi">🎙️</span><span class="ql">Palestrantes</span></button>
-        <button class="qbtn" onclick="goTo('s-local')"><span class="qi">📍</span><span class="ql">Local</span></button>
-        <button class="qbtn" onclick="goTo('s-premiadas')"><span class="qi">🏆</span><span class="ql">Premiadas</span></button>
+        <button class="qbtn" onclick="goTo('s-local')"><span class="qi">📍</span><span class="ql">Local e dicas</span></button>
+        <button class="qbtn" onclick="goTo('s-mat')"><span class="qi">📄</span><span class="ql">Guias CGU</span></button>
       </div>
 
       <!-- APOIO -->
@@ -421,6 +450,26 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
       </div>
     </div>
 
+    <!-- ══ MATERIAIS ══ -->
+    <div class="screen" id="s-mat">
+      <button class="back-btn" onclick="goTo('s-home')">← Início</button>
+      <div class="eyebrow">Biblioteca</div>
+      <div class="stitle">Manuais e Guias</div>
+      <p class="ssub">Materiais da SIPRI/CGU para download</p>
+
+      <!-- Filtros por categoria -->
+      <div class="mat-filters" id="mat-filters">
+        <button class="mf active" onclick="filterMat('all',this)">Todos</button>
+        <button class="mf" onclick="filterMat('responsabilizacao',this)">Responsabilização</button>
+        <button class="mf" onclick="filterMat('integridade',this)">Integridade</button>
+        <button class="mf" onclick="filterMat('tematico',this)">Temáticos</button>
+        <button class="mf" onclick="filterMat('estudo',this)">Estudos</button>
+      </div>
+
+      <div class="mat-list" id="mat-list"></div>
+      <div style="height:.5rem"></div>
+    </div>
+
     <!-- ══ EMPRESAS PREMIADAS — visual especial ══ -->
     <div class="screen" id="s-premiadas">
       <button class="back-btn" onclick="goTo('s-home')">← Início</button>
@@ -456,13 +505,11 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 
   </div><!-- /screens -->
 
-  <!-- TABS — Novidades substituída por Premiadas -->
   <div class="tabs">
     <button class="tab active" id="tab-home" onclick="goTo('s-home')"><span class="tab-icon">🏠</span><span class="tab-label">Início</span><span class="tab-dot"></span></button>
     <button class="tab" id="tab-prog" onclick="goTo('s-prog')"><span class="tab-icon">🗓️</span><span class="tab-label">Programação</span><span class="tab-dot"></span></button>
     <button class="tab" id="tab-spk" onclick="goTo('s-spk')"><span class="tab-icon">🎙️</span><span class="tab-label">Palestrantes</span><span class="tab-dot"></span></button>
-    <button class="tab" id="tab-local" onclick="goTo('s-local')"><span class="tab-icon">📍</span><span class="tab-label">Local</span><span class="tab-dot"></span></button>
-    <button class="tab" id="tab-premiadas" onclick="goTo('s-premiadas')"><span class="tab-icon">🏆</span><span class="tab-label">Premiadas</span><span class="tab-dot"></span></button>
+    <button class="tab" id="tab-local" onclick="goTo('s-local')"><span class="tab-icon">📍</span><span class="tab-label">Local e dicas</span><span class="tab-dot"></span></button>
   </div>
 </div>
 
@@ -644,10 +691,115 @@ const SPEAKERS=[
 })();
 
 // Navegação
+// Materiais
+const MATERIAIS=[
+  {cat:'responsabilizacao',catLabel:'Responsabilização',catClass:'mc-r',
+   title:'Manual de Responsabilização de Entes Privados (2022)',
+   desc:'Consolida orientações sobre a Lei Anticorrupção (Lei nº 12.846/2013): procedimentos do PAR, dosimetria de sanções, acordos de leniência e interação com outras esferas de responsabilização.',
+   url:'https://www.gov.br/cgu/pt-br/assuntos/integridade-privada/materiaisdeorientacao/manuais/manual-de-responsabilizacao-de-entes-privados-2022.pdf'},
+  {cat:'responsabilizacao',catLabel:'Responsabilização',catClass:'mc-r',
+   title:'Guia do Programa Leniência Anticorrupção da CGU (2023)',
+   desc:'Apresenta as diretrizes, etapas e critérios para celebração de acordos de leniência, detalhando requisitos, benefícios, metodologia de cálculo de sanções e ressarcimento de danos.',
+   url:'https://www.gov.br/cgu/pt-br/assuntos/integridade-privada/materiaisdeorientacao/manuais/guia-do-programa-leniencia-anticorrupcao-da-controladoria-geral-da-uniao-2023.pdf'},
+  {cat:'responsabilizacao',catLabel:'Responsabilização',catClass:'mc-r',
+   title:'Guia de Identificação e Quantificação da Vantagem Auferida (2025)',
+   desc:'Orientações técnicas e metodológicas para identificar e quantificar os benefícios econômicos obtidos em decorrência de atos ilícitos, com parâmetros e exemplos práticos.',
+   url:'https://www.gov.br/cgu/pt-br/assuntos/integridade-privada/materiaisdeorientacao/manuais/guia-de-identificacao-e-quantificacao-da-vantagem-auferida-2025.pdf'},
+  {cat:'responsabilizacao',catLabel:'Responsabilização',catClass:'mc-r',
+   title:'Relatório de Dosimetria de Sanções em PARs — 2ª Edição',
+   desc:'Avaliação detalhada de 159 casos julgados pela CGU que resultaram na aplicação de multas a pessoas jurídicas com base na Lei Anticorrupção.',
+   url:'https://repositorio.cgu.gov.br/handle/1/95497'},
+  {cat:'integridade',catLabel:'Integridade',catClass:'mc-i',
+   title:'Programa de Integridade: Diretrizes para Empresas Privadas — Vol. II (2024)',
+   desc:'Segunda edição atualizada das diretrizes para programas de integridade, alinhada ao Decreto nº 11.129/2022 e incorporando práticas contemporâneas de ESG.',
+   url:'https://www.gov.br/cgu/pt-br/assuntos/integridade-privada/materiaisdeorientacao/manuais/programa-de-integridade-diretrizes-para-empresas-privadas-vol-ii-2024.pdf'},
+  {cat:'integridade',catLabel:'Integridade',catClass:'mc-i',
+   title:'Programa de Integridade: Diretrizes para Empresas Privadas (2015)',
+   desc:'Guia orientativo com os cinco pilares essenciais para um programa de integridade efetivo conforme a Lei Anticorrupção: liderança, instância responsável, análise de riscos, regras e monitoramento.',
+   url:'https://www.gov.br/cgu/pt-br/assuntos/integridade-privada/materiaisdeorientacao/manuais/programa-de-integridade-diretrizes-para-empresas-privada-versao-em-portugues-2015.pdf'},
+  {cat:'integridade',catLabel:'Integridade',catClass:'mc-i',
+   title:'Avaliação de Programas de Integridade em Acordos de Leniência (2020)',
+   desc:'Orientações às empresas sobre a avaliação do programa de integridade no contexto de Acordos de Leniência, detalhando o processo, documentação e redução de multa administrativa.',
+   url:'https://www.gov.br/cgu/pt-br/assuntos/integridade-privada/materiaisdeorientacao/manuais/avaliacao-de-programas-de-integridade-em-acordos-de-leniencia-orientacoes-gerais-as-empresas-2020.pdf'},
+  {cat:'integridade',catLabel:'Integridade',catClass:'mc-i',
+   title:'Manual Prático de Avaliação de Programa de Integridade em PAR (2018)',
+   desc:'Orienta comissões de PAR na avaliação de programas de integridade para fins de redução da multa prevista no art. 6º da Lei nº 12.846/2013.',
+   url:'https://basedeconhecimento.cgu.gov.br/server/api/core/bitstreams/ef54ba99-ec0f-4e28-ac2f-733ffa7e5a1a/content'},
+  {cat:'integridade',catLabel:'Integridade',catClass:'mc-i',
+   title:'Guia de Boas Práticas de Integridade para Empresas Exportadoras',
+   desc:'Desenvolvido com a ApexBrasil. Orienta empresas do comércio exterior na mitigação de riscos éticos e legais, com foco na prevenção e resposta a irregularidades.',
+   url:'https://www.gov.br/cgu/pt-br/assuntos/integridade-privada/materiaisdeorientacao/manuais/guia-empresas-exportadoras.pdf'},
+  {cat:'integridade',catLabel:'Integridade',catClass:'mc-i',
+   title:'Guia para Empresas sobre Gestão de Riscos Associados a Organizações Criminosas',
+   desc:'Desenvolvido em parceria com a ICC Brasil para apoiar empresas na compreensão e prevenção da influência de organizações criminosas em suas operações.',
+   url:'https://www.gov.br/cgu/pt-br/assuntos/integridade-privada/materiaisdeorientacao/manuais/ICCGuiaGestaoRiscosAssociadosOrganizacoesCriminosasEmpresas.pdf'},
+  {cat:'integridade',catLabel:'Integridade',catClass:'mc-i',
+   title:'Guia de Implantação de Programa de Integridade em Empresas Estatais',
+   desc:'Documento introdutório destinado a empresas estatais, com parâmetros, terminologias e responsabilidades do Programa de Integridade conforme a Lei Anticorrupção.',
+   url:'https://basedeconhecimento.cgu.gov.br/bitstreams/17989bae-0ff5-452e-b970-99c2a91912e0/download'},
+  {cat:'tematico',catLabel:'Temático',catClass:'mc-t',
+   title:'Programa de Integridade: Práticas Sustentáveis para Empresas Privadas (2024)',
+   desc:'Diretrizes para implementação de programas de integridade focados em prevenir corrupção e danos ambientais, alinhados a práticas ESG.',
+   url:'https://www.gov.br/cgu/pt-br/assuntos/integridade-privada/materiaisdeorientacao/manuais/programa-de-integridade-praticas-sustentaveis-para-empresas-privadas-2024.pdf'},
+  {cat:'tematico',catLabel:'Temático',catClass:'mc-t',
+   title:'Empresas Brasileiras no Exterior: em prol da integridade (2019)',
+   desc:'Guia CGU/ApexBrasil para empresas exportadoras sobre implementação de programas de integridade e cumprimento da Lei Anticorrupção em operações internacionais.',
+   url:'https://www.gov.br/cgu/pt-br/assuntos/integridade-privada/materiaisdeorientacao/manuais/empresas-brasileiras-no-exterior-em-prol-da-integridade-no-ambiente-empresarial-2019.pdf'},
+  {cat:'tematico',catLabel:'Temático',catClass:'mc-t',
+   title:'Cartilha — Integridade para Pequenos Negócios (2017)',
+   desc:'Guia prático para micro e pequenas empresas implementarem programas de integridade: análise de riscos, código de ética, treinamentos e controles internos.',
+   url:'https://www.gov.br/cgu/pt-br/assuntos/integridade-privada/materiaisdeorientacao/manuais/cartilha-integridade-para-pequenos-negocios-2017.pdf'},
+  {cat:'tematico',catLabel:'Temático',catClass:'mc-t',
+   title:'Cartilha — Proteja sua Empresa contra a Corrupção (2016)',
+   desc:'Cartilha CGU/Sebrae voltada a micro e pequenas empresas para prevenção da corrupção com base na Lei Anticorrupção.',
+   url:'https://www.gov.br/cgu/pt-br/assuntos/integridade-privada/materiaisdeorientacao/manuais/cartilha-proteja-a-sua-empresa-contra-a-corrupcao-2016.pdf'},
+  {cat:'tematico',catLabel:'Temático',catClass:'mc-t',
+   title:'Cartilha — Empresas Brasileiras no Exterior (2015)',
+   desc:'Guia prático para evitar práticas de suborno com funcionários públicos estrangeiros, com orientações sobre brindes, presentes e hospitalidades.',
+   url:'https://www.gov.br/cgu/pt-br/assuntos/integridade-privada/materiaisdeorientacao/manuais/cartilha-empresas-brasileiras-no-exterior-2015.pdf'},
+  {cat:'estudo',catLabel:'Estudo',catClass:'mc-e',
+   title:'STPC Café — Resumo das Palestras (2014)',
+   desc:'Compilação de palestras sobre análise econômica da Lei Anticorrupção, proteção ao denunciante, regulamentação do lobby e acordos de compensação comercial.',
+   url:'https://www.gov.br/cgu/pt-br/assuntos/integridade-privada/materiaisdeorientacao/manuais/stpc-cafe-resumo-das-palestras-2014.pdf'},
+  {cat:'estudo',catLabel:'Estudo',catClass:'mc-e',
+   title:'A Responsabilidade Social das Empresas no Combate à Corrupção (2009)',
+   desc:'Manual CGU/Instituto Ethos sobre o papel da responsabilidade social empresarial no combate à corrupção, com diretrizes e casos de boas práticas de empresas brasileiras.',
+   url:'https://www.gov.br/cgu/pt-br/assuntos/integridade-privada/materiaisdeorientacao/manuais/manual-a-responsabilidade-social-das-empresas-no-combate-a-corrupcao-2009.pdf'},
+];
+
+(function(){
+  const list=document.getElementById('mat-list');
+  MATERIAIS.forEach(m=>{
+    const a=document.createElement('a');
+    a.className='mat-item';
+    a.href=m.url;
+    a.target='_blank';
+    a.rel='noopener';
+    a.dataset.cat=m.cat;
+    a.innerHTML=`
+      <div class="mat-icon">📄</div>
+      <div class="mat-body">
+        <span class="mat-cat ${m.catClass}">${m.catLabel}</span>
+        <div class="mat-title">${m.title}</div>
+        <div class="mat-desc">${m.desc}</div>
+        <span class="mat-link">⬇ Abrir PDF →</span>
+      </div>`;
+    list.appendChild(a);
+  });
+})();
+
+function filterMat(cat,btn){
+  document.querySelectorAll('.mf').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.mat-item').forEach(el=>{
+    el.classList.toggle('hidden', cat!=='all' && el.dataset.cat!==cat);
+  });
+}
+
 const SM={
   's-home':'tab-home','s-prog':'tab-prog','s-spk':'tab-spk',
   's-local':'tab-local','s-novidades':'tab-home',
-  's-premiadas':'tab-premiadas'
+  's-premiadas':'tab-home','s-mat':'tab-home'
 };
 function goTo(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
