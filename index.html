@@ -6,12 +6,13 @@
 <title>Integridade Empresarial 2026</title>
 <style>
 :root{
-  --bg:#07201a;--bg2:#0a2820;--bg3:#0d3228;
-  --card:#0d2822;--card2:#10302a;
-  --green:#3ec95c;--green2:#56e070;--green3:#27a845;
-  --teal:#2abfa0;--gold:#f0c040;
-  --text:#e2f5ee;--muted:#6aab8e;--muted2:#4a8870;
-  --border:rgba(42,191,160,0.2);--border2:rgba(42,191,160,0.08);
+  /* CGU palette from official art */
+  --bg:#071f14;--bg2:#0a2b1a;--bg3:#0d3320;
+  --card:rgba(10,38,22,.92);--card2:rgba(14,48,28,.95);
+  --green:#3ec95c;--green2:#6fdd80;--green3:#27a845;--green4:#1a7a35;
+  --lime:#a8e063;--teal:#2abfa0;--gold:#f0c040;
+  --text:#e8f5ee;--muted:#7abf96;--muted2:#4a8860;
+  --border:rgba(62,201,92,.22);--border2:rgba(62,201,92,.1);
   --tab-h:64px;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
@@ -21,79 +22,101 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 
 /* SCREENS */
 #screens{flex:1;overflow:hidden;position:relative;}
-.screen{position:absolute;inset:0;overflow-y:auto;padding:1.25rem 1rem 1.5rem;
+.screen{position:absolute;inset:0;overflow-y:auto;padding:0 0 1.5rem;
   display:none;animation:fadeIn .2s ease;}
 .screen.active{display:block;}
-@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.screen::-webkit-scrollbar{width:4px;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.screen::-webkit-scrollbar{width:3px;}
 .screen::-webkit-scrollbar-track{background:transparent;}
 .screen::-webkit-scrollbar-thumb{background:var(--green3);border-radius:2px;}
 
 /* TABS */
-.tabs{height:var(--tab-h);background:rgba(4,14,8,.97);backdrop-filter:blur(16px);
+.tabs{height:var(--tab-h);background:rgba(3,12,7,.97);backdrop-filter:blur(16px);
   border-top:1px solid var(--border);display:flex;align-items:stretch;flex-shrink:0;}
 .tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:.22rem;cursor:pointer;transition:.15s;border:none;background:none;
-  color:var(--muted2);padding:.4rem .2rem;}
+  gap:.2rem;cursor:pointer;transition:.15s;border:none;background:none;color:var(--muted2);}
 .tab.active{color:var(--green);}
-.tab-icon{font-size:1.25rem;line-height:1;}
-.tab-label{font-size:.6rem;font-weight:600;letter-spacing:.3px;}
-.tab-dot{width:4px;height:4px;border-radius:50%;background:var(--green);opacity:0;margin-top:1px;}
+.tab-icon{font-size:1.2rem;line-height:1;}
+.tab-label{font-size:.58rem;font-weight:700;letter-spacing:.3px;}
+.tab-dot{width:3px;height:3px;border-radius:50%;background:var(--green);opacity:0;margin-top:1px;}
 .tab.active .tab-dot{opacity:1;}
 
-/* SHARED */
-.back-btn{display:inline-flex;align-items:center;gap:.4rem;
-  background:rgba(62,201,92,.1);border:1px solid var(--border);
-  color:var(--green);font-size:.82rem;font-weight:600;padding:.45rem .9rem;
-  border-radius:20px;cursor:pointer;margin-bottom:1rem;}
-.eyebrow{font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  color:var(--green);margin-bottom:.3rem;display:flex;align-items:center;gap:.35rem;}
-.eyebrow::before{content:'';width:14px;height:2px;background:var(--green);border-radius:1px;}
-.stitle{font-size:1.55rem;font-weight:800;margin-bottom:.2rem;}
-.ssub{color:var(--muted);font-size:.92rem;margin-bottom:1.2rem;}
-.card{background:var(--card);border:1px solid var(--border2);border-radius:14px;padding:1.1rem;}
-.card+.card{margin-top:.75rem;}
+/* ── HERO — built in CSS/SVG, no external images ── */
+.hero{position:relative;overflow:hidden;margin-bottom:0;
+  background:linear-gradient(160deg,#0d3d22 0%,#071f14 55%,#041508 100%);}
 
-/* ── HOME ── */
-.hero-wrap{border-radius:16px;overflow:hidden;margin-bottom:1rem;position:relative;}
-.hero-img{display:block;width:100%;object-fit:cover;max-height:56vw;min-height:160px;}
-.hero-overlay{position:absolute;inset:0;
-  background:linear-gradient(to bottom,rgba(7,32,26,.12) 0%,rgba(7,32,26,.68) 100%);}
-.hero-badge{position:absolute;top:.75rem;right:.75rem;width:76px;height:76px;
-  object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.55));}
-.hero-chip{position:absolute;bottom:.8rem;left:.85rem;
-  background:rgba(7,32,26,.72);backdrop-filter:blur(8px);
-  border:1px solid var(--border);border-radius:8px;
-  padding:.28rem .72rem;display:flex;align-items:center;gap:.45rem;}
-.hero-chip-dot{width:6px;height:6px;border-radius:50%;
-  background:var(--green);box-shadow:0 0 6px var(--green);flex-shrink:0;}
-.hero-chip span{font-size:.7rem;font-weight:700;color:var(--text);letter-spacing:.3px;}
+/* radial glow */
+.hero::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 30% 40%,rgba(62,201,92,.13) 0%,transparent 70%),
+             radial-gradient(ellipse 50% 50% at 80% 20%,rgba(42,191,160,.08) 0%,transparent 60%);
+  pointer-events:none;}
+
+.hero-inner{position:relative;z-index:2;padding:1.1rem 1rem 0;}
+
+/* PRÓ-ÉTICA badge row */
+.badge-row{display:flex;align-items:center;gap:.5rem;margin-bottom:.85rem;}
+.badge-box{background:linear-gradient(135deg,#1a7a35,#27a845);
+  border-radius:6px 0 0 6px;padding:.35rem .6rem;display:flex;align-items:center;gap:.35rem;}
+.badge-empresa{font-size:.52rem;font-weight:800;color:rgba(255,255,255,.75);
+  text-transform:uppercase;letter-spacing:1.5px;line-height:1;}
+.badge-pe{font-size:1.05rem;font-weight:900;color:#fff;line-height:1.05;letter-spacing:.5px;}
+.badge-years{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);
+  border-radius:0 6px 6px 0;padding:.35rem .55rem;
+  display:flex;flex-direction:column;gap:.1rem;}
+.badge-years span{font-size:.62rem;font-weight:800;color:#fff;letter-spacing:.5px;}
+/* globe icon */
+.badge-globe{width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(135deg,#1a9e6a,#0d5c3a);
+  border:2px solid rgba(255,255,255,.25);
+  display:flex;align-items:center;justify-content:center;font-size:1rem;
+  box-shadow:0 2px 8px rgba(0,0,0,.4);}
+.badge-premiacao{font-size:.6rem;font-weight:800;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--lime);margin-top:.2rem;
+  display:block;padding-left:.1rem;}
+
+/* Title block */
+.hero-dia{font-size:.95rem;font-weight:600;color:rgba(255,255,255,.65);
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:.15rem;}
+.hero-title{font-size:clamp(1.6rem,7vw,2.2rem);font-weight:900;line-height:1.05;
+  color:#fff;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.5rem;}
+.hero-title span{color:var(--lime);}
+.hero-meta{display:inline-flex;align-items:center;gap:.45rem;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+  border-radius:20px;padding:.28rem .75rem;margin-bottom:1rem;}
+.hero-meta-dot{width:5px;height:5px;border-radius:50%;
+  background:var(--green);box-shadow:0 0 5px var(--green);}
+.hero-meta span{font-size:.7rem;font-weight:700;color:rgba(255,255,255,.85);letter-spacing:.3px;}
+
+/* skyline SVG strip */
+.hero-skyline{display:block;width:100%;position:relative;z-index:2;}
 
 /* 2 feature buttons */
-.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1rem;}
-.feat-btn{background:var(--card);border:1px solid var(--border2);border-radius:14px;
-  padding:1rem .9rem;display:flex;flex-direction:column;align-items:flex-start;gap:.3rem;
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;
+  padding:.85rem 1rem .7rem;background:var(--bg);}
+.feat-btn{background:var(--card);border:1px solid var(--border2);border-radius:13px;
+  padding:.9rem .85rem;display:flex;flex-direction:column;align-items:flex-start;gap:.25rem;
   cursor:pointer;transition:.18s;text-align:left;color:var(--text);width:100%;}
 .feat-btn:hover{background:var(--card2);border-color:var(--border);transform:translateY(-2px);}
-.feat-btn .fi{font-size:1.4rem;}
-.feat-btn .ft{font-size:.8rem;font-weight:800;color:var(--green2);line-height:1.3;}
-.feat-btn .fs{font-size:.68rem;color:var(--muted);line-height:1.4;margin-top:.1rem;}
+.feat-btn .fi{font-size:1.35rem;}
+.feat-btn .ft{font-size:.78rem;font-weight:800;color:var(--green2);line-height:1.3;}
+.feat-btn .fs{font-size:.66rem;color:var(--muted);line-height:1.4;}
 
 /* 4 nav buttons */
-.quick-btns{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1rem;}
-.qbtn{background:var(--card2);border:1px solid var(--border);border-radius:12px;
-  padding:.9rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;
+.quick-btns{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;
+  padding:0 1rem .85rem;background:var(--bg);}
+.qbtn{background:var(--card2);border:1px solid var(--border);border-radius:11px;
+  padding:.8rem;display:flex;flex-direction:column;align-items:center;gap:.35rem;
   cursor:pointer;transition:.15s;color:var(--text);width:100%;}
-.qbtn:hover{background:var(--bg3);border-color:rgba(62,201,92,.3);}
-.qbtn .qi{font-size:1.4rem;}
-.qbtn .ql{font-size:.72rem;font-weight:600;color:var(--muted);}
+.qbtn:hover{background:var(--bg3);border-color:rgba(62,201,92,.35);}
+.qbtn .qi{font-size:1.3rem;}
+.qbtn .ql{font-size:.68rem;font-weight:700;color:var(--muted);letter-spacing:.2px;}
 
 /* apoio */
-.apoio-strip{border-radius:12px;background:var(--card);border:1px solid var(--border2);
-  padding:.8rem 1rem;display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;}
-.apoio-strip > span{font-size:.65rem;color:var(--muted);}
-.apoio-tag{background:rgba(62,201,92,.08);border:1px solid var(--border);
-  border-radius:5px;padding:.18rem .5rem;font-size:.65rem;color:var(--green2);font-weight:600;}
+.apoio-strip{background:var(--card);border-top:1px solid var(--border2);
+  padding:.75rem 1rem;display:flex;flex-wrap:wrap;gap:.35rem;align-items:center;}
+.apoio-strip > span{font-size:.63rem;color:var(--muted2);}
+.apoio-tag{background:rgba(62,201,92,.07);border:1px solid var(--border2);
+  border-radius:4px;padding:.14rem .42rem;font-size:.62rem;color:var(--green2);font-weight:700;}
 .gov-row{display:flex;align-items:center;gap:.45rem;width:100%;
   margin-top:.5rem;padding-top:.5rem;border-top:1px solid var(--border2);}
 .gov-stripe{width:4px;height:30px;border-radius:2px;flex-shrink:0;
@@ -101,84 +124,102 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 .gov-txt{font-size:.6rem;line-height:1.55;color:var(--muted2);}
 .gov-txt strong{display:block;color:var(--muted);font-size:.62rem;}
 
+/* ── SHARED ── */
+.screen-pad{padding:1rem 1rem 0;}
+.back-btn{display:inline-flex;align-items:center;gap:.4rem;
+  background:rgba(62,201,92,.09);border:1px solid var(--border);
+  color:var(--green);font-size:.8rem;font-weight:600;padding:.42rem .88rem;
+  border-radius:20px;cursor:pointer;margin:1rem 1rem .75rem;}
+.eyebrow{font-size:.68rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+  color:var(--green);margin-bottom:.25rem;display:flex;align-items:center;gap:.35rem;
+  padding:0 1rem;}
+.eyebrow::before{content:'';width:12px;height:2px;background:var(--green);border-radius:1px;}
+.stitle{font-size:1.45rem;font-weight:900;margin-bottom:.15rem;padding:0 1rem;}
+.ssub{color:var(--muted);font-size:.88rem;margin-bottom:1rem;padding:0 1rem;}
+.card{background:var(--card);border:1px solid var(--border2);border-radius:13px;padding:1rem;}
+.card+.card{margin-top:.65rem;}
+
 /* ── PROGRAMAÇÃO ── */
-.day-tabs{display:flex;gap:.45rem;margin-bottom:1rem;}
+.day-tabs{display:flex;gap:.4rem;margin-bottom:.85rem;padding:0 1rem;}
 .dtab{background:var(--card);border:1px solid var(--border2);color:var(--muted);
-  font-size:.78rem;font-weight:600;padding:.5rem 1.1rem;border-radius:8px;cursor:pointer;}
+  font-size:.76rem;font-weight:700;padding:.48rem 1rem;border-radius:8px;cursor:pointer;}
 .dtab.active{background:var(--green3);color:#fff;border-color:transparent;
-  box-shadow:0 2px 10px rgba(62,201,92,.28);}
-.pday{display:none;}
+  box-shadow:0 2px 10px rgba(62,201,92,.3);}
+.pday{display:none;padding:0 1rem;}
 .pday.active{display:block;}
-.pitem{display:flex;gap:.75rem;padding:.9rem;border-radius:11px;
-  margin-bottom:.5rem;background:var(--card);border:1px solid var(--border2);}
-.ptime{min-width:80px;font-size:.8rem;font-weight:700;color:var(--green);
-  padding-top:.15rem;flex-shrink:0;line-height:1.4;}
-.pbody strong{font-size:.93rem;display:block;margin-bottom:.2rem;line-height:1.35;}
-.pspk{font-size:.8rem;color:var(--muted);margin-top:.3rem;}
-.pspk span{display:block;padding:.06rem 0;}
-.pbg{display:inline-block;font-size:.68rem;font-weight:700;padding:.15rem .5rem;
-  border-radius:20px;margin-bottom:.25rem;}
-.pb-p{background:rgba(62,201,92,.1);color:var(--green);}
-.pb-c{background:rgba(240,192,64,.1);color:var(--gold);}
-.pb-pr{background:rgba(42,191,160,.1);color:var(--teal);}
+.pitem{display:flex;gap:.7rem;padding:.85rem;border-radius:11px;
+  margin-bottom:.45rem;background:var(--card);border:1px solid var(--border2);}
+.ptime{min-width:76px;font-size:.76rem;font-weight:700;color:var(--green);
+  padding-top:.12rem;flex-shrink:0;line-height:1.4;}
+.pbody strong{font-size:.9rem;display:block;margin-bottom:.18rem;line-height:1.35;}
+.pspk{font-size:.76rem;color:var(--muted);margin-top:.28rem;}
+.pspk span{display:block;padding:.05rem 0;}
+.pbg{display:inline-block;font-size:.64rem;font-weight:800;padding:.13rem .48rem;
+  border-radius:20px;margin-bottom:.22rem;}
+.pb-p{background:rgba(62,201,92,.12);color:var(--green);}
+.pb-c{background:rgba(240,192,64,.12);color:var(--gold);}
+.pb-pr{background:rgba(42,191,160,.12);color:var(--teal);}
 .pb-b{background:rgba(90,144,112,.1);color:var(--muted);}
-.pb-k{background:rgba(180,100,255,.12);color:#d08aff;}
+.pb-k{background:rgba(168,224,99,.14);color:var(--lime);}
 
 /* ── PALESTRANTES ── */
-.spk-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
+.spk-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;padding:0 1rem;}
 .spk-card{background:var(--card);border:1px solid var(--border2);border-radius:13px;
-  padding:1rem .85rem;text-align:center;transition:.2s;cursor:pointer;}
+  padding:.9rem .75rem;text-align:center;transition:.2s;cursor:pointer;}
 .spk-card:hover{border-color:var(--border);transform:translateY(-2px);}
-.spk-av{width:54px;height:54px;border-radius:50%;overflow:hidden;
-  background:linear-gradient(135deg,#1f8a38,#3ec95c);
+.spk-av{width:52px;height:52px;border-radius:50%;overflow:hidden;
+  background:linear-gradient(135deg,var(--green4),var(--green));
   display:flex;align-items:center;justify-content:center;
-  font-size:1.05rem;font-weight:800;margin:0 auto .65rem;color:#0b2a1a;
-  box-shadow:0 3px 12px rgba(39,168,69,.3);}
+  font-size:1rem;font-weight:800;margin:0 auto .6rem;color:#071f14;
+  box-shadow:0 3px 10px rgba(39,168,69,.35);}
 .spk-av img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
-.spk-name{font-size:.88rem;font-weight:700;margin-bottom:.2rem;line-height:1.3;}
-.spk-role{font-size:.75rem;color:var(--muted);line-height:1.4;}
+.spk-name{font-size:.84rem;font-weight:700;margin-bottom:.18rem;line-height:1.3;}
+.spk-role{font-size:.7rem;color:var(--muted);line-height:1.4;}
 
 /* ── MODAL ── */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:200;
   display:none;align-items:flex-end;justify-content:center;}
 .modal-overlay.open{display:flex;}
-.modal-box{background:#0d3320;border:1px solid var(--border);border-radius:20px 20px 0 0;
-  padding:1.5rem 1.2rem 2rem;width:100%;max-width:500px;max-height:82vh;overflow-y:auto;
-  animation:slideUp .25s ease;}
+.modal-box{background:#0b2e18;border:1px solid var(--border);border-radius:20px 20px 0 0;
+  padding:1.4rem 1.1rem 2rem;width:100%;max-width:500px;max-height:82vh;overflow-y:auto;
+  animation:slideUp .22s ease;}
 @keyframes slideUp{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
 .modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;}
 .modal-close{background:rgba(255,255,255,.07);border:none;color:var(--muted);
-  width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:.9rem;}
-.modal-av{width:72px;height:72px;border-radius:50%;overflow:hidden;
-  background:linear-gradient(135deg,#1f8a38,#3ec95c);
+  width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:.85rem;}
+.modal-av{width:70px;height:70px;border-radius:50%;overflow:hidden;
+  background:linear-gradient(135deg,var(--green4),var(--green));
   display:flex;align-items:center;justify-content:center;
-  font-size:1.4rem;font-weight:800;color:#0b2a1a;margin:0 auto .85rem;}
+  font-size:1.3rem;font-weight:800;color:#071f14;margin:0 auto .8rem;}
 .modal-av img{width:100%;height:100%;object-fit:cover;}
-.modal-name{font-size:1.05rem;font-weight:800;text-align:center;margin-bottom:.25rem;}
-.modal-role{font-size:.78rem;color:var(--green2);text-align:center;margin-bottom:.4rem;}
-.modal-links{text-align:center;margin-bottom:.75rem;}
-.modal-links a{font-size:.75rem;color:var(--teal);text-decoration:none;
+.modal-name{font-size:1rem;font-weight:800;text-align:center;margin-bottom:.22rem;}
+.modal-role{font-size:.75rem;color:var(--green2);text-align:center;margin-bottom:.4rem;}
+.modal-links{text-align:center;margin-bottom:.7rem;}
+.modal-links a{font-size:.73rem;color:var(--teal);text-decoration:none;
   background:rgba(42,191,160,.1);border:1px solid rgba(42,191,160,.22);
-  border-radius:20px;padding:.2rem .65rem;display:inline-block;}
-.modal-bio{font-size:.82rem;color:var(--muted);line-height:1.75;}
+  border-radius:20px;padding:.18rem .6rem;display:inline-block;}
+.modal-bio{font-size:.8rem;color:var(--muted);line-height:1.75;}
 
 /* ── LOCAL ── */
-.map-wrap{border-radius:12px;overflow:hidden;height:200px;
-  border:1px solid var(--border2);margin-bottom:.75rem;}
+.map-wrap{border-radius:12px;overflow:hidden;height:195px;
+  border:1px solid var(--border2);margin:0 1rem .7rem;}
 .map-wrap iframe{width:100%;height:100%;border:none;}
-.list-item{display:flex;align-items:center;gap:.65rem;padding:.55rem .75rem;
-  background:rgba(255,255,255,.03);border-radius:8px;font-size:.8rem;margin-bottom:.4rem;}
-.ldot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;}
+.list-item{display:flex;align-items:center;gap:.6rem;padding:.5rem .7rem;
+  background:rgba(255,255,255,.03);border-radius:8px;font-size:.78rem;margin-bottom:.35rem;}
+.ldot{width:5px;height:5px;border-radius:50%;background:var(--green);flex-shrink:0;}
+.local-card{background:var(--card);border:1px solid var(--border2);border-radius:12px;
+  padding:.9rem 1rem;margin:0 1rem .65rem;}
+.lc-title{font-size:.75rem;font-weight:700;color:var(--green2);margin-bottom:.45rem;}
 
 /* ── EM BREVE ── */
-.em-breve{text-align:center;padding:3rem 1rem;}
-.em-breve .ebi{font-size:2.8rem;margin-bottom:.9rem;}
-.em-breve .ebt{font-size:1.15rem;font-weight:800;margin-bottom:.45rem;}
-.em-breve .ebs{font-size:.83rem;color:var(--muted);line-height:1.6;}
+.em-breve{text-align:center;padding:3.5rem 1rem;}
+.em-breve .ebi{font-size:2.6rem;margin-bottom:.85rem;}
+.em-breve .ebt{font-size:1.1rem;font-weight:800;margin-bottom:.4rem;}
+.em-breve .ebs{font-size:.82rem;color:var(--muted);line-height:1.6;}
 
 @media(min-width:500px){
   .spk-grid{grid-template-columns:repeat(3,1fr);}
-  .quick-btns{grid-template-columns:repeat(4,1fr);}
+  .quick-btns,.feat-grid{grid-template-columns:repeat(4,1fr);}
 }
 </style>
 </head>
@@ -188,22 +229,131 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 
     <!-- ══ HOME ══ -->
     <div class="screen active" id="s-home">
-      <div class="hero-wrap">
-        <img class="hero-img"
-          src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/648ef5753a05c4ae93863a195d2649dcfedca5b9/Hero%20banner.jpg"
-          alt="Dia da Integridade Empresarial 2026"
-          onerror="this.style.minHeight='180px';this.style.background='linear-gradient(135deg,#0d3d26,#07201a)'"/>
-        <div class="hero-overlay"></div>
-        <img class="hero-badge"
-          src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/648ef5753a05c4ae93863a195d2649dcfedca5b9/Badge%20Pro%CC%81-E%CC%81tica.png"
-          alt="Pró-Ética 2025/2026"
-          onerror="this.style.display='none'"/>
-        <div class="hero-chip">
-          <span class="hero-chip-dot"></span>
-          <span>30 JUN · 1º JUL 2026 &nbsp;·&nbsp; Brasília/DF</span>
+
+      <!-- HERO — CSS/SVG only, no external images -->
+      <div class="hero">
+        <div class="hero-inner">
+          <!-- Pró-Ética badge -->
+          <div class="badge-row">
+            <div>
+              <div style="display:flex;align-items:stretch">
+                <div class="badge-box">
+                  <div>
+                    <div class="badge-empresa">Empresa</div>
+                    <div class="badge-pe">PRÓ<br>ÉTICA</div>
+                  </div>
+                </div>
+                <div class="badge-years">
+                  <span>2025</span>
+                  <span>2026</span>
+                </div>
+                <div style="display:flex;align-items:center;padding:0 .5rem">
+                  <div class="badge-globe">🌐</div>
+                </div>
+              </div>
+              <span class="badge-premiacao">Premiação</span>
+            </div>
+          </div>
+
+          <!-- Title -->
+          <div class="hero-dia">Dia da</div>
+          <div class="hero-title"><span>Integridade</span><br>Empresarial</div>
+          <div class="hero-meta">
+            <span class="hero-meta-dot"></span>
+            <span>30 JUN · 1º JUL 2026 &nbsp;·&nbsp; Brasília/DF</span>
+          </div>
         </div>
+
+        <!-- Skyline SVG — matches CGU visual language -->
+        <svg class="hero-skyline" viewBox="0 0 800 110" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="bld1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#3ec95c" stop-opacity=".7"/>
+              <stop offset="100%" stop-color="#3ec95c" stop-opacity=".04"/>
+            </linearGradient>
+            <linearGradient id="bld2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#a8e063" stop-opacity=".55"/>
+              <stop offset="100%" stop-color="#a8e063" stop-opacity=".04"/>
+            </linearGradient>
+          </defs>
+          <!-- buildings -->
+          <rect x="2" y="62" width="9" height="48" fill="url(#bld1)" rx="1"/>
+          <rect x="15" y="44" width="11" height="66" fill="url(#bld2)" rx="1"/>
+          <rect x="30" y="55" width="8" height="55" fill="url(#bld1)" rx="1"/>
+          <rect x="42" y="30" width="12" height="80" fill="url(#bld2)" rx="1"/>
+          <rect x="58" y="48" width="9" height="62" fill="url(#bld1)" rx="1"/>
+          <rect x="72" y="18" width="13" height="92" fill="url(#bld2)" rx="1"/>
+          <rect x="89" y="50" width="9" height="60" fill="url(#bld1)" rx="1"/>
+          <rect x="103" y="34" width="11" height="76" fill="url(#bld2)" rx="1"/>
+          <rect x="118" y="42" width="10" height="68" fill="url(#bld1)" rx="1"/>
+          <rect x="132" y="22" width="12" height="88" fill="url(#bld2)" rx="1"/>
+          <rect x="149" y="56" width="8" height="54" fill="url(#bld1)" rx="1"/>
+          <rect x="162" y="36" width="11" height="74" fill="url(#bld2)" rx="1"/>
+          <rect x="178" y="46" width="9" height="64" fill="url(#bld1)" rx="1"/>
+          <rect x="192" y="14" width="14" height="96" fill="url(#bld2)" rx="1"/>
+          <rect x="210" y="52" width="9" height="58" fill="url(#bld1)" rx="1"/>
+          <rect x="224" y="28" width="12" height="82" fill="url(#bld2)" rx="1"/>
+          <rect x="240" y="40" width="10" height="70" fill="url(#bld1)" rx="1"/>
+          <rect x="254" y="20" width="13" height="90" fill="url(#bld2)" rx="1"/>
+          <rect x="272" y="54" width="9" height="56" fill="url(#bld1)" rx="1"/>
+          <rect x="285" y="32" width="11" height="78" fill="url(#bld2)" rx="1"/>
+          <rect x="300" y="44" width="10" height="66" fill="url(#bld1)" rx="1"/>
+          <rect x="315" y="16" width="14" height="94" fill="url(#bld2)" rx="1"/>
+          <rect x="333" y="50" width="9" height="60" fill="url(#bld1)" rx="1"/>
+          <rect x="347" y="30" width="12" height="80" fill="url(#bld2)" rx="1"/>
+          <rect x="363" y="42" width="10" height="68" fill="url(#bld1)" rx="1"/>
+          <rect x="377" y="12" width="15" height="98" fill="url(#bld2)" rx="1"/>
+          <rect x="396" y="48" width="9" height="62" fill="url(#bld1)" rx="1"/>
+          <rect x="410" y="26" width="12" height="84" fill="url(#bld2)" rx="1"/>
+          <rect x="426" y="38" width="10" height="72" fill="url(#bld1)" rx="1"/>
+          <rect x="440" y="18" width="13" height="92" fill="url(#bld2)" rx="1"/>
+          <rect x="458" y="52" width="9" height="58" fill="url(#bld1)" rx="1"/>
+          <rect x="471" y="30" width="11" height="80" fill="url(#bld2)" rx="1"/>
+          <rect x="487" y="44" width="10" height="66" fill="url(#bld1)" rx="1"/>
+          <rect x="501" y="20" width="13" height="90" fill="url(#bld2)" rx="1"/>
+          <rect x="519" y="54" width="8" height="56" fill="url(#bld1)" rx="1"/>
+          <rect x="531" y="34" width="11" height="76" fill="url(#bld2)" rx="1"/>
+          <rect x="547" y="46" width="9" height="64" fill="url(#bld1)" rx="1"/>
+          <rect x="560" y="10" width="16" height="100" fill="url(#bld2)" rx="1"/>
+          <rect x="580" y="50" width="9" height="60" fill="url(#bld1)" rx="1"/>
+          <rect x="594" y="28" width="12" height="82" fill="url(#bld2)" rx="1"/>
+          <rect x="610" y="40" width="10" height="70" fill="url(#bld1)" rx="1"/>
+          <rect x="624" y="18" width="13" height="92" fill="url(#bld2)" rx="1"/>
+          <rect x="641" y="52" width="9" height="58" fill="url(#bld1)" rx="1"/>
+          <rect x="655" y="32" width="11" height="78" fill="url(#bld2)" rx="1"/>
+          <rect x="670" y="44" width="10" height="66" fill="url(#bld1)" rx="1"/>
+          <rect x="684" y="22" width="12" height="88" fill="url(#bld2)" rx="1"/>
+          <rect x="700" y="54" width="8" height="56" fill="url(#bld1)" rx="1"/>
+          <rect x="712" y="34" width="11" height="76" fill="url(#bld2)" rx="1"/>
+          <rect x="728" y="42" width="10" height="68" fill="url(#bld1)" rx="1"/>
+          <rect x="742" y="16" width="14" height="94" fill="url(#bld2)" rx="1"/>
+          <rect x="760" y="50" width="9" height="60" fill="url(#bld1)" rx="1"/>
+          <rect x="774" y="28" width="12" height="82" fill="url(#bld2)" rx="1"/>
+          <rect x="789" y="38" width="11" height="72" fill="url(#bld1)" rx="1"/>
+          <!-- constellation dots -->
+          <circle cx="42" cy="26" r="2.5" fill="#3ec95c" opacity=".9"/>
+          <circle cx="72" cy="14" r="2" fill="#a8e063" opacity=".8"/>
+          <circle cx="192" cy="10" r="3" fill="#3ec95c" opacity=".95"/>
+          <circle cx="254" cy="16" r="2" fill="#a8e063" opacity=".8"/>
+          <circle cx="377" cy="8" r="3" fill="#3ec95c" opacity=".95"/>
+          <circle cx="440" cy="14" r="2" fill="#a8e063" opacity=".8"/>
+          <circle cx="560" cy="6" r="3" fill="#3ec95c" opacity=".95"/>
+          <circle cx="624" cy="14" r="2" fill="#a8e063" opacity=".8"/>
+          <circle cx="742" cy="12" r="2.5" fill="#3ec95c" opacity=".9"/>
+          <!-- constellation lines -->
+          <polyline points="42,26 72,14 192,10 254,16 377,8 440,14 560,6 624,14 742,12"
+            fill="none" stroke="#3ec95c" stroke-width=".7" opacity=".35" stroke-dasharray="4,7"/>
+          <!-- diamond markers -->
+          <polygon points="132,18 136,22 132,26 128,22" fill="none" stroke="#3ec95c" stroke-width="1.2" opacity=".65"/>
+          <polygon points="500,16 504,20 500,24 496,20" fill="none" stroke="#a8e063" stroke-width="1" opacity=".6"/>
+          <polygon points="684,18 688,22 684,26 680,22" fill="none" stroke="#3ec95c" stroke-width="1.1" opacity=".6"/>
+          <!-- sparkles -->
+          <path d="M650,35 L651.5,39 L656,40.5 L651.5,42 L650,46 L648.5,42 L644,40.5 L648.5,39Z" fill="#a8e063" opacity=".55"/>
+          <path d="M710,22 L711,25 L714,26 L711,27 L710,30 L709,27 L706,26 L709,25Z" fill="#3ec95c" opacity=".5"/>
+        </svg>
       </div>
 
+      <!-- FEATURE BUTTONS -->
       <div class="feat-grid">
         <button class="feat-btn" onclick="goTo('s-novidades')">
           <span class="fi">🔔</span>
@@ -217,6 +367,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
         </button>
       </div>
 
+      <!-- NAV BUTTONS -->
       <div class="quick-btns">
         <button class="qbtn" onclick="goTo('s-prog')"><span class="qi">🗓️</span><span class="ql">Programação</span></button>
         <button class="qbtn" onclick="goTo('s-spk')"><span class="qi">🎙️</span><span class="ql">Palestrantes</span></button>
@@ -224,6 +375,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
         <button class="qbtn" onclick="goTo('s-novidades')"><span class="qi">🔔</span><span class="ql">Novidades</span></button>
       </div>
 
+      <!-- APOIO -->
       <div class="apoio-strip">
         <span>Apoio:</span>
         <span class="apoio-tag">Sebrae</span>
@@ -252,20 +404,18 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
         <button class="dtab active" onclick="showDay(0)">📅 30 de Junho</button>
         <button class="dtab" onclick="showDay(1)">📅 1º de Julho</button>
       </div>
-
       <div class="pday active" id="pd0">
         <div class="pitem"><div class="ptime">08h–09h</div><div class="pbody"><span class="pbg pb-b">Recepção</span><strong>Credenciamento e Welcome Coffee</strong></div></div>
         <div class="pitem"><div class="ptime">09h–10h30</div><div class="pbody"><span class="pbg pb-c">Abertura</span><strong>Cerimônia de Abertura</strong><div class="pspk"><span>🎙 Vinícius Marques de Carvalho — Ministro da CGU</span><span>🎙 Jorge Messias — Ministro da AGU</span><span>🎙 Laudemir Müller — Presidente da ApexBrasil</span><span>🎙 Maria Rosa Guimarães Loula — Secretária Nacional de Justiça/SENAJUS</span><span>🎙 Paulo Henrique Pereira — Ministro do Empreendedorismo, Microempresa e EPP</span><span>🎙 Rodrigo Soares — Diretor-Presidente Interino do Sebrae Nacional</span><span>🎙 Gen Ex Valério Stumpf Trindade — Presidente da FHE/POUPEX</span></div></div></div>
         <div class="pitem"><div class="ptime">10h30–11h</div><div class="pbody"><span class="pbg pb-p">Apresentação</span><strong>Resultados e projetos da Secretaria de Integridade Privada da CGU</strong><div class="pspk"><span>🎙 Marcelo Pontes Vianna — Secretário de Integridade Privada/CGU</span></div></div></div>
-        <div class="pitem"><div class="ptime">11h–12h</div><div class="pbody"><span class="pbg pb-k">Key note</span><strong>Viviane Mosé</strong><div class="pspk"><span>🎙 Filósofa, psicanalista, poeta e especialista em políticas públicas brasileira</span></div></div></div>
+        <div class="pitem"><div class="ptime">11h–12h</div><div class="pbody"><span class="pbg pb-k">Key note</span><strong>Viviane Mosé</strong><div class="pspk"><span>🎙 Filósofa, psicanalista, poeta e especialista em políticas públicas</span></div></div></div>
         <div class="pitem"><div class="ptime">12h–14h</div><div class="pbody"><span class="pbg pb-b">Pausa</span><strong>Intervalo para Almoço</strong></div></div>
-        <div class="pitem"><div class="ptime">14h–15h30</div><div class="pbody"><span class="pbg pb-p">Painel 1</span><strong>Lidando com casos complexos: Lei Anticorrupção na prática</strong><div class="pspk"><span>🎙 Moderadora: Viviane André Antunes — Chefe da Coord.-Geral de Acordos de Leniência/CGU</span><span>🎙 Carlos Jacques — Conselheiro do CADE</span><span>🎙 Clarice Costa Calixto — Procuradora-Geral da União/AGU</span><span>🎙 Felipe Barbosa Brandt — Diretor de Responsabilização de Entes Privados/CGU</span><span>🎙 Gilberto Waller Júnior — Procurador Federal/AGU</span></div></div></div>
+        <div class="pitem"><div class="ptime">14h–15h30</div><div class="pbody"><span class="pbg pb-p">Painel 1</span><strong>Lidando com casos complexos: Lei Anticorrupção na prática</strong><div class="pspk"><span>🎙 Moderadora: Viviane André Antunes — Chefe da Coord.-Geral de Acordos de Leniência/CGU</span><span>🎙 Carlos Jacques — Conselheiro do CADE</span><span>🎙 Clarice Costa Cartaxo — Procuradora-Geral da União/AGU</span><span>🎙 Felipe Barbosa Brandt — Diretor de Responsabilização de Entes Privados/CGU</span><span>🎙 Gilberto Waller Júnior — Procurador Federal/AGU</span></div></div></div>
         <div class="pitem"><div class="ptime">15h30–16h15</div><div class="pbody"><span class="pbg pb-p">Entrevista</span><strong>Integridade em tempos de eleição</strong><div class="pspk"><span>🎙 Entrevistadora: Monique Cerqueira Zuidema — Coord.-Geral de Promoção de Integridade Privada/CGU</span><span>🎙 Fabrício Mendes Medeiros — Advogado especialista em Direito Eleitoral</span><span>🎙 Raphael Soré — Advogado e Dir. de Compliance e Investigações do IBRAC</span></div></div></div>
         <div class="pitem"><div class="ptime">16h15–16h30</div><div class="pbody"><span class="pbg pb-b">Pausa</span><strong>Coffee Break</strong></div></div>
         <div class="pitem"><div class="ptime">16h30–17h30</div><div class="pbody"><span class="pbg pb-p">Painel 2</span><strong>Acordos de Leniência: Lições do Passado Recente e os Novos Caminhos da Cooperação Corporativa</strong><div class="pspk"><span>🎙 Moderador: Luiz Henrique Pandolfi Miranda — Dir. de Acordos de Leniência/CGU</span><span>🎙 Juliana Palma — Professora da FGV</span><span>🎙 Keity Saboya — Juíza de Direito — TJRN</span><span>🎙 Luis Wielewick — Advogado</span><span>🎙 Raniere Rocha Lins — Procurador Nacional de Patrimônio Público e Probidade/AGU</span></div></div></div>
         <div class="pitem"><div class="ptime">17h30–18h</div><div class="pbody"><span class="pbg pb-c">Cultura</span><strong>Apresentação da Orquestra da Força Aérea Brasileira</strong></div></div>
       </div>
-
       <div class="pday" id="pd1">
         <div class="pitem"><div class="ptime">08h–09h</div><div class="pbody"><span class="pbg pb-b">Recepção</span><strong>Credenciamento e Welcome Coffee</strong></div></div>
         <div class="pitem"><div class="ptime">09h–10h</div><div class="pbody"><span class="pbg pb-p">Painel 3</span><strong>Olhando para o futuro: Como a Lei Anticorrupção pode melhorar?</strong><div class="pspk"><span>🎙 Moderadora: Ana Aranha — Gerente Sênior em Anticorrupção, Pacto Global/ONU</span><span>🎙 Renato Machado — Advogado e pesquisador</span><span>🎙 Valdir Simão — Advogado · Ex-Ministro da CGU</span><span>🎙 Vanir Fridriczewski — Advogado da União / Assessor no STF</span></div></div></div>
@@ -277,6 +427,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
         <div class="pitem"><div class="ptime">16h–17h30</div><div class="pbody"><span class="pbg pb-pr">🏆 Premiação</span><strong>Premiação das empresas vencedoras do Pró-Ética 2025–2026</strong></div></div>
         <div class="pitem"><div class="ptime">17h30–17h45</div><div class="pbody"><span class="pbg pb-c">Encerramento</span><strong>Encerramento Oficial</strong><div class="pspk"><span>🎙 Eveline Martins Brito — Secretária-Executiva da CGU</span></div></div></div>
       </div>
+      <div style="height:.5rem"></div>
     </div>
 
     <!-- ══ PALESTRANTES ══ -->
@@ -286,6 +437,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
       <div class="stitle">Quem vai falar</div>
       <p class="ssub">Toque em um palestrante para mais detalhes</p>
       <div class="spk-grid" id="spk-grid"></div>
+      <div style="height:.5rem"></div>
     </div>
 
     <!-- ══ LOCAL ══ -->
@@ -295,30 +447,31 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
       <div class="stitle">Como Chegar</div>
       <p class="ssub">Brasília, DF · 30 Jun e 1º Jul 2026</p>
       <div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18217.724804070047!2d-47.94448181284177!3d-15.776486199999978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cef7daf5d3e1a9%3A0x318e15ceebd81b0d!2sPOUPEX%20-%20Edif%C3%ADcio%20Sede!5e1!3m2!1spt-BR!2sbr" allowfullscreen loading="lazy"></iframe></div>
-      <div class="card" style="margin-bottom:.75rem">
-        <div style="font-size:.78rem;font-weight:700;color:var(--green2);margin-bottom:.5rem">📍 POUPEX — Edifício Sede</div>
-        <div style="font-size:.82rem;color:var(--muted);line-height:1.6">Setor Militar Urbano, Parte A · Plano Piloto · Brasília – DF</div>
-        <a href="https://maps.app.goo.gl/bjLgE9oTgWLGnVGe9" target="_blank" style="display:inline-block;margin-top:.6rem;font-size:.75rem;color:var(--green);text-decoration:none">📌 Abrir no Google Maps →</a>
-        <div style="margin-top:.6rem;font-size:.75rem;color:#e8a030">⚠️ Estacionamento limitado — use aplicativo de transporte</div>
+      <div class="local-card">
+        <div class="lc-title">📍 POUPEX — Edifício Sede</div>
+        <div style="font-size:.8rem;color:var(--muted);line-height:1.6">Setor Militar Urbano, Parte A · Plano Piloto · Brasília – DF</div>
+        <a href="https://maps.app.goo.gl/bjLgE9oTgWLGnVGe9" target="_blank" style="display:inline-block;margin-top:.5rem;font-size:.73rem;color:var(--green);text-decoration:none">📌 Abrir no Google Maps →</a>
+        <div style="margin-top:.5rem;font-size:.72rem;color:#e8a030">⚠️ Estacionamento limitado — use aplicativo de transporte</div>
       </div>
-      <div class="card" style="margin-bottom:.75rem">
-        <div style="font-size:.78rem;font-weight:700;color:var(--green2);margin-bottom:.6rem">✈️ Chegando a Brasília</div>
-        <div style="font-size:.82rem;color:var(--muted);line-height:1.6">Ao desembarcar, dirija-se à Praça Pick-up (térreo do terminal) para solicitar transporte por aplicativo ou táxi.</div>
+      <div class="local-card">
+        <div class="lc-title">✈️ Chegando a Brasília</div>
+        <div style="font-size:.8rem;color:var(--muted);line-height:1.6">Ao desembarcar, dirija-se à Praça Pick-up (térreo do terminal) para solicitar transporte por aplicativo ou táxi.</div>
       </div>
-      <div class="card" style="margin-bottom:.75rem">
-        <div style="font-size:.78rem;font-weight:700;color:var(--green2);margin-bottom:.6rem">🍽️ Restaurantes próximos</div>
-        <div class="list-item"><span class="ldot"></span><div><strong style="font-size:.8rem">Mané Mercado</strong> <span style="font-size:.72rem;color:var(--muted)">— Seg–Qui 12h–00h | Sex–Sáb 11h–01h | Dom 11h–23h</span></div></div>
-        <div class="list-item"><span class="ldot"></span><div><strong style="font-size:.8rem">Brasília Shopping</strong> <span style="font-size:.72rem;color:var(--muted)">— SCN Qd. 5, Asa Norte · Seg–Sáb 10h–22h</span></div></div>
+      <div class="local-card">
+        <div class="lc-title">🍽️ Restaurantes próximos</div>
+        <div class="list-item"><span class="ldot"></span><div><strong style="font-size:.78rem">Mané Mercado</strong> <span style="font-size:.7rem;color:var(--muted)">— Seg–Qui 12h–00h | Sex–Sáb 11h–01h | Dom 11h–23h</span></div></div>
+        <div class="list-item"><span class="ldot"></span><div><strong style="font-size:.78rem">Brasília Shopping</strong> <span style="font-size:.7rem;color:var(--muted)">— SCN Qd. 5, Asa Norte · Seg–Sáb 10h–22h</span></div></div>
       </div>
-      <div class="card">
-        <div style="font-size:.78rem;font-weight:700;color:var(--green2);margin-bottom:.6rem">🏨 Hotéis sugeridos</div>
-        <div class="list-item"><span class="ldot"></span><span style="font-size:.8rem"><strong>Mercure Brasília Líder</strong> · (61) 3426-4000</span></div>
-        <div class="list-item"><span class="ldot"></span><span style="font-size:.8rem"><strong>Windsor Plaza Brasília</strong> · (61) 2195-1100</span></div>
-        <div class="list-item"><span class="ldot"></span><span style="font-size:.8rem"><strong>Kubitschek Plaza</strong> · (61) 3329-3333</span></div>
-        <div class="list-item"><span class="ldot"></span><span style="font-size:.8rem"><strong>Manhattan Plaza</strong> · (61) 3319-3543</span></div>
-        <div class="list-item"><span class="ldot"></span><span style="font-size:.8rem"><strong>Athos Bulcão HPlus</strong> · (61) 99102-1608</span></div>
-        <div class="list-item"><span class="ldot"></span><span style="font-size:.8rem"><strong>Brasília Imperial Hotel</strong> · (61) 3425-0000</span></div>
+      <div class="local-card">
+        <div class="lc-title">🏨 Hotéis sugeridos</div>
+        <div class="list-item"><span class="ldot"></span><span style="font-size:.78rem"><strong>Mercure Brasília Líder</strong> · (61) 3426-4000</span></div>
+        <div class="list-item"><span class="ldot"></span><span style="font-size:.78rem"><strong>Windsor Plaza Brasília</strong> · (61) 2195-1100</span></div>
+        <div class="list-item"><span class="ldot"></span><span style="font-size:.78rem"><strong>Kubitschek Plaza</strong> · (61) 3329-3333</span></div>
+        <div class="list-item"><span class="ldot"></span><span style="font-size:.78rem"><strong>Manhattan Plaza</strong> · (61) 3319-3543</span></div>
+        <div class="list-item"><span class="ldot"></span><span style="font-size:.78rem"><strong>Athos Bulcão HPlus</strong> · (61) 99102-1608</span></div>
+        <div class="list-item"><span class="ldot"></span><span style="font-size:.78rem"><strong>Brasília Imperial Hotel</strong> · (61) 3425-0000</span></div>
       </div>
+      <div style="height:.5rem"></div>
     </div>
 
     <!-- ══ NOVIDADES ══ -->
@@ -360,7 +513,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 <div class="modal-overlay" id="modal" onclick="closeModal(event)">
   <div class="modal-box">
     <div class="modal-header">
-      <span style="font-size:.7rem;color:var(--muted);font-weight:600;letter-spacing:1px;text-transform:uppercase">Palestrante</span>
+      <span style="font-size:.66rem;color:var(--muted);font-weight:700;letter-spacing:1.2px;text-transform:uppercase">Palestrante</span>
       <button class="modal-close" onclick="closeModalBtn()">✕</button>
     </div>
     <div class="modal-av" id="m-av"></div>
@@ -372,44 +525,145 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 </div>
 
 <script>
-const BASE='https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/';
-const SHA_F2='f2c40f8a7ab6a88bb046d5bd3533cca2b6d0c36c';
-const SHA_05='05e4b3f90cc7b60cf126de15c502e3fb9e6e6ac1';
+// Convert GitHub blob URLs to raw URLs
+function toRaw(url){
+  return url
+    .replace('https://github.com/','https://raw.githubusercontent.com/')
+    .replace('/blob/','/');}
 
 const SPEAKERS=[
-  {i:'AA',name:'Ana Aranha',role:'Gerente Sênior — Pacto Global das Nações Unidas',photo:BASE+'Ana%20Aranha.jpg',li:'https://www.linkedin.com/in/ana-luiza-aranha-5b31a1116/',bio:'Doutora e Mestre em Ciência Política pela Universidade Federal de Minas Gerais. Ocupa o cargo de gerente sênior do Pacto Global das Nações Unidas (Estados Unidos), liderando o Acelerador de Integridade Empresarial, e é professora colaboradora da Universidade Federal do Piauí.'},
-  {i:'AC',name:'André Clark Juliano',role:'CEO — Viveo',photo:`https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/${SHA_F2}/Captura%20de%20Tela%202026-06-24%20a%CC%80s%2011.37.56.png`,li:'https://br.linkedin.com/in/andreclarkjuliano',bio:'Diretor Presidente da Viveo desde 2026. Engenheiro químico formado pela Escola Politécnica da USP e MBA em Finance and Operations Management pela Leonard N. Stern School of Business da New York University. Entre 2017 e 2026, atuou em posições de liderança na Siemens Energy e na Siemens Gamesa, incluindo os cargos de Vice-Presidente Sênior da Siemens Energy para a América Latina, Presidente da Siemens Gamesa Wind Power para a América Latina e Presidente e CEO da Siemens Brasil. Anteriormente, foi CEO da Acciona Infraestructuras S.A. para o Brasil, Bolívia, Uruguai e Paraguai. Também possui experiência em consultoria estratégica, com passagem pela PwC Strategy / Booz & Company.'},
-  {i:'AC',name:'André Cruz',role:'Diretor de Auditoria Interna e Compliance — Alubar',photo:`https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/${SHA_F2}/Captura%20de%20Tela%202026-06-24%20a%CC%80s%2011.37.03.png`,li:'https://br.linkedin.com/in/andrecccruz',bio:'Contador pela UFPE e pós-graduado em Gestão de Negócios pela Fundação Dom Cabral, possui 19 anos de experiência em Gestão de Riscos, Compliance, Auditoria Interna e Controles Internos. Há 13 anos dedica-se ao Grupo Alubar, onde é Diretor de Auditoria Interna & Compliance. Membro do Compliance Mastermind há 7 anos, coautor de quatro livros sobre compliance e professor do MBA de compliance da LEC. Reconhecido como um dos executivos de compliance mais admirados do Brasil pelos anuários do Compliance On Top e da Análise Editorial.'},
-  {i:'BR',name:'Bruno Romano',role:'Comediante, autor, criador de conteúdo e roteirista',photo:BASE+'Bruno%20Romano.jpeg',li:'https://www.brunoromano.com.br/',bio:'Comediante, autor, criador de conteúdo e roteirista há mais de 15 anos, Bruno Romano é o principal nome do stand-up comedy no Brasil quando o assunto é comédia corporativa. Já se apresentou em mais de 500 eventos realizados nas maiores empresas do país, lançou o primeiro especial de comédia do YouTube sobre o tema trabalho e publicou um livro que ajuda a fazer qualquer mensagem ser entregue nas empresas de forma leve e envolvente.'},
-  {i:'CJ',name:'Carlos Jacques Vieira Gomes',role:'Conselheiro — CADE',photo:BASE+'Carlos%20Jacques.jpeg',li:'',bio:'Mestre em Direito e especialista em Direito Regulatório de Telecomunicações pela UnB. Professor dos cursos de pós-graduação em Direito Empresarial do IDP, do IBMEC e de cursos In Company da FGV-Rio. Atuou como Consultor Legislativo do Senado Federal (2004-2023) e como assessor da Ministra Nancy Andrighi no STJ (2000-2004). Foi Secretário do Plenário do CADE (1998-2000) e autor do livro "Ordem Econômica Constitucional e Direito Antitruste".'},
-  {i:'CC',name:'Clarice Costa Cartaxo',role:'Procuradora-Geral da União — AGU',photo:BASE+'Clarice%20C.png',li:'https://br.linkedin.com/in/clarice-calixto-916334241',bio:'Doutora e Mestre em Direito pela Universidade de Brasília. Graduada em Direito pela UFMG. Como Advogada da União, coordenou a equipe de revisão de atos normativos da Casa Civil da Presidência da República, atuou como Assessora Especial do Ministro da Justiça, coordenou a Consultoria Jurídica do Ministério da Cultura, foi Chefe de Gabinete da Procuradoria-Regional da União em São Paulo e Coordenadora de Planejamento e Monitoramento na PGU. Ministra cursos na ENAP, na PUC-SP e em outras instituições.'},
-  {i:'CJ',name:'Carolina Junqueira',role:'Diretora de Compliance e Riscos — Grupo Globo',photo:BASE+'Carolina-Junqueira-Globo.jpg',li:'https://br.linkedin.com/in/carolina-junqueira-164a4120',bio:'Advogada e executiva sênior, com mais de 15 anos de experiência em compliance, gestão de riscos e governança corporativa. Atuou por mais de uma década na Ambev, com papel central no desenvolvimento do programa de compliance em múltiplas jurisdições. Desde 2020, lidera as áreas de Compliance e Riscos do Grupo Globo, sendo responsável pelo Programa de Compliance, Auditoria Interna e Controles Internos. É membro do Comitê de Auditoria do Grupo Globo.'},
-  {i:'CM',name:'Carolina Marzano',role:'Chief Compliance Officer — ABES / Conselheira CLM',photo:BASE+'Carol%20Marzano.jpeg',li:'https://br.linkedin.com/in/carolina-marzano-61735947',bio:'Advogada formada pela Universidade Presbiteriana Mackenzie, especializada em Compliance pelo INSPER e certificada em Anticorrupção pela IACA. Atualmente é Chief Compliance Officer da ABES, Líder do Programa Uma Empresa Ética, Representante da ABES na Plataforma Anticorrupção do Pacto Global da ONU no Brasil e Conselheira de Integridade e Compliance na CLM.'},
-  {i:'CG',name:'Cristine Köhler Ganzenmüller',role:'Diretora de Promoção e Avaliação de Integridade Privada — CGU',photo:BASE+'WhatsApp%20Image%202026-05-31%20at%2015.14.22.jpeg',li:'https://www.linkedin.com/in/cristine-ganzenm%C3%BCller-1238a2334/',bio:'Auditora Federal da Controladoria-Geral da União, ocupa atualmente a função de Diretora de Promoção e Avaliação de Integridade Privada. Na CGU já atuou como Coordenadora de Promoção de Integridade, Chefe na Coordenação de Negociação de Acordos de Leniência e Corregedora do Ministério da Cultura e do Ministério do Esporte. Formada em Direito pela UFPR, possui MBA em Direito Econômico e Empresarial pela FGV.'},
-  {i:'EB',name:'Eveline Martins Brito',role:'Secretária-Executiva — CGU',photo:BASE+'eveline-martins-brito-e1741804236426.jpg',li:'https://www.linkedin.com/in/eveline-brito-94089914a/',bio:'Servidora da Controladoria-Geral da União. Com 27 anos na carreira de Finanças e Controle, atuou na CGU como Coordenadora-Geral de Auditoria, Diretora de Planejamento e Desenvolvimento Institucional e Coordenadora-Geral de julgamento de servidores e empregados públicos. Foi Ouvidora-Adjunta Chefe na EBC e a primeira ouvidora na Presidência da República. Em 2024 assumiu como Secretária-Executiva na CGU.'},
-  {i:'FM',name:'Fabrício Juliano Mendes Medeiros',role:'Advogado — Medeiros & Barros Correia Advogados',photo:BASE+'Fabri%CC%81cio.webp',li:'https://br.linkedin.com/in/fabr%C3%ADcio-juliano-mendes-medeiros-676063176',bio:'Graduado pela Faculdade de Direito da UFS, Mestre em Direito pelo UniCEUB, Especialista em Direito Constitucional Processual pela UFS. Professor do IDP. Foi Assessor de Ministro do STF e do TSE e Assessor Jurídico na Câmara dos Deputados e no Senado Federal. Membro do IBRADE. Integrou a lista tríplice aprovada pelo STF para o cargo de Ministro-Substituto do TSE em 2022. Autor do livro "O ativismo judicial e direito à saúde" (Fórum, 2011).'},
-  {i:'FB',name:'Felipe Barbosa Brandt',role:'Diretor de Responsabilização de Entes Privados — CGU',photo:BASE+'Felipe%20Brandt.jpg',li:'https://www.linkedin.com/in/felipe-barbosa-brandt-33705b203/',bio:'Atualmente é Diretor de Responsabilização de Entes Privados na Secretaria de Integridade Privada da CGU. Anteriormente, exerceu o cargo de Coordenador-Geral de Responsabilização de Entes Privados na CGU, além de atuar como assessor de Juiz Federal e ocupar diversos cargos na Caixa Econômica Federal. Graduado em Direito pela UFPB, com pós-graduação em Direito Público e Combate à Corrupção e à Lavagem de Dinheiro.'},
-  {i:'FS',name:'Fernanda Santos Schramm',role:'Compliance Officer — STATKRAFT Energias Renováveis S/A',photo:BASE+'Fernanda%20Schramm%20.jpeg',li:'https://www.linkedin.com/in/fernanda-schramm-ccep-i-78a37292/',bio:'Mestre em Direito do Estado pela UFSC. Educação Executiva em Compliance e Gestão de Compliance pelo INSPER/SP. Especialista em Processo Civil. Vice-Presidente da Comissão de Licitações e Contratos da OAB/SC. Graduada em Relações Internacionais pela UFSC. Sócia da Menezes Niebuhr Advogados Associados.'},
-  {i:'GB',name:'Gabriel Nogueira Bravo',role:'Gerente de Integridade Corporativa — SEBRAE',photo:BASE+'Gabriel.jpeg',li:'https://www.linkedin.com/in/gabriel-nogueira-portella-nunes-pinto-bravo-60409821/',bio:'Advogado e Gerente da Unidade de Integridade Corporativa do Sebrae Nacional.'},
-  {i:'GW',name:'Gilberto Waller Júnior',role:'Procurador Federal — AGU',photo:BASE+'Gilberto%20Waller.jpg',li:'https://br.linkedin.com/in/gilbertowaller',bio:'Procurador federal, exerceu diversos cargos de destaque na Administração Pública Federal, dentre eles Ouvidor-Geral da União, Corregedor-Geral da União e Presidente do INSS. Possui bacharelado em Direito, especialização em combate à corrupção e quase 30 anos de carreira no serviço público brasileiro.'},
-  {i:'JP',name:'Juliana Palma',role:'Professora — FGV Direito SP',photo:BASE+'Juliana%20palma.jpg',li:'https://direitosp.fgv.br/professor/juliana-bonacorsi-de-palma',bio:'Professora Associada da FGV Direito SP com regime de dedicação exclusiva. Coordenadora do Núcleo Público da FGV Direito SP e do Escritório Central de Integridade Científica da FGV. Doutora e Mestre pela Faculdade de Direito da USP. LL.M. pela Yale Law School, bolsista da Lilian Goldman Perpetual Scholarship. Foi visiting scholar na Washington College of Law — American University.'},
-  {i:'JP',name:'Juliana Penelli',role:'Gerente de Compliance Sênior — Pacto Global ONU Rede Brasil',photo:BASE+'Juliana%20Penelli.jpg',li:'https://br.linkedin.com/in/juliana-penelli',bio:'Advogada inscrita na OAB/SP, com mais de 20 anos de experiência em implantação e gestão de Programa de Compliance, Proteção de Dados e Contratos. Treinadora DEPE (Alliance of Integrity). Possui experiência em processos licitatórios, gestão de marcas e patentes, canal de denúncias e relacionamento com stakeholders. Atua como Gerente de Compliance Sênior do Pacto Global da ONU Rede Brasil.'},
-  {i:'KS',name:'Keity Saboya',role:'Juíza de Direito — TJ/RN',photo:BASE+'keity%20saboia.jpeg',li:'https://br.linkedin.com/in/keity-saboya-7429aa106',bio:'Professora Associada da UFRN, atuando principalmente na área das Ciências Criminais. Coordenadora do Programa de Residência Judicial da Escola da Magistratura do Rio Grande do Norte. Juíza de Direito do Estado do Rio Grande do Norte. Doutora em Direito Penal pela UERJ com Estágio Doutoral na Universidad de Castilla-La Mancha. Bolsista do Max-Planck-Institut. Autora do livro "Ne Bis in idem: História, Teoria e Perspectivas" (Lumen Juris).'},
-  {i:'LW',name:'Luis Wielewick',role:'Advogado — wm&t Advogados',photo:BASE+'Luis%20W.png',li:'',bio:'Formado em Direito cum laude pela Universidade Estadual de Londrina, Mestre (LL.M.) pela Universidade Columbia e Doutor em Direito pela Universidade de São Paulo. Sócio-fundador do escritório paulistano wm&t. Escolhido, em 2025, Investigations Professional of the Year pela publicação britânica Global Investigations Review.'},
-  {i:'LH',name:'Luiz Henrique Pandolfi Miranda',role:'Diretor de Acordos de Leniência — CGU',photo:BASE+'Luiz%20Pandolfi.jpg',li:'',bio:'Possui graduação em Direito pela Universidade Federal do Espírito Santo (2003), pós-graduação em Direito Público pela UnB e em Direito Processual pela PUC-MG; e Mestrado em Direito Processual pela UFES (2022-2024). Procurador-federal da AGU desde 2006, já atuou na Corregedoria-Geral da União (Corregedor Setorial), na Consultoria Jurídica do Ministério das Cidades e na Procuradoria-Regional Federal da 2ª Região.'},
-  {i:'MP',name:'Marcelo Pontes Vianna',role:'Secretário de Integridade Privada — CGU',photo:BASE+'2025.02.04%20Marcelo%20Pontes%20Viana%20-%20SIPRI-2.jpg',li:'https://br.linkedin.com/in/marcelo-pontes-vianna',bio:'Advogado e cientista político, possui pós-graduações em Direito Público, Avaliação de Políticas Públicas e Economia Nacional pela George Washington University. Mestre em Direito pela University of Notre Dame. Auditor Federal da CGU desde 2006. Entre 2024 e 2025, foi copresidente do Grupo de Trabalho Anticorrupção do G20. Desde 2023, exerce o cargo de Secretário de Integridade Privada.'},
-  {i:'MS',name:'Mário Vinícius Spinelli',role:'Sócio-Diretor — MS Integridade e Reasoning Global Advisory',photo:BASE+'Mario%20Spinelli.jpg',li:'https://www.linkedin.com/in/m%C3%A1rio-spinelli-570565106/',bio:'Doutor em Administração Pública e Governo pela FGV-EAESP. Mestre em Administração Pública pela FJP-MG. Professor em cursos de pós-graduação em Controle e Compliance (UFLA, CPEC/Universidad Castilla La Mancha, PUC-RJ). Ex-Controlador-Geral do Estado de Minas Gerais e do Município de São Paulo. Foi Diretor de Governança e Compliance e Ouvidor-Geral da Petrobras. Ex-Secretário de Prevenção da Corrupção da CGU. Auditor Federal de Finanças e Controle da CGU.'},
-  {i:'MZ',name:'Monique Cerqueira Zuidema',role:'Coord.-Geral de Promoção de Integridade Privada — CGU',photo:`https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/${SHA_05}/Foto%20Monique%20Maio%202.jpg`,li:'',bio:'Graduada em Engenharia Naval e Oceânica pela Universidade Federal do Rio de Janeiro, tendo realizado parte de sua formação na Stevens Institute of Technology (EUA). É Auditora Federal da CGU desde 2022, onde tem atuado nas áreas de promoção da integridade e participado da implementação de programas como o Modelo de Maturidade em Integridade Pública (MMIP) e o Pacto Brasil pela Integridade Empresarial.'},
-  {i:'PC',name:'Paula Costim',role:'Head de Policy — ICC Brasil',photo:BASE+'Paula%20Costim.jpg',li:'https://br.linkedin.com/in/paulacostim',bio:'É Head da área de Policy da ICC Brasil, responsável pelo desenvolvimento de iniciativas e estratégias de advocacy entre empresas, governos e organismos internacionais em temas relacionados à integridade, sustentabilidade e inserção internacional do país. Antes da ICC, atuou como Assessora e Chefe de Gabinete Substituta no gabinete da Secretaria de Comércio Exterior do Governo Federal e também teve passagem pela Amcham. É formada em Relações Internacionais e possui MBA em Gestão de Projetos pela FGV.'},
-  {i:'RL',name:'Raniere Rocha Lins',role:'Procurador Nacional de Patrimônio Público e Probidade — AGU',photo:BASE+'Raniere.jpg',li:'',bio:'Graduado em Direito pela Universidade Federal de Alagoas (2014). Especialista em Prática Processual pelo UniCEUB (2018). Mestre em Direito Constitucional pelo IDP (2020). Doutorando em Direito na UnB (2022). Advogado da União desde 2017. Atualmente ocupa o cargo de Procurador Nacional da União de Patrimônio Público e Probidade. Ex-Procurador da Fazenda Nacional (2016) e Assessor do Ministério Público Federal em Alagoas (2015-2016).'},
-  {i:'RS',name:'Raphael Rodrigues Soré',role:'Advogado e Dir. de Compliance e Investigações — IBRAC',photo:BASE+'Raphael%20Sore%CC%81.jpeg',li:'https://www.linkedin.com/in/raphaelsore/',bio:'Mestre em Direito do Estado na Faculdade de Direito do Largo de São Francisco da USP. Especialista em Direito Público pela Escola Paulista da Magistratura do TJSP e em Direito Comunitário Europeu pela Universidade de Coimbra. Foi Secretário-Executivo do CONACI e Presidente do Comitê do Portal da Transparência do Estado de São Paulo. Atualmente é advogado especializado em Compliance empresarial e anticorrupção.'},
-  {i:'RM',name:'Renato Machado Souza',role:'Advogado — Maeda, Ayres e Sarubbi Advogados',photo:BASE+'Renato%20Machado.jpg',li:'https://www.linkedin.com/in/renato-machado-de-souza-047144105/',bio:'Advogado e professor do Programa de Doutorado da Universidade de Salamanca.'},
-  {i:'RG',name:'Reynaldo Goto',role:'Consultor especialista em Governança e Compliance',photo:BASE+'Goto.png',li:'https://www.linkedin.com/in/reynaldo-goto/',bio:'Engenheiro Mecatrônico formado pela Escola Politécnica da USP. Executive-MBA em Berlim (ESMT). Atuou por mais de 20 anos na Siemens, incluindo como Compliance Officer. Chief Compliance Officer da BRF entre 2018 e 2025. Membro da Plataforma de Ação Anticorrupção do Pacto Global da ONU e do Business at OCDE. Co-Chair do B20 África do Sul. Conselheiro do FGVEthics e do Comitê de Transparência e Administração Pública do Estado de São Paulo.'},
-  {i:'VS',name:'Valdir Moyses Simão',role:'Advogado — Warde Advogados',photo:BASE+'Valdir%20Sim%C3%A3o.jpg',li:'https://www.linkedin.com/in/valdirsimao/',bio:'Advogado com atuação em compliance e consultor em governança pública e privada. Auditor-fiscal da Previdência Social e da Receita Federal do Brasil por 29 anos. Ocupou os cargos de Ministro do Planejamento, Orçamento e Gestão, Ministro-Chefe da CGU, Secretário da Fazenda, Presidente do INSS e Secretário-Executivo da Casa Civil. Na CGU, regulamentou a Lei Anticorrupção brasileira. Doutor em Estado de Direito e Governança Global pela Universidade de Salamanca.'},
-  {i:'VF',name:'Vanir Fridriczewski',role:'Advogado da União / Assessor no STF',photo:BASE+'Vanir.webp',li:'https://br.linkedin.com/in/vanir-fridriczewski-b27585205',bio:'Advogado da União e Assessor de Ministro no STF. Mestre em Direito pela PUCRS e Doutor em Estado de Derecho y Gobernanza Global pela Universidade de Salamanca, onde obteve o Prêmio Extraordinário de Doutorado. Pós-Doutor pela Universidade de Salamanca, onde atua como professor colaborador do programa de Doutorado. Professor na Escola da AGU e na Faculdade Republicana.'},
-  {i:'VM',name:'Vinícius Marques de Carvalho',role:'Ministro da CGU',photo:BASE+'MinistroViniciusdeCarvalho.jpg',li:'https://www.linkedin.com/in/vinicius-marques-de-carvalho-9a9063b0/',bio:'Ministro da Controladoria-Geral da União (CGU). Nascido em São Paulo/SP, graduado em Direito pela USP, Doutor em Direito Comercial pela USP e em Direito Comparado pela Université de Paris 1 Pantheon-Sorbonne, onde foi professor-visitante. Desde 2014 é professor da USP. Presidiu o CADE de 2012 a 2016. Pertenceu à carreira de Especialista em Políticas Públicas e Gestão Governamental.'},
-  {i:'VA',name:'Viviane André Antunes',role:'Chefe da Coord.-Geral de Acordos de Leniência — CGU',photo:BASE+'Viviane.jpg',li:'',bio:'Auditora Federal de Finanças e Controle da CGU desde 2006. Engenheira de Computação e bacharel em Direito pela UFRN, Mestre em Engenharia Elétrica pela mesma instituição. Pós-graduada em Prevenção e Combate a Desvios de Recursos Públicos pela Universidade Federal de Lavras. Possui experiência nas áreas de auditoria, operações especiais e acordos de leniência da Lei Anticorrupção.'},
-  {i:'VM',name:'Viviane Mosé',role:'Filósofa, psicanalista, poeta e especialista em políticas públicas',photo:BASE+'Viviane-Mose-5_Easy-Resize.com_.jpg',li:'',bio:'Filósofa, psicanalista, poeta e especialista em elaboração e implementação de políticas públicas brasileira. Reconhecida por sua capacidade de traduzir temas complexos da filosofia para o público geral, abordando questões contemporâneas sobre sociedade, educação, comportamento feminino e tecnologia.'},
+  {i:'AA',name:'Ana Aranha',role:'Gerente Sênior — Pacto Global das Nações Unidas',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/251f699be73eebd16dffcb1f15470c41ed7d1995/Ana%20Aranha.jpg'),
+   li:'https://www.linkedin.com/in/ana-luiza-aranha-5b31a1116/',
+   bio:'Doutora e Mestre em Ciência Política pela Universidade Federal de Minas Gerais. Ocupa o cargo de gerente sênior do Pacto Global das Nações Unidas (Estados Unidos), liderando o Acelerador de Integridade Empresarial, e é professora colaboradora da Universidade Federal do Piauí.'},
+  {i:'AC',name:'André Clark Juliano',role:'CEO — Viveo',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/f2c40f8a7ab6a88bb046d5bd3533cca2b6d0c36c/Captura%20de%20Tela%202026-06-24%20a%CC%80s%2011.37.56.png'),
+   li:'https://br.linkedin.com/in/andreclarkjuliano',
+   bio:'Diretor Presidente da Viveo desde 2026. Engenheiro químico formado pela Escola Politécnica da USP e MBA em Finance and Operations Management pela Leonard N. Stern School of Business, da New York University. Entre 2017 e 2026, atuou em posições de liderança na Siemens Energy e na Siemens Gamesa, incluindo os cargos de Vice-Presidente Sênior da Siemens Energy para a América Latina e Presidente e CEO da Siemens Brasil. Anteriormente, foi CEO da Acciona Infraestructuras S.A. para o Brasil, Bolívia, Uruguai e Paraguai e ocupou cargos executivos no grupo Camargo Corrêa. Também possui experiência em consultoria estratégica, com passagem pela PwC Strategy / Booz & Company.'},
+  {i:'AC',name:'André Cruz',role:'Diretor de Auditoria Interna e Compliance — Alubar',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/f2c40f8a7ab6a88bb046d5bd3533cca2b6d0c36c/Captura%20de%20Tela%202026-06-24%20a%CC%80s%2011.37.03.png'),
+   li:'https://br.linkedin.com/in/andrecccruz',
+   bio:'Contador pela UFPE e pós-graduado em Gestão de Negócios pela Fundação Dom Cabral, possui 19 anos de experiência em Gestão de Riscos, Compliance, Auditoria Interna e Controles Internos. Há 13 anos dedica-se ao Grupo Alubar, onde é Diretor de Auditoria Interna & Compliance. Membro do Compliance Mastermind há 7 anos, coautor de quatro livros sobre compliance e professor do MBA de compliance da LEC. Reconhecido como um dos executivos de compliance mais admirados do Brasil pelos anuários do Compliance On Top e da Análise Editorial.'},
+  {i:'BR',name:'Bruno Romano',role:'Comediante, autor, criador de conteúdo e roteirista',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/30ff557938b1d7426e5801760157d0d31dcaf311/Bruno%20Romano.jpeg'),
+   li:'https://www.brunoromano.com.br/',
+   bio:'Comediante, autor, criador de conteúdo e roteirista há mais de 15 anos, Bruno Romano é o principal nome do stand-up comedy no Brasil quando o assunto é comédia corporativa. Já se apresentou em mais de 500 eventos realizados nas maiores empresas do país, lançou o primeiro especial de comédia do YouTube sobre o tema trabalho e publicou um livro que ajuda a fazer qualquer mensagem ser entregue nas empresas de forma leve e envolvente.'},
+  {i:'CJ',name:'Carlos Jacques Vieira Gomes',role:'Conselheiro — CADE',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/251f699be73eebd16dffcb1f15470c41ed7d1995/Carlos%20Jacques.jpeg'),
+   li:'',
+   bio:'Mestre em Direito e especialista em Direito Regulatório de Telecomunicações pela UnB. Professor dos cursos de pós-graduação em Direito Empresarial do IDP, do IBMEC e de cursos In Company da FGV-Rio. Atuou como Consultor Legislativo do Senado Federal nas áreas de Direito Econômico, da Regulação e Empresarial (2004-2023) e como assessor da Ministra Nancy Andrighi no STJ (2000-2004). Foi Secretário do Plenário do CADE (1998-2000) e autor do livro "Ordem Econômica Constitucional e Direito Antitruste".'},
+  {i:'CC',name:'Clarice Costa Cartaxo',role:'Procuradora-Geral da União — AGU',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/f19a563a035663d0bc9d8d111a31302238102cd4/Clarice%20C.png'),
+   li:'https://br.linkedin.com/in/clarice-calixto-916334241',
+   bio:'Doutora e Mestre em Direito pela Universidade de Brasília. Graduada em Direito pela UFMG. Como Advogada da União, coordenou a equipe de revisão de atos normativos da Casa Civil da Presidência da República, atuou como Assessora Especial do Ministro da Justiça, coordenou a Consultoria Jurídica do Ministério da Cultura, foi Chefe de Gabinete da Procuradoria-Regional da União em São Paulo e Coordenadora de Planejamento e Monitoramento na PGU. Ministra cursos na ENAP, na PUC-SP e em outras instituições.'},
+  {i:'CJ',name:'Carolina Junqueira',role:'Diretora de Compliance e Riscos — Grupo Globo',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/7f7f3b5638c3bd62144da9919551ca1af86ea069/Carolina-Junqueira-Globo.jpg'),
+   li:'https://br.linkedin.com/in/carolina-junqueira-164a4120',
+   bio:'Advogada e executiva sênior, com mais de 15 anos de experiência em compliance, gestão de riscos e governança corporativa. Atuou por mais de uma década na Ambev, com papel central no desenvolvimento do programa de compliance em múltiplas jurisdições, exercendo também a função de Diretora de Auditoria Interna. Desde 2020, lidera as áreas de Compliance e Riscos do Grupo Globo, sendo responsável pelo Programa de Compliance, Auditoria Interna e Controles Internos. É membro do Comitê de Auditoria do Grupo Globo.'},
+  {i:'CM',name:'Carolina Marzano',role:'Chief Compliance Officer — ABES / Conselheira CLM',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/7f7f3b5638c3bd62144da9919551ca1af86ea069/Carol%20Marzano.jpeg'),
+   li:'https://br.linkedin.com/in/carolina-marzano-61735947',
+   bio:'Advogada formada pela Universidade Presbiteriana Mackenzie, especializada em Compliance pelo INSPER e certificada em Anticorrupção pela IACA. Atualmente é Chief Compliance Officer da ABES, Líder do Programa Uma Empresa Ética, Representante da ABES na Plataforma Anticorrupção do Pacto Global da ONU no Brasil e Conselheira de Integridade e Compliance na CLM.'},
+  {i:'CG',name:'Cristine Köhler Ganzenmüller',role:'Diretora de Promoção e Avaliação de Integridade Privada — CGU',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/1516a38ca50f5e14f8d354a98e24bfdf4d990d6d/WhatsApp%20Image%202026-05-31%20at%2015.14.22.jpeg'),
+   li:'https://www.linkedin.com/in/cristine-ganzenm%C3%BCller-1238a2334/',
+   bio:'Auditora Federal da Controladoria-Geral da União, ocupa atualmente a função de Diretora de Promoção e Avaliação de Integridade Privada. Na CGU já atuou como Coordenadora de Promoção de Integridade, Chefe na Coordenação de Negociação de Acordos de Leniência e Corregedora do Ministério da Cultura e do Ministério do Esporte. Formada em Direito pela UFPR, possui MBA em Direito Econômico e Empresarial pela FGV.'},
+  {i:'EB',name:'Eveline Martins Brito',role:'Secretária-Executiva — CGU',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/b99f8f6294470955a6f1aefdf3b7d14ac1d55734/eveline-martins-brito-e1741804236426.jpg'),
+   li:'https://www.linkedin.com/in/eveline-brito-94089914a/',
+   bio:'Servidora da Controladoria-Geral da União. Com 27 anos na carreira de Finanças e Controle, atuou na CGU como Coordenadora-Geral de Auditoria, Diretora de Planejamento e Desenvolvimento Institucional e Coordenadora-Geral de julgamento de servidores e empregados públicos. Foi Ouvidora-Adjunta Chefe na EBC e a primeira ouvidora na Presidência da República. Em 2024 assumiu como Secretária-Executiva na CGU.'},
+  {i:'FM',name:'Fabrício Juliano Mendes Medeiros',role:'Advogado — Medeiros & Barros Correia Advogados',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/3ef42e277afe9c91779948ac5cd5612371841dd1/Fabri%CC%81cio.webp'),
+   li:'https://br.linkedin.com/in/fabr%C3%ADcio-juliano-mendes-medeiros-676063176',
+   bio:'Graduado pela Faculdade de Direito da UFS, Mestre em Direito pelo UniCEUB, Especialista em Direito Constitucional Processual pela UFS. Professor do IDP. Foi Assessor de Ministro do STF e do TSE e Assessor Jurídico na Câmara dos Deputados e no Senado Federal. Membro do IBRADE. Integrou a lista tríplice aprovada pelo STF para o cargo de Ministro-Substituto do TSE em 2022. Autor do livro "O ativismo judicial e direito à saúde" (Fórum, 2011).'},
+  {i:'FB',name:'Felipe Barbosa Brandt',role:'Diretor de Responsabilização de Entes Privados — CGU',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/65755801dc008235e1f0104d772ff143e69e3f9a/Felipe%20Brandt.jpg'),
+   li:'https://www.linkedin.com/in/felipe-barbosa-brandt-33705b203/',
+   bio:'Atualmente é Diretor de Responsabilização de Entes Privados na Secretaria de Integridade Privada da CGU. Anteriormente, exerceu o cargo de Coordenador-Geral de Responsabilização de Entes Privados na CGU, além de atuar como assessor de Juiz Federal e ocupar diversos cargos na Caixa Econômica Federal. Graduado em Direito pela UFPB, com pós-graduação em Direito Público e Combate à Corrupção e à Lavagem de Dinheiro.'},
+  {i:'FS',name:'Fernanda Santos Schramm',role:'Compliance Officer — STATKRAFT Energias Renováveis S/A',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/7f7f3b5638c3bd62144da9919551ca1af86ea069/Fernanda%20Schramm%20.jpeg'),
+   li:'https://www.linkedin.com/in/fernanda-schramm-ccep-i-78a37292/',
+   bio:'Doutora em Direito pela Universidade de São Paulo (USP). Mestre em Direito do Estado pela UFSC. Educação Executiva em Compliance e Gestão de Compliance pelo INSPER/SP. Especialista em Processo Civil. Vice-Presidente da Comissão de Licitações e Contratos da OAB/SC. Graduada em Relações Internacionais pela UFSC. Sócia da Menezes Niebuhr Advogados Associados. Autora do livro "Compliance nas Contratações Públicas" (Editora Fórum, 2ª Ed., 2021).'},
+  {i:'GB',name:'Gabriel Nogueira Bravo',role:'Gerente de Integridade Corporativa — SEBRAE',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/7f7f3b5638c3bd62144da9919551ca1af86ea069/Gabriel.jpeg'),
+   li:'https://www.linkedin.com/in/gabriel-nogueira-portella-nunes-pinto-bravo-60409821/',
+   bio:'Advogado, especialista em Direito e Gestão de Serviços Sociais Autônomos pelo IDP. Possui mais de 19 anos de experiência no Sistema Sebrae, com atuação nas áreas jurídica, integridade, ouvidoria e governança. Atualmente acumula a Gerência das Unidades de Integridade Corporativa e Ouvidoria do Sebrae Nacional. Membro titular no Comitê do Pró-Ética da CGU e no Conselho de Transparência, Integridade e Combate à Corrupção (CTICC) da CGU.'},
+  {i:'GW',name:'Gilberto Waller Júnior',role:'Procurador Federal — AGU',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/251f699be73eebd16dffcb1f15470c41ed7d1995/Gilberto%20Waller.jpg'),
+   li:'https://br.linkedin.com/in/gilbertowaller',
+   bio:'Procurador federal, exerceu diversos cargos de destaque na Administração Pública Federal, dentre eles Ouvidor-Geral da União, Corregedor-Geral da União e Presidente do INSS. Possui bacharelado em Direito, especialização em combate à corrupção e quase 30 anos de carreira no serviço público brasileiro.'},
+  {i:'JP',name:'Juliana Palma',role:'Professora — FGV Direito SP',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/251f699be73eebd16dffcb1f15470c41ed7d1995/Juliana%20palma.jpg'),
+   li:'https://direitosp.fgv.br/professor/juliana-bonacorsi-de-palma',
+   bio:'Professora Associada da FGV Direito SP com regime de dedicação exclusiva. Coordenadora do Núcleo Público da FGV Direito SP e do Escritório Central de Integridade Científica da FGV. Doutora e Mestre pela Faculdade de Direito da USP. LL.M. pela Yale Law School, bolsista da Lilian Goldman Perpetual Scholarship. Foi visiting scholar na Washington College of Law — American University.'},
+  {i:'JP',name:'Juliana Penelli',role:'Gerente de Compliance Sênior — Pacto Global ONU Rede Brasil',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/39243bbd70ffe0185833ba9ddfef8bac36474992/Juliana%20Penelli.jpg'),
+   li:'https://br.linkedin.com/in/juliana-penelli',
+   bio:'Advogada inscrita na OAB/SP desde 2002, com mais de 20 anos de experiência em implantação e gestão de Programa de Compliance, Proteção de Dados e Contratos. Capacitada em Proteção de Dados e Privacidade pela Data Privacy Brasil e Treinadora DEPE (Alliance of Integrity). Possui experiência em processos licitatórios, gestão de marcas e patentes, canal de denúncias e relacionamento com stakeholders. Atua como Gerente de Compliance Sênior do Pacto Global da ONU Rede Brasil.'},
+  {i:'KS',name:'Keity Saboya',role:'Juíza de Direito — TJ/RN',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/65755801dc008235e1f0104d772ff143e69e3f9a/keity%20saboia.jpeg'),
+   li:'https://br.linkedin.com/in/keity-saboya-7429aa106',
+   bio:'Professora Associada da UFRN, atuando principalmente na área das Ciências Criminais. Coordenadora do Programa de Residência Judicial da Escola da Magistratura do Rio Grande do Norte. Juíza de Direito do Estado do Rio Grande do Norte. Doutora em Direito Penal pela UERJ com Estágio Doutoral na Universidad de Castilla-La Mancha. Bolsista do Max-Planck-Institut. Autora do livro "Ne Bis in idem: História, Teoria e Perspectivas" (Lumen Juris).'},
+  {i:'LW',name:'Luis Wielewick',role:'Advogado — wm&t Advogados',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/251f699be73eebd16dffcb1f15470c41ed7d1995/Luis%20W.png'),
+   li:'',
+   bio:'Formado em Direito cum laude pela Universidade Estadual de Londrina, Mestre (LL.M.) pela Universidade Columbia e Doutor em Direito pela Universidade de São Paulo. Sócio-fundador do escritório paulistano wm&t. Escolhido, em 2025, Investigations Professional of the Year pela publicação britânica Global Investigations Review.'},
+  {i:'LH',name:'Luiz Henrique Pandolfi Miranda',role:'Diretor de Acordos de Leniência — CGU',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/65755801dc008235e1f0104d772ff143e69e3f9a/Luiz%20Pandolfi.jpg'),
+   li:'',
+   bio:'Possui graduação em Direito pela Universidade Federal do Espírito Santo (2003), pós-graduação em Direito Público pela UnB e em Direito Processual pela PUC-MG; e Mestrado em Direito Processual pela UFES (2022-2024). Procurador-federal da AGU desde 2006, já atuou na Corregedoria-Geral da União (Corregedor Setorial), na Consultoria Jurídica do Ministério das Cidades e na Procuradoria-Regional Federal da 2ª Região.'},
+  {i:'MP',name:'Marcelo Pontes Vianna',role:'Secretário de Integridade Privada — CGU',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/1516a38ca50f5e14f8d354a98e24bfdf4d990d6d/2025.02.04%20Marcelo%20Pontes%20Viana%20-%20SIPRI-2.jpg'),
+   li:'https://br.linkedin.com/in/marcelo-pontes-vianna',
+   bio:'Advogado e cientista político, possui pós-graduações em Direito Público, Avaliação de Políticas Públicas e Economia Nacional pela George Washington University. Mestre em Direito pela University of Notre Dame. Auditor Federal da CGU desde 2006, onde ocupou diversos cargos de direção, como os de Corregedor-Geral Adjunto e Diretor de Responsabilização de Entes Privados. Entre 2024 e 2025, foi copresidente do Grupo de Trabalho Anticorrupção do G20. Desde 2023, exerce o cargo de Secretário de Integridade Privada.'},
+  {i:'MS',name:'Mário Vinícius Spinelli',role:'Sócio-Diretor — MS Integridade e Reasoning Global Advisory',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/b99f8f6294470955a6f1aefdf3b7d14ac1d55734/Mario%20Spinelli.jpg'),
+   li:'https://www.linkedin.com/in/m%C3%A1rio-spinelli-570565106/',
+   bio:'Doutor em Administração Pública e Governo pela FGV-EAESP. Mestre em Administração Pública pela FJP-MG. Professor de Pós-Graduação em Controle, Detecção e Repressão a Desvio de Recursos Públicos (UFLA), Especialização em Compliance (CPEC/Universidad Castilla La Mancha) e Extensão em Compliance (PUC-RJ). Ex-Controlador-Geral do Estado de Minas Gerais e do Município de São Paulo. Foi Diretor de Governança e Compliance e Ouvidor-Geral da Petrobras. Ex-Secretário de Prevenção da Corrupção da CGU. Ex-Conselheiro do COAF. Auditor Federal de Finanças e Controle da CGU.'},
+  {i:'MZ',name:'Monique Cerqueira Zuidema',role:'Coord.-Geral de Promoção de Integridade Privada — CGU',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/05e4b3f90cc7b60cf126de15c502e3fb9e6e6ac1/Foto%20Monique%20Maio%202.jpg'),
+   li:'',
+   bio:'Graduada em Engenharia Naval e Oceânica pela Universidade Federal do Rio de Janeiro, tendo realizado parte de sua formação na Stevens Institute of Technology (EUA). É Auditora Federal da CGU desde 2022, onde tem atuado nas áreas de promoção da integridade e participado da implementação de programas como o Modelo de Maturidade em Integridade Pública (MMIP) e o Pacto Brasil pela Integridade Empresarial.'},
+  {i:'PC',name:'Paula Costim',role:'Head de Policy — ICC Brasil',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/39243bbd70ffe0185833ba9ddfef8bac36474992/Paula%20Costim.jpg'),
+   li:'https://br.linkedin.com/in/paulacostim',
+   bio:'É Head da área de Policy da ICC Brasil, responsável pelo desenvolvimento de iniciativas e estratégias de advocacy entre empresas, governos e organismos internacionais em temas relacionados à integridade, sustentabilidade e inserção internacional do país. Antes da ICC, atuou como Assessora e Chefe de Gabinete Substituta no gabinete da Secretaria de Comércio Exterior do Governo Federal e também teve passagem pela Amcham. É formada em Relações Internacionais e possui MBA em Gestão de Projetos pela FGV.'},
+  {i:'RL',name:'Raniere Rocha Lins',role:'Procurador Nacional de Patrimônio Público e Probidade — AGU',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/251f699be73eebd16dffcb1f15470c41ed7d1995/Raniere.jpg'),
+   li:'',
+   bio:'Graduado em Direito pela Universidade Federal de Alagoas (2014). Especialista em Prática Processual pelo UniCEUB (2018). Mestre em Direito Constitucional pelo IDP (2020). Doutorando em Direito na UnB (2022). Advogado da União desde 2017. Atualmente ocupa o cargo de Procurador Nacional da União de Patrimônio Público e Probidade. Ex-Procurador da Fazenda Nacional (2016) e Assessor do Ministério Público Federal em Alagoas (2015-2016).'},
+  {i:'RS',name:'Raphael Rodrigues Soré',role:'Advogado e Dir. de Compliance e Investigações — IBRAC',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/251f699be73eebd16dffcb1f15470c41ed7d1995/Raphael%20Sore%CC%81.jpeg'),
+   li:'https://www.linkedin.com/in/raphaelsore/',
+   bio:'Mestre em Direito do Estado na Faculdade de Direito do Largo de São Francisco da USP. Especialista em Direito Público pela Escola Paulista da Magistratura do TJSP e em Direito Comunitário Europeu pela Universidade de Coimbra. Foi Secretário-Executivo do CONACI e Presidente do Comitê do Portal da Transparência do Estado de São Paulo. Atualmente é advogado especializado em Compliance empresarial e anticorrupção.'},
+  {i:'RM',name:'Renato Machado Souza',role:'Advogado — Maeda, Ayres e Sarubbi Advogados',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/1516a38ca50f5e14f8d354a98e24bfdf4d990d6d/Renato%20Machado.jpg'),
+   li:'https://www.linkedin.com/in/renato-machado-de-souza-047144105/',
+   bio:'Advogado e professor do Programa de Doutorado da Universidade de Salamanca.'},
+  {i:'RG',name:'Reynaldo Goto',role:'Consultor especialista em Governança e Compliance',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/1516a38ca50f5e14f8d354a98e24bfdf4d990d6d/Goto.png'),
+   li:'https://www.linkedin.com/in/reynaldo-goto/',
+   bio:'Executivo com sólida experiência global nas áreas de estratégia, governança corporativa, finanças, compliance, fusões e aquisições e sustentabilidade, tendo atuado nos segmentos de telecomunicações, industrial, saúde e energia (Siemens) e agronegócio (BRF). Reconhecido entre os Executivos de Compliance mais admirados do Brasil. Amplo engajamento em fóruns internacionais de governança, atuando na elaboração, implementação e disseminação de políticas públicas em fóruns como Pacto Global da ONU, OCDE, ICC e B20.'},
+  {i:'VS',name:'Valdir Moyses Simão',role:'Advogado — Warde Advogados',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/1516a38ca50f5e14f8d354a98e24bfdf4d990d6d/Valdir%20Sim%C3%A3o.jpg'),
+   li:'https://www.linkedin.com/in/valdirsimao/',
+   bio:'Advogado com atuação em compliance e consultor em governança pública e privada. Auditor-fiscal da Previdência Social e da Receita Federal do Brasil por 29 anos. Ocupou os cargos de Ministro do Planejamento, Orçamento e Gestão, Ministro-Chefe da CGU, Secretário da Fazenda, Presidente do INSS e Secretário-Executivo da Casa Civil. Na CGU, regulamentou a Lei Anticorrupção brasileira. Doutor em Estado de Direito e Governança Global pela Universidade de Salamanca e Master Universitário em Direção e Gestão de Sistemas de Seguridade Social pela Universidade de Alcalá.'},
+  {i:'VF',name:'Vanir Fridriczewski',role:'Advogado da União / Assessor no STF',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/251f699be73eebd16dffcb1f15470c41ed7d1995/Vanir.webp'),
+   li:'https://br.linkedin.com/in/vanir-fridriczewski-b27585205',
+   bio:'Advogado da União e Assessor de Ministro no STF. Mestre em Direito pela PUCRS e Doutor em Estado de Derecho y Gobernanza Global pela Universidade de Salamanca, onde obteve o Prêmio Extraordinário de Doutorado pela tese defendida no ano acadêmico de 2022-2023. Pós-Doutor pela Universidade de Salamanca, onde atua como professor colaborador do programa de Doutorado. Professor na Escola da AGU e na Faculdade Republicana.'},
+  {i:'VM',name:'Vinícius Marques de Carvalho',role:'Ministro da CGU',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/b99f8f6294470955a6f1aefdf3b7d14ac1d55734/MinistroViniciusdeCarvalho.jpg'),
+   li:'https://www.linkedin.com/in/vinicius-marques-de-carvalho-9a9063b0/',
+   bio:'Ministro da Controladoria-Geral da União (CGU). Nascido em São Paulo/SP, graduado em Direito pela USP, Doutor em Direito Comercial pela USP e em Direito Comparado pela Université de Paris 1 Pantheon-Sorbonne, onde foi professor-visitante. Desde 2014 é professor da USP. Presidiu o CADE de 2012 a 2016. Pertenceu à carreira de Especialista em Políticas Públicas e Gestão Governamental.'},
+  {i:'VA',name:'Viviane André Antunes',role:'Chefe da Coord.-Geral de Acordos de Leniência — CGU',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/f19a563a035663d0bc9d8d111a31302238102cd4/Viviane.jpg'),
+   li:'',
+   bio:'Auditora Federal de Finanças e Controle da CGU desde 2006. Engenheira de Computação e bacharel em Direito pela UFRN, Mestre em Engenharia Elétrica pela mesma instituição. Pós-graduada em Prevenção e Combate a Desvios de Recursos Públicos pela Universidade Federal de Lavras. Possui experiência nas áreas de auditoria, operações especiais e acordos de leniência da Lei Anticorrupção.'},
+  {i:'VM',name:'Viviane Mosé',role:'Filósofa, psicanalista, poeta e especialista em políticas públicas',
+   photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/65755801dc008235e1f0104d772ff143e69e3f9a/Viviane-Mose-5_Easy-Resize.com_.jpg'),
+   li:'',
+   bio:'Filósofa, psicanalista, poeta e especialista em elaboração e implementação de políticas públicas brasileira. Reconhecida por sua capacidade de traduzir temas complexos da filosofia para o público geral, abordando questões contemporâneas sobre sociedade, educação, comportamento feminino e tecnologia.'},
 ];
 
 (function(){
