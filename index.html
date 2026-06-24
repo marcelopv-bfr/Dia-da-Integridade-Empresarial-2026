@@ -17,7 +17,7 @@
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
   font-family:'Segoe UI',system-ui,sans-serif;}
-#app{display:flex;flex-direction:column;height:100dvh;}
+#app{display:flex;flex-direction:column;height:100vh;}
 
 /* SCREENS */
 #screens{flex:1;overflow:hidden;position:relative;}
@@ -55,32 +55,21 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 .card+.card{margin-top:.75rem;}
 
 /* ── HOME ── */
-.hero-wrap{border-radius:16px;overflow:hidden;margin-bottom:1rem;position:relative;}
-.hero-img{display:block;width:100%;object-fit:cover;max-height:56vw;min-height:160px;}
-.hero-overlay{position:absolute;inset:0;
-  background:linear-gradient(to bottom,rgba(7,32,26,.12) 0%,rgba(7,32,26,.68) 100%);}
-.hero-badge{position:absolute;top:.75rem;right:.75rem;width:76px;height:76px;
-  object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.55));}
-.hero-chip{position:absolute;bottom:.8rem;left:.85rem;
-  background:rgba(7,32,26,.72);backdrop-filter:blur(8px);
-  border:1px solid var(--border);border-radius:8px;
-  padding:.28rem .72rem;display:flex;align-items:center;gap:.45rem;}
-.hero-chip-dot{width:6px;height:6px;border-radius:50%;
-  background:var(--green);box-shadow:0 0 6px var(--green);flex-shrink:0;}
-.hero-chip span{font-size:.7rem;font-weight:700;color:var(--text);letter-spacing:.3px;}
+.hero-banner{border-radius:16px;overflow:hidden;margin-bottom:1rem;position:relative;}
+.hero-banner-img{display:block;width:100%;object-fit:cover;}
+.hero-overlay{position:absolute;bottom:0;left:0;right:0;padding:.75rem 1rem;
+  background:linear-gradient(to top,rgba(7,32,26,.85) 0%,transparent 100%);}
+.hb-meta{font-size:.78rem;color:var(--muted);margin-bottom:.4rem;}
 
-/* 2 feature buttons */
-.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1rem;}
-.feat-btn{background:var(--card);border:1px solid var(--border2);border-radius:14px;
-  padding:1rem .9rem;display:flex;flex-direction:column;align-items:flex-start;gap:.3rem;
-  cursor:pointer;transition:.18s;text-align:left;color:var(--text);width:100%;}
-.feat-btn:hover{background:var(--card2);border-color:var(--border);transform:translateY(-2px);}
-.feat-btn .fi{font-size:1.4rem;}
-.feat-btn .ft{font-size:.8rem;font-weight:800;color:var(--green2);line-height:1.3;}
-.feat-btn .fs{font-size:.68rem;color:var(--muted);line-height:1.4;margin-top:.1rem;}
+/* em-breve buttons */
+.em-breve-btns{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:.75rem;}
+.eb-btn{background:var(--card);border:1px solid var(--border2);border-radius:12px;
+  padding:.85rem .7rem;font-size:.76rem;font-weight:700;color:var(--text);
+  cursor:pointer;transition:.15s;text-align:center;line-height:1.4;}
+.eb-btn:hover{background:var(--card2);border-color:var(--border);}
 
 /* 4 nav buttons */
-.quick-btns{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1rem;}
+.quick-btns{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:.75rem;}
 .qbtn{background:var(--card2);border:1px solid var(--border);border-radius:12px;
   padding:.9rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;
   cursor:pointer;transition:.15s;color:var(--text);width:100%;}
@@ -88,7 +77,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 .qbtn .qi{font-size:1.4rem;}
 .qbtn .ql{font-size:.72rem;font-weight:600;color:var(--muted);}
 
-/* apoio */
+/* apoio strip */
 .apoio-strip{border-radius:12px;background:var(--card);border:1px solid var(--border2);
   padding:.8rem 1rem;display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;}
 .apoio-strip > span{font-size:.65rem;color:var(--muted);}
@@ -179,6 +168,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 @media(min-width:500px){
   .spk-grid{grid-template-columns:repeat(3,1fr);}
   .quick-btns{grid-template-columns:repeat(4,1fr);}
+  .feat-grid{grid-template-columns:repeat(2,1fr);}
 }
 </style>
 </head>
@@ -188,11 +178,13 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 
     <!-- ══ HOME ══ -->
     <div class="screen active" id="s-home">
+
+      <!-- HERO BANNER -->
       <div class="hero-wrap">
         <img class="hero-img"
           src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/648ef5753a05c4ae93863a195d2649dcfedca5b9/Hero%20banner.jpg"
           alt="Dia da Integridade Empresarial 2026"
-          onerror="this.style.minHeight='180px';this.style.background='linear-gradient(135deg,#0d3d26,#07201a)'"/>
+          onerror="this.style.minHeight='160px';this.style.background='linear-gradient(135deg,#0d3d26,#06180f)'"/>
         <div class="hero-overlay"></div>
         <img class="hero-badge"
           src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/648ef5753a05c4ae93863a195d2649dcfedca5b9/Badge%20Pro%CC%81-E%CC%81tica.png"
@@ -204,6 +196,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
         </div>
       </div>
 
+      <!-- FEATURE BUTTONS: Novidades + Empresas premiadas -->
       <div class="feat-grid">
         <button class="feat-btn" onclick="goTo('s-novidades')">
           <span class="fi">🔔</span>
@@ -217,13 +210,15 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
         </button>
       </div>
 
+      <!-- NAV BUTTONS -->
       <div class="quick-btns">
         <button class="qbtn" onclick="goTo('s-prog')"><span class="qi">🗓️</span><span class="ql">Programação</span></button>
         <button class="qbtn" onclick="goTo('s-spk')"><span class="qi">🎙️</span><span class="ql">Palestrantes</span></button>
         <button class="qbtn" onclick="goTo('s-local')"><span class="qi">📍</span><span class="ql">Local</span></button>
-        <button class="qbtn" onclick="goTo('s-novidades')"><span class="qi">🔔</span><span class="ql">Novidades</span></button>
+        <button class="qbtn" onclick="goTo('s-novidades')"><span class="qi">🔔</span><span class="ql">Agenda</span></button>
       </div>
 
+      <!-- APOIO + GOV -->
       <div class="apoio-strip">
         <span>Apoio:</span>
         <span class="apoio-tag">Sebrae</span>
@@ -347,6 +342,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 
   </div><!-- /screens -->
 
+  <!-- TABS -->
   <div class="tabs">
     <button class="tab active" id="tab-home" onclick="goTo('s-home')"><span class="tab-icon">🏠</span><span class="tab-label">Início</span><span class="tab-dot"></span></button>
     <button class="tab" id="tab-prog" onclick="goTo('s-prog')"><span class="tab-icon">🗓️</span><span class="tab-label">Programação</span><span class="tab-dot"></span></button>
