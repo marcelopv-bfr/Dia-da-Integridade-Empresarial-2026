@@ -59,27 +59,13 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 
 /* HOME */
 .hero-banner{border-radius:16px;overflow:hidden;margin-bottom:1rem;position:relative;
-  padding:1.6rem 1.2rem 0;min-height:260px;}
-.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center top;
+  padding:1rem 1.2rem 0;min-height:200px;}
+.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center center;
   border-radius:16px;}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(7,32,26,.82) 0%,rgba(7,32,26,.55) 100%);border-radius:16px;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,32,26,.15) 0%,rgba(7,32,26,.55) 85%);border-radius:16px;}
 .hero-banner-inner{position:relative;z-index:2;}
-
-/* Pró-Ética badge */
-.hb-proetic{margin-bottom:.9rem;display:flex;flex-direction:column;align-items:flex-start;}
-.hb-proetic-bar{display:inline-flex;align-items:center;gap:.5rem;
-  background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.15);
-  border-radius:8px;padding:.4rem .75rem;backdrop-filter:blur(6px);}
-.hb-proetic-logo{height:44px;width:auto;display:block;}
-.hb-proetic-years{display:flex;flex-direction:column;gap:.1rem;}
-.hb-proetic-years span{font-size:.62rem;font-weight:700;color:var(--muted);
-  background:rgba(255,255,255,.08);border-radius:3px;padding:.05rem .35rem;}
-.hb-proetic-label{font-size:.6rem;font-weight:700;letter-spacing:2px;
-  text-transform:uppercase;color:var(--gold);margin-top:.3rem;padding-left:.2rem;}
-
-.hb-title{font-size:1.5rem;font-weight:900;line-height:1.15;margin-bottom:.3rem;}
-.hb-title em{font-style:normal;color:var(--green2);}
-.hb-meta{font-size:.78rem;color:rgba(226,245,238,.8);margin-bottom:1.4rem;}
+.hb-meta{font-size:.78rem;color:rgba(226,245,238,.9);font-weight:600;
+  text-shadow:0 1px 4px rgba(0,0,0,.6);}
 .hb-skyline{display:block;width:100%;margin-bottom:-1px;position:relative;z-index:2;}
 
 /* Quick action buttons (2 large) */
@@ -218,21 +204,10 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
     <!-- HOME -->
     <div class="screen active" id="s-home">
       <div class="hero-banner">
-        <div class="hero-bg" style="background-image:url('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/fundo%20evento.jpeg')"></div>
+        <div class="hero-bg" style="background-image:url('https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/05e4b3f90cc7b60cf126de15c502e3fb9e6e6ac1/Hero%20banner.jpg')"></div>
         <div class="hero-overlay"></div>
         <div class="hero-banner-inner">
-          <div class="hb-proetic">
-            <div class="hb-proetic-bar">
-              <img class="hb-proetic-logo"
-                src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Captura_de_Tela_2026-06-24_a%CC%80s_11.30.49-removebg-preview.png"
-                alt="Selo Pró-Ética"
-                onerror="this.style.display='none'"/>
-              <div class="hb-proetic-years"><span>2025</span><span>2026</span></div>
-            </div>
-            <div class="hb-proetic-label">PREMIAÇÃO</div>
-          </div>
-          <div class="hb-title">DIA DA<br><em>INTEGRIDADE<br>EMPRESARIAL</em></div>
-          <div class="hb-meta">30 JUN · 1º JUL 2026 &nbsp;·&nbsp; Brasília/DF</div>
+          <div class="hb-meta" style="margin-bottom:1.2rem;margin-top:.2rem;">30 JUN · 1º JUL 2026 &nbsp;·&nbsp; Brasília/DF</div>
         </div>
         <svg class="hb-skyline" viewBox="0 0 800 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
           <defs>
@@ -511,6 +486,7 @@ const SPEAKERS = [
   {i:'LH',name:'Luiz Henrique Pandolfi Miranda',role:'Diretor de Acordos de Leniência — CGU',photo:BASE+'Luiz%20Pandolfi.jpg',li:'',bio:'Possui graduação em Direito pela Universidade Federal do Espírito Santo (2003), pós-graduação (lato sensu) em Direito Público pela Universidade de Brasília e em Direito Processual pela PUC-MG; e Mestrado em Direito Processual pela UFES (2022-2024). Procurador-federal da Advocacia-Geral da União desde 2006, já atuou na Corregedoria-Geral da União (Corregedor Setorial), na Consultoria Jurídica do Ministério das Cidades (Consultor Adjunto) e na Procuradoria-Regional Federal da 2ª Região.'},
   {i:'MP',name:'Marcelo Pontes Vianna',role:'Secretário de Integridade Privada — CGU',photo:BASE+'2025.02.04%20Marcelo%20Pontes%20Viana%20-%20SIPRI-2.jpg',li:'https://br.linkedin.com/in/marcelo-pontes-vianna',bio:'Advogado e cientista político, possui pós-graduações em Direito Público, Avaliação de Políticas Públicas e Economia Nacional pela George Washington University. Mestre em Direito pela University of Notre Dame. Auditor Federal da CGU desde 2006, onde ocupou diversos cargos de direção, como os de Corregedor-Geral Adjunto e Diretor de Responsabilização de Entes Privados. Integrante, desde 2019, das delegações brasileiras junto aos fóruns anticorrupção da OCDE e ONU. Entre 2024 e 2025, foi copresidente do Grupo de Trabalho Anticorrupção do G20. Desde 2023, exerce o cargo de Secretário de Integridade Privada.'},
   {i:'MS',name:'Mário Vinícius Spinelli',role:'Sócio-Diretor — MS Integridade e Reasoning Global Advisory',photo:BASE+'Mario%20Spinelli.jpg',li:'https://www.linkedin.com/in/m%C3%A1rio-spinelli-570565106/',bio:'Doutor em Administração Pública e Governo pela FGV-EAESP. Mestre em Administração Pública pela FJP-MG. Professor em cursos de pós-graduação em Controle e Compliance em diversas instituições, incluindo UFLA, CPEC/Universidad Castilla La Mancha e PUC-RJ. Ex-Controlador-Geral do Estado de Minas Gerais. Foi Diretor de Governança e Compliance e Ouvidor-Geral da Petrobras. Ex-Controlador-Geral do Município de São Paulo. Ex-Secretário de Prevenção da Corrupção e Informações Estratégicas da CGU. Auditor Federal de Finanças e Controle da CGU.'},
+  {i:'MZ',name:'Monique Cerqueira Zuidema',role:'Coord.-Geral de Promoção de Integridade Privada — CGU',photo:'https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/05e4b3f90cc7b60cf126de15c502e3fb9e6e6ac1/Foto%20Monique%20Maio%202.jpg',li:'',bio:'Graduada em Engenharia Naval e Oceânica pela Universidade Federal do Rio de Janeiro, tendo realizado parte de sua formação na Stevens Institute of Technology (EUA). É Auditora Federal da CGU desde 2022, onde tem atuado nas áreas de promoção da integridade e participado da implementação de programas como o Modelo de Maturidade em Integridade Pública (MMIP) e o Pacto Brasil pela Integridade Empresarial.'},
   {i:'PC',name:'Paula Costim',role:'Head de Policy — ICC Brasil',photo:BASE+'Paula%20Costim.jpg',li:'https://br.linkedin.com/in/paulacostim',bio:'É Head da área de Policy da ICC Brasil, responsável pelo desenvolvimento de iniciativas e estratégias de advocacy entre empresas, governos e organismos internacionais em temas relacionados à integridade, sustentabilidade e inserção internacional do país. Antes da ICC, atuou como Assessora e Chefe de Gabinete Substituta no gabinete da Secretaria de Comércio Exterior do Governo Federal e também teve passagem pela Amcham. É formada em Relações Internacionais e possui MBA em Gestão de Projetos pela FGV.'},
   {i:'RL',name:'Raniere Rocha Lins',role:'Procurador Nacional de Patrimônio Público e Probidade — AGU',photo:BASE+'Raniere.jpg',li:'',bio:'Possui graduação em Direito pela Universidade Federal de Alagoas (2014). Especialista em Prática Processual nos Tribunais pelo UniCEUB (2018). Mestre em Direito Constitucional pelo IDP (2020). Doutorando em Direito na Universidade de Brasília (2022). Advogado da União desde 2017. Atualmente ocupa o cargo de Procurador Nacional da União de Patrimônio Público e Probidade. Ex-Procurador da Fazenda Nacional (2016) e Assessor do Ministério Público Federal em Alagoas (2015-2016).'},
   {i:'RS',name:'Raphael Rodrigues Soré',role:'Advogado e Dir. de Compliance e Investigações — IBRAC',photo:BASE+'Raphael%20Sore%CC%81.jpeg',li:'https://www.linkedin.com/in/raphaelsore/',bio:'Mestre em Direito do Estado na Faculdade de Direito do Largo de São Francisco da USP, mesma instituição pela qual graduou-se em Direito. Especialista em Direito Público pela Escola Paulista da Magistratura do TJSP e em Direito Comunitário Europeu pela Universidade de Coimbra. Foi Assistente da Presidência da Corregedoria Geral da Administração do Estado de São Paulo, Secretário-Executivo do CONACI e Presidente do Comitê do Portal da Transparência do Estado de SP. Atualmente é advogado especializado em Compliance empresarial e anticorrupção.'},
