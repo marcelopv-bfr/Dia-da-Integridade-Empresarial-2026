@@ -477,7 +477,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
       <div class="stitle">Empresas Pró-Ética</div>
       <p class="ssub">2025 · 2026</p>
 
-      <div class="premiadas-hero">
+      <div class="premiadas-hero" id="premiadas-hero">
         <div class="premiadas-trophy">🏆</div>
         <div class="premiadas-title">Pró-Ética 2025/2026</div>
         <div class="premiadas-sub">As empresas vencedoras serão reveladas na cerimônia de premiação em 1º de julho de 2026.</div>
@@ -486,19 +486,46 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
         </div>
       </div>
 
-      <!-- Countdown -->
-      <div class="countdown-wrap">
-        <div class="countdown-label">Contagem regressiva para a premiação</div>
+      <!-- Countdown — zera em 30/jun às 10h30 (Brasília = UTC-3) -->
+      <div class="countdown-wrap" id="cd-wrap">
+        <div class="countdown-label">Divulgação das vencedoras em</div>
         <div class="countdown-grid">
           <div class="cd-block"><div class="cd-num" id="cd-d">--</div><div class="cd-lbl">dias</div></div>
           <div class="cd-block"><div class="cd-num" id="cd-h">--</div><div class="cd-lbl">horas</div></div>
           <div class="cd-block"><div class="cd-num" id="cd-m">--</div><div class="cd-lbl">min</div></div>
           <div class="cd-block"><div class="cd-num" id="cd-s">--</div><div class="cd-lbl">seg</div></div>
         </div>
+        <div style="text-align:center;margin-top:.5rem;font-size:.68rem;color:var(--muted2)">30 de junho · 10h30 · Brasília</div>
       </div>
 
-      <div class="premiadas-info">
-        <p>O <strong>Selo Pró-Ética</strong> é concedido pela CGU às empresas que se destacam na implementação de programas de integridade e boas práticas anticorrupção. A cerimônia de premiação ocorre no <strong>1º de julho de 2026</strong>, a partir das 16h, encerrando o Dia da Integridade Empresarial.</p>
+      <!-- Conteúdo revelado após o countdown -->
+      <div id="premiadas-reveal" style="display:none">
+        <!-- Logomarcas -->
+        <div style="margin:0 1rem .65rem;">
+          <a href="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/c72e16724737bd930d72140b4ae8936e68ab1513/IMG-20260624-WA0033(1).jpg"
+             target="_blank"
+             style="display:flex;align-items:center;gap:.6rem;background:var(--card);
+                    border:1px solid var(--border);border-radius:13px;padding:.9rem 1rem;
+                    text-decoration:none;color:var(--text);">
+            <span style="font-size:1.4rem">🖼️</span>
+            <div>
+              <div style="font-size:.85rem;font-weight:700;color:var(--green2)">Ver logomarcas das premiadas</div>
+              <div style="font-size:.7rem;color:var(--muted);margin-top:.1rem">Toque para abrir a imagem completa</div>
+            </div>
+            <span style="margin-left:auto;font-size:.8rem;color:var(--green)">→</span>
+          </a>
+        </div>
+
+        <!-- Lista de empresas -->
+        <div style="margin:0 1rem .4rem;display:flex;justify-content:space-between;align-items:center;">
+          <div style="font-size:.7rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted2)">128 empresas premiadas</div>
+          <div style="font-size:.68rem;color:var(--muted2)">ordem alfabética</div>
+        </div>
+        <div id="lista-premiadas" style="margin:0 1rem;background:var(--card);border:1px solid var(--border2);border-radius:13px;overflow:hidden;"></div>
+      </div>
+
+      <div class="premiadas-info" id="premiadas-info-base">
+        <p>O <strong>Selo Pró-Ética</strong> é concedido pela CGU às empresas que se destacam na implementação de programas de integridade e boas práticas anticorrupção. A divulgação ocorre em <strong>30 de junho de 2026</strong>, às 10h30, durante a cerimônia de abertura do Dia da Integridade Empresarial.</p>
       </div>
       <div style="height:.5rem"></div>
     </div>
@@ -831,26 +858,93 @@ function openModal(s){
 function closeModal(e){if(e.target===document.getElementById('modal'))closeModalBtn();}
 function closeModalBtn(){document.getElementById('modal').classList.remove('open');}
 
-// Countdown para 1º de julho às 16h (Brasília = UTC-3)
+// Lista das 128 empresas premiadas
+const PREMIADAS=[
+  'A. W. FABER-CASTELL AMAZONIA S. A.','A.W. FABER CASTELL S.A.','ACCIONA CONSTRUCCION S.A',
+  'ACHE LABORATORIOS FARMACEUTICOS SA','AEC CENTRO DE CONTATOS S/A','ALIANCA GERACAO DE ENERGIA S.A.',
+  'ALLIANZ SEGUROS S/A','ALLOS S.A.','ALUBAR METAIS E CABOS S/A','ARTERIS S.A.',
+  'ATECH - NEGOCIOS EM TECNOLOGIAS S.A','AUREN ENERGIA S.A.','AUTOPISTA FLUMINENSE S/A',
+  'AUTOPISTA LITORAL SUL S.A.','AUTOPISTA PLANALTO SUL S.A.','AUTOPISTA REGIS BITTENCOURT S/A',
+  'AXIA ENERGIA S.A','BANCO BRADESCO S.A.','BANCO BS2 S.A.','BANCO FIBRA S.A',
+  'BANCO INTER S.A','BANCO NACIONAL DE DESENVOLVIMENTO ECONOMICO E SOCIAL','BANCO VOLKSWAGEN S.A.',
+  'BASF SA','BOTICARIO PRODUTOS DE BELEZA LTDA','BRADSAÚDE S.A','BRF S.A',
+  'BRK AMBIENTAL PARTICIPACOES S.A','BROOKFIELD BRASIL ASSET MANAGEMENT INVESTIMENTOS LTDA.',
+  'BTG PACTUAL COMMODITIES SERTRADING S.A.','CAIXA ECONOMICA FEDERAL','CASA DA MOEDA DO BRASIL CMB',
+  'CASTROLANDA - COOPERATIVA AGROINDUSTRIAL LTDA','CBO HOLDING S.A.','CEG RIO S/A',
+  'CGN BRASIL ENERGIA E PARTICIPACOES S.A','CHINA THREE GORGES BRASIL ENERGIA S.A.',
+  'CIELO S.A - INSTITUICAO DE PAGAMENTO','CITROSUCO S/A AGROINDUSTRIA','CNP SEGUROS HOLDING BRASIL S.A.',
+  'COGNA EDUCACAO S.A','COMPANHIA DISTRIBUIDORA DE GAS DO RIO DE JANEIRO - CEG',
+  'COMPANHIA PARANAENSE DE ENERGIA - COPEL','COMPANHIA SIDERURGICA NACIONAL',
+  'CONCESSIONARIA AUTO RAPOSO TAVARES S.A','CONCESSIONARIA DE RODOVIAS DO INTERIOR PAULISTA S/A.',
+  'CONCESSIONARIA DE RODOVIAS NOROESTE PAULISTA S.A','COOPERATIVA DE CREDITO CREDICITRUS',
+  'CYRELA BRAZIL REALTY S.A. EMPREENDIMENTOS E PARTICIPACOES','DANONE LTDA',
+  'DESCARBONIZE SOLUCOES S.A.','DEXCO S.A','EGTC INFRA S.A.','EIXO SP CONCESSIONARIA DE RODOVIAS S.A.',
+  'ELFA MEDICAMENTOS S.A','ELO PARTICIPACOES LTDA','EMBRACON ADMINISTRADORA DE CONSORCIO S/A',
+  'ENEVA S.A.','ENGIE BRASIL ENERGIA S.A.','ENTREVIAS CONCESSIONARIA DE RODOVIAS S.A.',
+  'EUROFARMA LABORATORIOS S.A.','FERROPORT LOGISTICA COMERCIAL EXPORTADORA S.A','FLEURY S.A',
+  'GAS NATURAL SAO PAULO SUL S.A.','GAS NATURAL SERVICOS S.A.','GIGA MAIS FIBRA TELECOMUNICACOES S.A.',
+  'GLOBO COMUNICACAO E PARTICIPACOES S/A','GRAFICA E EDITORA POSIGRAF LTDA',
+  'HORMIGON HECT CONSULTORIA LTDA','HYUNDAI MOTOR BRASIL MONTADORA DE AUTOMOVEIS LTDA',
+  'IDEA MAKER MEIOS DE PAGAMENTO E CONSULTORIA LTDA','IGUA SANEAMENTO S.A.','ISA ENERGIA BRASIL S.A.',
+  'ITAU UNIBANCO HOLDING S.A.','ITAUSA S.A','JAMC CONSULTORIA E REPRESENTACAO DE SOFTWARE LTDA',
+  'JIRAU ENERGIA S.A','KAEFER RIP SERVICOS INDUSTRIAIS LTDA','LIGHT S/A - EM RECUPERACAO JUDICIAL',
+  'LOG COMMERCIAL PROPERTIES E PARTICIPACOES S.A','LUIZA ADMINISTRADORA DE CONSORCIOS LTDA',
+  'MAGALUPAY INSTITUICAO DE PAGAMENTO S.A.','MILLS LOCACAO, SERVICOS E LOGISTICA S.A.',
+  'MIP ENGENHARIA LTDA.','MOURA DUBEUX ENGENHARIA S/A','MRV ENGENHARIA E PARTICIPACOES SA',
+  'NATURA COSMETICOS S/A','NC ENERGIA S.A.','NEOENERGIA S.A','NOVA TRANSPORTADORA DO SUDESTE S/A - NTS',
+  'NOVO NORDISK FARMACEUTICA DO BRASIL LTDA','OCYAN S.A','OEC S.A. EM RECUPERACAO JUDICIAL',
+  'OMNI S/A CREDITO FINANCIAMENTO E INVESTIMENTO','ONCOCLINICAS DO BRASIL SERVICOS MEDICOS S.A.',
+  'OURO FINO SAUDE ANIMAL LTDA','PETROLEO BRASILEIRO S A - PETROBRAS','PETRORECONCAVO S/A',
+  'PORTO SEGURO S/A','POSITIVO EDUCACIONAL LTDA.','PPG INDUSTRIAL DO BRASIL - TINTAS E VERNIZES - LTDA.',
+  'PRUMO LOGISTICA S.A.','RADIX ENGENHARIA E DESENVOLVIMENTO DE SOFTWARE S/A','RUMO S/A',
+  'SANDOZ DO BRASIL INDUSTRIA FARMACEUTICA LTDA','SERVICOS DE PETROLEO CONSTELLATION S.A.',
+  'SIEMENS BRASIL LTDA','SLC AGRICOLA S.A.','SOLVI ESSENCIS AMBIENTAL S.A.',
+  'SPIC BRASIL ENERGIA PARTICIPACOES S.A.','STATKRAFT ENERGIAS RENOVAVEIS S/A',
+  'TEGRA INCORPORADORA S.A.','TELEFONICA BRASIL S.A','TIGRE MATERIAIS E SOLUCOES PARA CONSTRUCAO LTDA.',
+  'TIM S A','TRANSMISSORA ALIANCA DE ENERGIA ELETRICA S/A','UNIDAS LOCACOES E SERVICOS S/A',
+  'UNIMED BELO HORIZONTE COOPERATIVA DE TRABALHO MEDICO',
+  'UNIMED DO BRASIL CONFEDERACAO NAC DAS COOPERATIVAS MED',
+  'UNIMED DO ESTADO DE SAO PAULO - FEDERACAO ESTADUAL DAS COOPERATIVAS MEDICAS',
+  'UNIMED SAO JOSE DOS CAMPOS - COOPERATIVA DE TRABALHO MEDICO','UNIMED SEGURADORA S/A',
+  'UNIPAR CARBOCLORO S.A.','VIAPAULISTA S.A.','VLI S.A.','VPORTS AUTORIDADE PORTUARIA S.A.',
+  'WILSON SONS S.A.','WIZ CO PARTICIPACOES E CORRETAGEM DE SEGUROS S.A'
+];
+
+// Popula lista de premiadas
+(function(){
+  const ul=document.getElementById('lista-premiadas');
+  PREMIADAS.forEach((n,i)=>{
+    const d=document.createElement('div');
+    d.style.cssText=`display:flex;align-items:center;gap:.6rem;padding:.55rem .85rem;
+      font-size:.78rem;border-bottom:${i<PREMIADAS.length-1?'1px solid rgba(62,201,92,.07)':'none'};`;
+    d.innerHTML=`<span style="font-size:.6rem;color:var(--muted2);min-width:1.4rem;text-align:right">${i+1}</span>
+      <span style="color:var(--text);font-weight:500">${n}</span>`;
+    ul.appendChild(d);
+  });
+})();
+
+// Countdown — alvo: 30/jun/2026 às 10h30 (Brasília = UTC-3)
+const REVEAL_DATE=new Date('2026-06-30T10:30:00-03:00');
 function updateCountdown(){
-  const target=new Date('2026-07-01T16:00:00-03:00');
   const now=new Date();
-  const diff=target-now;
+  const diff=REVEAL_DATE-now;
   if(diff<=0){
-    document.getElementById('cd-d').textContent='00';
-    document.getElementById('cd-h').textContent='00';
-    document.getElementById('cd-m').textContent='00';
-    document.getElementById('cd-s').textContent='00';
+    // Revela o conteúdo
+    document.getElementById('cd-wrap').style.display='none';
+    document.getElementById('premiadas-reveal').style.display='block';
+    document.getElementById('premiadas-hero').querySelector('.premiadas-sub').textContent='Confira abaixo as empresas vencedoras do Pró-Ética 2025/2026.';
+    document.getElementById('premiadas-hero').querySelector('.premiadas-badge').innerHTML='<span>🏆 Empresas reveladas!</span>';
+    document.getElementById('premiadas-info-base').style.display='none';
     return;
   }
   const d=Math.floor(diff/86400000);
   const h=Math.floor((diff%86400000)/3600000);
   const m=Math.floor((diff%3600000)/60000);
-  const sec=Math.floor((diff%60000)/1000);
+  const s=Math.floor((diff%60000)/1000);
   document.getElementById('cd-d').textContent=String(d).padStart(2,'0');
   document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
   document.getElementById('cd-m').textContent=String(m).padStart(2,'0');
-  document.getElementById('cd-s').textContent=String(sec).padStart(2,'0');
+  document.getElementById('cd-s').textContent=String(s).padStart(2,'0');
 }
 updateCountdown();
 setInterval(updateCountdown,1000);
