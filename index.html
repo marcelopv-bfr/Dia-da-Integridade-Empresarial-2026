@@ -265,6 +265,25 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
   background:rgba(62,201,92,.07);border:1px solid var(--border2);
   border-radius:20px;padding:.22rem .65rem;}
 
+/* ── NOVIDADES cards ── */
+.nov-card{display:flex;flex-direction:column;background:var(--card);
+  border:1px solid var(--border2);border-radius:13px;overflow:hidden;
+  margin-bottom:.65rem;text-decoration:none;color:var(--text);transition:.15s;}
+.nov-card:hover{border-color:var(--border);transform:translateY(-2px);}
+.nov-img{width:100%;max-height:160px;object-fit:cover;display:block;}
+.nov-img-placeholder{width:100%;height:100px;display:flex;align-items:center;
+  justify-content:center;font-size:2.8rem;background:rgba(62,201,92,.06);}
+.nov-body{padding:.85rem 1rem .9rem;}
+.nov-tag{display:inline-block;font-size:.6rem;font-weight:800;letter-spacing:1px;
+  text-transform:uppercase;padding:.1rem .4rem;border-radius:3px;margin-bottom:.35rem;
+  background:rgba(62,201,92,.12);color:var(--green);}
+.nov-title{font-size:.9rem;font-weight:700;line-height:1.35;margin-bottom:.25rem;}
+.nov-desc{font-size:.74rem;color:var(--muted);line-height:1.55;margin-bottom:.3rem;}
+.nov-cta{display:inline-flex;align-items:center;gap:.3rem;margin-top:.3rem;
+  font-size:.72rem;font-weight:700;color:var(--green);
+  background:rgba(62,201,92,.07);border:1px solid var(--border2);
+  border-radius:20px;padding:.22rem .65rem;}
+
 /* ── NOVIDADES ── */
 .em-breve{text-align:center;padding:3.5rem 1rem;}
 .em-breve .ebi{font-size:2.6rem;margin-bottom:.85rem;}
@@ -443,11 +462,79 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
       <button class="back-btn" onclick="goTo('s-home')">← Início</button>
       <div class="eyebrow">Novidades</div>
       <div class="stitle">Lançamentos CGU</div>
-      <div class="em-breve">
-        <div class="ebi">🔔</div>
-        <div class="ebt">Em breve</div>
-        <div class="ebs">Os lançamentos anunciados pela CGU serão publicados aqui.</div>
+      <p class="ssub">Anunciados no Dia da Integridade Empresarial 2026</p>
+
+      <!-- Countdown novidades -->
+      <div class="countdown-wrap" id="nov-cd-wrap">
+        <div class="countdown-label">Lançamentos disponíveis em</div>
+        <div class="countdown-grid">
+          <div class="cd-block"><div class="cd-num" id="nov-cd-d">--</div><div class="cd-lbl">dias</div></div>
+          <div class="cd-block"><div class="cd-num" id="nov-cd-h">--</div><div class="cd-lbl">horas</div></div>
+          <div class="cd-block"><div class="cd-num" id="nov-cd-m">--</div><div class="cd-lbl">min</div></div>
+          <div class="cd-block"><div class="cd-num" id="nov-cd-s">--</div><div class="cd-lbl">seg</div></div>
+        </div>
+        <div style="text-align:center;margin-top:.5rem;font-size:.68rem;color:var(--muted2)">30 de junho · 11h00 · Brasília</div>
       </div>
+
+      <!-- Conteúdo revelado -->
+      <div id="nov-reveal" style="display:none;padding:0 1rem;">
+
+        <!-- Card 1: Painel -->
+        <a href="https://centralpaineis.cgu.gov.br/visualizar/integridadeprivada" id="nov-link-painel" target="_blank" class="nov-card">
+          <img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/cf4161477fffd221959aced09f9f834f8486e2ec/Novo%20Painel.jpg"
+               alt="Painel Lei Anticorrupção" class="nov-img"
+               onerror="this.style.display='none'"/>
+          <div class="nov-body">
+            <span class="nov-tag">🆕 Lançamento</span>
+            <div class="nov-title">Painel Lei Anticorrupção e Integridade Privada em Dados</div>
+            <span class="nov-cta">Acessar painel →</span>
+          </div>
+        </a>
+
+        <!-- Card 2: Manual REP 3ª Ed -->
+        <a href="https://basedeconhecimento.cgu.gov.br/handle/1/22990" target="_blank" class="nov-card">
+          <img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/bba29986938bac62e5e007c4b249f336dea15c7a/Manual%20de%20REP.png"
+               alt="Manual de Responsabilização" class="nov-img"
+               onerror="this.style.display='none'"/>
+          <div class="nov-body">
+            <span class="nov-tag">📘 Manual</span>
+            <div class="nov-title">Manual de Responsabilização de Entes Privados — 3ª Edição</div>
+            <div class="nov-desc">Versão atualizada até junho de 2026</div>
+            <span class="nov-cta">Acessar manual →</span>
+          </div>
+        </a>
+
+        <!-- Card 3: Consulta Pública -->
+        <a href="https://brasilparticipativo.presidencia.gov.br/processes/minuta-portaria-normativa-alteracao-in-13-cgu" target="_blank" class="nov-card">
+          <div class="nov-img-placeholder">📢</div>
+          <div class="nov-body">
+            <span class="nov-tag">💬 Consulta Pública</span>
+            <div class="nov-title">Proposta de Regulamentação da Desconsideração da Pessoa Jurídica</div>
+            <div class="nov-desc">Participe da consulta pública para a minuta de Portaria Normativa</div>
+            <span class="nov-cta">Participar →</span>
+          </div>
+        </a>
+
+        <!-- Card 4: Guia Leniência 2ª Ed -->
+        <a href="https://basedeconhecimento.cgu.gov.br/handle/1/22988" target="_blank" class="nov-card">
+          <img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/a4ed7c6fd5961623a21d87b3ac840ae2cfd0ad50/Manual%20Leniencia.png"
+               alt="Guia de Leniência" class="nov-img"
+               onerror="this.style.display='none'"/>
+          <div class="nov-body">
+            <span class="nov-tag">📗 Guia</span>
+            <div class="nov-title">Guia de Leniência — 2ª Edição</div>
+            <div class="nov-desc">Guia do Programa de Leniência Anticorrupção da CGU — 2ª Edição</div>
+            <span class="nov-cta">Acessar guia →</span>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Texto antes da revelação -->
+      <div class="premiadas-info" id="nov-info-base">
+        <p>Os lançamentos da <strong>Secretaria de Integridade Privada</strong> serão anunciados durante a cerimônia de abertura do Dia da Integridade Empresarial, em <strong>30 de junho de 2026</strong>, a partir das 11h.</p>
+      </div>
+      <div style="height:.5rem"></div>
     </div>
 
     <!-- ══ MATERIAIS ══ -->
@@ -502,7 +589,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
       <div id="premiadas-reveal" style="display:none">
         <!-- Logomarcas -->
         <div style="margin:0 1rem .65rem;">
-          <a href="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/c72e16724737bd930d72140b4ae8936e68ab1513/IMG-20260624-WA0033(1).jpg"
+          <a href="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/3f63dfdbc5e31261dd8da1bf9c1846dfe84653f5/IMG-20260624-WA0033(1).jpeg"
              target="_blank"
              style="display:flex;align-items:center;gap:.6rem;background:var(--card);
                     border:1px solid var(--border);border-radius:13px;padding:.9rem 1rem;
@@ -613,7 +700,7 @@ const SPEAKERS=[
   {i:'FS',name:'Fernanda Santos Schramm',role:'Compliance Officer — STATKRAFT Energias Renováveis S/A',
    photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/7f7f3b5638c3bd62144da9919551ca1af86ea069/Fernanda%20Schramm%20.jpeg'),
    li:'https://www.linkedin.com/in/fernanda-schramm-ccep-i-78a37292/',
-   bio:'Doutora em Direito pela Universidade de São Paulo (USP). Mestre em Direito do Estado pela UFSC. Educação Executiva em Compliance e Gestão de Compliance pelo INSPER/SP. Especialista em Processo Civil. Vice-Presidente da Comissão de Licitações e Contratos da OAB/SC. Graduada em Relações Internacionais pela UFSC. Sócia da Menezes Niebuhr Advogados Associados. Autora do livro "Compliance nas Contratações Públicas" (Editora Fórum, 2ª Ed., 2021).'},
+   bio:'Doutora em Direito pela Universidade de São Paulo (USP), com pesquisa sobre greenwashing e responsabilidade corporativa, e possui certificação internacional em Compliance (CCEP-I). Foi Diretora de Integridade e Governança do Governo do Estado de Santa Catarina e, atualmente, é Compliance Officer da Statkraft Energias Renováveis, sendo responsável pelo programa no Brasil. É autora do livro Compliance nas Contratações Públicas (Editora Fórum, 2ª edição) e professora de cursos de pós-graduação nas áreas de Compliance, Direito Administrativo e Contratações Públicas.'},
   {i:'GB',name:'Gabriel Nogueira Bravo',role:'Gerente de Integridade Corporativa — SEBRAE',
    photo:toRaw('https://github.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/blob/7f7f3b5638c3bd62144da9919551ca1af86ea069/Gabriel.jpeg'),
    li:'https://www.linkedin.com/in/gabriel-nogueira-portella-nunes-pinto-bravo-60409821/',
@@ -923,8 +1010,28 @@ const PREMIADAS=[
   });
 })();
 
-// Countdown — alvo: 30/jun/2026 às 10h30 (Brasília = UTC-3)
-const REVEAL_DATE=new Date('2026-06-30T10:30:00-03:00');
+// Countdown Novidades — 30/jun/2026 às 11h (Brasília = UTC-3)
+const NOV_DATE=new Date('2024-06-30T11:00:00-03:00');
+function updateNovCountdown(){
+  const diff=NOV_DATE-new Date();
+  if(diff<=0){
+    document.getElementById('nov-cd-wrap').style.display='none';
+    document.getElementById('nov-reveal').style.display='block';
+    document.getElementById('nov-info-base').style.display='none';
+    return;
+  }
+  const d=Math.floor(diff/86400000);
+  const h=Math.floor((diff%86400000)/3600000);
+  const m=Math.floor((diff%3600000)/60000);
+  const s=Math.floor((diff%60000)/1000);
+  document.getElementById('nov-cd-d').textContent=String(d).padStart(2,'0');
+  document.getElementById('nov-cd-h').textContent=String(h).padStart(2,'0');
+  document.getElementById('nov-cd-m').textContent=String(m).padStart(2,'0');
+  document.getElementById('nov-cd-s').textContent=String(s).padStart(2,'0');
+}
+updateNovCountdown();
+setInterval(updateNovCountdown,1000);
+const REVEAL_DATE=new Date('2024-06-30T10:30:00-03:00');
 function updateCountdown(){
   const now=new Date();
   const diff=REVEAL_DATE-now;
