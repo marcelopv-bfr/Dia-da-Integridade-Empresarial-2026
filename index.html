@@ -506,7 +506,9 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 
         <!-- Card 3: Consulta Pública -->
         <a href="https://brasilparticipativo.presidencia.gov.br/processes/minuta-portaria-normativa-alteracao-in-13-cgu" target="_blank" class="nov-card">
-          <div class="nov-img-placeholder">📢</div>
+          <img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/2d66c0ebd2b969490ccbc1c1d319a60b1493759e/Consulta%20publica.png"
+               alt="Consulta Pública" class="nov-img"
+               onerror="this.style.display='none'"/>
           <div class="nov-body">
             <span class="nov-tag">💬 Consulta Pública</span>
             <div class="nov-title">Proposta de Regulamentação da Desconsideração da Pessoa Jurídica</div>
@@ -517,7 +519,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 
         <!-- Card 4: Guia Leniência 2ª Ed -->
         <a href="https://basedeconhecimento.cgu.gov.br/handle/1/22988" target="_blank" class="nov-card">
-          <img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/a4ed7c6fd5961623a21d87b3ac840ae2cfd0ad50/Manual%20Leniencia.png"
+          <img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/c692524ee5da45813ce9c9958eaa8cad44127346/Manual%20Leniencia.png"
                alt="Guia de Leniência" class="nov-img"
                onerror="this.style.display='none'"/>
           <div class="nov-body">
@@ -1011,7 +1013,7 @@ const PREMIADAS=[
 })();
 
 // Countdown Novidades — 30/jun/2026 às 11h (Brasília = UTC-3)
-const NOV_DATE=new Date('2024-06-30T11:00:00-03:00');
+const NOV_DATE=new Date('2026-06-30T11:00:00-03:00');
 function updateNovCountdown(){
   const diff=NOV_DATE-new Date();
   if(diff<=0){
@@ -1031,7 +1033,7 @@ function updateNovCountdown(){
 }
 updateNovCountdown();
 setInterval(updateNovCountdown,1000);
-const REVEAL_DATE=new Date('2024-06-30T10:30:00-03:00');
+const REVEAL_DATE=new Date('2026-06-30T10:30:00-03:00');
 function updateCountdown(){
   const now=new Date();
   const diff=REVEAL_DATE-now;
