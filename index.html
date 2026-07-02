@@ -236,6 +236,42 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 .premiadas-info p{font-size:.8rem;color:var(--muted);line-height:1.7;}
 .premiadas-info strong{color:var(--text);}
 
+/* ── VÍDEOS ── */
+.video-day-label{font-size:.65rem;font-weight:800;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--muted2);margin-bottom:.5rem;padding:.2rem 0;}
+.video-card{display:flex;gap:.75rem;background:var(--card);border:1px solid var(--border2);
+  border-radius:13px;overflow:hidden;margin-bottom:.6rem;
+  text-decoration:none;color:var(--text);transition:.15s;align-items:stretch;}
+.video-card:hover{border-color:var(--border);transform:translateY(-2px);}
+.video-thumb{position:relative;width:110px;flex-shrink:0;}
+.video-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.video-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.35);font-size:1.3rem;color:#fff;}
+.video-body{padding:.7rem .8rem .75rem 0;display:flex;flex-direction:column;justify-content:center;}
+.video-period{font-size:.62rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;
+  color:var(--teal);margin-bottom:.2rem;}
+.video-title{font-size:.82rem;font-weight:700;line-height:1.35;margin-bottom:.35rem;color:var(--text);}
+.video-cta{display:inline-flex;align-items:center;font-size:.68rem;font-weight:700;
+  color:var(--teal);background:rgba(42,191,160,.08);border:1px solid rgba(42,191,160,.2);
+  border-radius:20px;padding:.18rem .55rem;width:fit-content;}
+
+/* ── FOTOS ── */
+.foto-card{display:flex;gap:.75rem;background:var(--card);border:1px solid var(--border2);
+  border-radius:13px;padding:.9rem 1rem;margin-bottom:.65rem;
+  text-decoration:none;color:var(--text);transition:.15s;align-items:flex-start;}
+.foto-card:hover{border-color:var(--border);transform:translateY(-2px);}
+.foto-thumb{font-size:2rem;flex-shrink:0;width:48px;height:48px;
+  background:rgba(62,201,92,.08);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;}
+.foto-body{}
+.foto-day{font-size:.62rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;
+  color:var(--green);margin-bottom:.2rem;}
+.foto-title{font-size:.88rem;font-weight:700;line-height:1.3;margin-bottom:.2rem;}
+.foto-desc{font-size:.72rem;color:var(--muted);line-height:1.55;margin-bottom:.35rem;}
+.foto-cta{display:inline-flex;align-items:center;font-size:.7rem;font-weight:700;
+  color:var(--teal);background:rgba(42,191,160,.08);border:1px solid rgba(42,191,160,.2);
+  border-radius:20px;padding:.2rem .6rem;}
+
 /* ── MATERIAIS ── */
 .mat-filters{display:flex;gap:.4rem;padding:0 1rem .85rem;overflow-x:auto;
   scrollbar-width:none;-webkit-overflow-scrolling:touch;}
@@ -326,6 +362,14 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
         <div class="hero-spacer"></div>
       </div>
 
+      <!-- Mensagem pós-evento -->
+      <div style="background:linear-gradient(135deg,rgba(62,201,92,.12),rgba(42,191,160,.08));
+        border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+        padding:.75rem 1rem;display:flex;align-items:center;gap:.6rem;">
+        <span style="font-size:1.3rem">🙏</span>
+        <span style="font-size:.88rem;font-weight:700;color:var(--green2)">Obrigado pela presença!</span>
+      </div>
+
       <!-- FEATURE BUTTONS -->
       <div class="feat-grid">
         <button class="feat-btn" onclick="goTo('s-novidades')">
@@ -337,15 +381,14 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
           <span class="fi">🏆</span>
           <span class="ft">Empresas premiadas</span>
           <span class="fs">Pró-Ética 2025–2026</span>
-        </button>
-      </div>
+        </button>      </div>
 
       <!-- NAV BUTTONS -->
       <div class="quick-btns">
         <button class="qbtn" onclick="goTo('s-prog')"><span class="qi">🗓️</span><span class="ql">Programação</span></button>
         <button class="qbtn" onclick="goTo('s-spk')"><span class="qi">🎙️</span><span class="ql">Palestrantes</span></button>
-        <button class="qbtn" onclick="goTo('s-local')"><span class="qi">📍</span><span class="ql">Local e dicas</span></button>
-        <button class="qbtn" onclick="goTo('s-mat')"><span class="qi">📄</span><span class="ql">Guias CGU</span></button>
+        <button class="qbtn" onclick="goTo('s-fotos')"><span class="qi">📸</span><span class="ql">Fotos</span></button>
+        <button class="qbtn" onclick="goTo('s-videos')"><span class="qi">▶️</span><span class="ql">Gravações</span></button>
       </div>
 
       <!-- APOIO -->
@@ -357,9 +400,6 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
         <span class="apoio-tag">MDIC</span>
         <span class="apoio-tag">CGU</span>
         <div class="gov-row">
-          <img src="https://raw.githubusercontent.com/marcelopv-bfr/Dia-da-Integridade-Empresarial-2026/main/Marca%20de%20governo.png"
-            alt="Governo Federal" style="height:32px;width:auto;flex-shrink:0;object-fit:contain;"
-            onerror="this.style.display='none'"/>
           <div class="gov-txt">
             <strong>Governo Federal · Brasil</strong>
             Controladoria-Geral da União — CGU<br>
@@ -539,7 +579,113 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
       <div style="height:.5rem"></div>
     </div>
 
-    <!-- ══ MATERIAIS ══ -->
+    <!-- ══ GRAVAÇÕES ══ -->
+    <div class="screen" id="s-videos">
+      <button class="back-btn" onclick="goTo('s-home')">← Início</button>
+      <div class="eyebrow">Gravações</div>
+      <div class="stitle">Assista ao Evento</div>
+      <p class="ssub">Transmissões ao vivo · YouTube CGU</p>
+
+      <div style="padding:0 1rem;">
+
+        <div class="video-day-label">📅 1º Dia · 30 de junho de 2026</div>
+
+        <a href="https://www.youtube.com/live/zATHXtJeHzE?si=hFnO6zJf3ECXoJCC" target="_blank" class="video-card">
+          <div class="video-thumb">
+            <img src="https://img.youtube.com/vi/zATHXtJeHzE/mqdefault.jpg" alt="1º Dia Manhã"/>
+            <div class="video-play">▶</div>
+          </div>
+          <div class="video-body">
+            <div class="video-period">🌅 Manhã</div>
+            <div class="video-title">Abertura · Keynote Viviane Mosé · Painel 1</div>
+            <span class="video-cta">Assistir no YouTube →</span>
+          </div>
+        </a>
+
+        <a href="https://www.youtube.com/live/Qg--v_dtj9Q?si=5OoMkMnOPNolJhuZ" target="_blank" class="video-card">
+          <div class="video-thumb">
+            <img src="https://img.youtube.com/vi/Qg--v_dtj9Q/mqdefault.jpg" alt="1º Dia Tarde"/>
+            <div class="video-play">▶</div>
+          </div>
+          <div class="video-body">
+            <div class="video-period">🌇 Tarde</div>
+            <div class="video-title">Painel 2 · Orquestra FAB</div>
+            <span class="video-cta">Assistir no YouTube →</span>
+          </div>
+        </a>
+
+        <div class="video-day-label" style="margin-top:.4rem">📅 2º Dia · 1º de julho de 2026</div>
+
+        <a href="https://www.youtube.com/live/Pum_EYA6rWo?si=9JQ8AC3orY0YOzid" target="_blank" class="video-card">
+          <div class="video-thumb">
+            <img src="https://img.youtube.com/vi/Pum_EYA6rWo/mqdefault.jpg" alt="2º Dia Manhã"/>
+            <div class="video-play">▶</div>
+          </div>
+          <div class="video-body">
+            <div class="video-period">🌅 Manhã</div>
+            <div class="video-title">Painéis 3 e 4 · Entrevistas</div>
+            <span class="video-cta">Assistir no YouTube →</span>
+          </div>
+        </a>
+
+        <a href="https://www.youtube.com/live/u5_lPgn6zXw?si=wH_Zt_agPdkm4epJ" target="_blank" class="video-card">
+          <div class="video-thumb">
+            <img src="https://img.youtube.com/vi/u5_lPgn6zXw/mqdefault.jpg" alt="2º Dia Tarde"/>
+            <div class="video-play">▶</div>
+          </div>
+          <div class="video-body">
+            <div class="video-period">🌇 Tarde</div>
+            <div class="video-title">Bruno Romano · Premiação Pró-Ética</div>
+            <span class="video-cta">Assistir no YouTube →</span>
+          </div>
+        </a>
+
+      </div>
+      <div style="height:.5rem"></div>
+    </div>
+
+    <!-- ══ FOTOS ══ -->
+    <div class="screen" id="s-fotos">
+      <button class="back-btn" onclick="goTo('s-home')">← Início</button>
+      <div class="eyebrow">Galeria</div>
+      <div class="stitle">Fotos do Evento</div>
+      <p class="ssub">Acervo oficial · CGU no Flickr</p>
+
+      <div style="padding:0 1rem;">
+
+        <a href="https://www.flickr.com/photos/cguoficial/albums/72177720334485304/" target="_blank" class="foto-card">
+          <div class="foto-thumb">📷</div>
+          <div class="foto-body">
+            <div class="foto-day">Dia 1 · 30 de junho de 2026</div>
+            <div class="foto-title">Cerimônia de Abertura e Painéis</div>
+            <div class="foto-desc">Credenciamento, abertura oficial, keynote de Viviane Mosé e painéis do primeiro dia</div>
+            <span class="foto-cta">Ver álbum no Flickr →</span>
+          </div>
+        </a>
+
+        <a href="https://www.flickr.com/photos/cguoficial/albums/72177720334484796/" target="_blank" class="foto-card">
+          <div class="foto-thumb">📷</div>
+          <div class="foto-body">
+            <div class="foto-day">Dia 2 · 1º de julho de 2026</div>
+            <div class="foto-title">Debates e Apresentação Especial</div>
+            <div class="foto-desc">Painéis, debate sobre integridade antifacção e apresentação de Bruno Romano</div>
+            <span class="foto-cta">Ver álbum no Flickr →</span>
+          </div>
+        </a>
+
+        <a href="https://www.flickr.com/photos/cguoficial/albums/72177720334490881/" target="_blank" class="foto-card">
+          <div class="foto-thumb">🏆</div>
+          <div class="foto-body">
+            <div class="foto-day">1º de julho de 2026 · 16h</div>
+            <div class="foto-title">Cerimônia de Premiação Pró-Ética</div>
+            <div class="foto-desc">Revelação e premiação das Empresas Pró-Ética 2025–2026</div>
+            <span class="foto-cta">Ver álbum no Flickr →</span>
+          </div>
+        </a>
+
+      </div>
+      <div style="height:.5rem"></div>
+    </div>
     <div class="screen" id="s-mat">
       <button class="back-btn" onclick="goTo('s-home')">← Início</button>
       <div class="eyebrow">Biblioteca</div>
@@ -625,7 +771,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
     <button class="tab active" id="tab-home" onclick="goTo('s-home')"><span class="tab-icon">🏠</span><span class="tab-label">Início</span><span class="tab-dot"></span></button>
     <button class="tab" id="tab-prog" onclick="goTo('s-prog')"><span class="tab-icon">🗓️</span><span class="tab-label">Programação</span><span class="tab-dot"></span></button>
     <button class="tab" id="tab-spk" onclick="goTo('s-spk')"><span class="tab-icon">🎙️</span><span class="tab-label">Palestrantes</span><span class="tab-dot"></span></button>
-    <button class="tab" id="tab-local" onclick="goTo('s-local')"><span class="tab-icon">📍</span><span class="tab-label">Local e dicas</span><span class="tab-dot"></span></button>
+    <button class="tab" id="tab-fotos" onclick="goTo('s-fotos')"><span class="tab-icon">📸</span><span class="tab-label">Fotos</span><span class="tab-dot"></span></button>
+    <button class="tab" id="tab-videos" onclick="goTo('s-videos')"><span class="tab-icon">▶️</span><span class="tab-label">Gravações</span><span class="tab-dot"></span></button>
   </div>
 </div>
 
@@ -915,7 +1062,8 @@ function filterMat(cat,btn){
 const SM={
   's-home':'tab-home','s-prog':'tab-prog','s-spk':'tab-spk',
   's-local':'tab-local','s-novidades':'tab-home',
-  's-premiadas':'tab-home','s-mat':'tab-home'
+  's-premiadas':'tab-home','s-mat':'tab-home',
+  's-fotos':'tab-fotos','s-videos':'tab-videos'
 };
 function goTo(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
